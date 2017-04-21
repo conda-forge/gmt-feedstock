@@ -1,4 +1,4 @@
-{% set version = "5.3.1" %}
+{% set version = "5.3.3" %}
 
 package:
   name: gmt
@@ -7,7 +7,7 @@ package:
 source:
   fn: gmt-{{ version }}-src.tar.gz
   url: ftp://ftp.soest.hawaii.edu/gmt/gmt-{{ version }}-src.tar.gz
-  sha256: e3b9164f4b6d8c4f0ff12b62516a58b6037d3333ced1562a58f3163a3bc90af8
+  sha256: b5e592d7482de5dee06268a0a048949f5cf626ef67b0419515ce3d14f4aa82c6
 
 build:
   number: 0
@@ -47,3 +47,4 @@ about:
 extra:
   recipe-maintainers:
     - ocefpaf
+    - leouieda
