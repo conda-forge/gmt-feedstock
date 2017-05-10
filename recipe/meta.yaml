@@ -1,4 +1,5 @@
 {% set version = "5.3.3" %}
+{% set variant = "openblas" %}
 
 package:
   name: gmt
@@ -10,8 +11,10 @@ source:
   sha256: b5e592d7482de5dee06268a0a048949f5cf626ef67b0419515ce3d14f4aa82c6
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win or osx]
+  features:
+    - blas_{{ variant }}
 
 requirements:
   build:
@@ -22,6 +25,7 @@ requirements:
     - libnetcdf 4.4.*
     - hdf5 1.8.17|1.8.17.*
     - zlib 1.2.*
+    - blas 1.1 {{ variant }}
   run:
     - fftw
     - gdal 2.1.*
@@ -29,6 +33,7 @@ requirements:
     - libnetcdf 4.4.*
     - hdf5 1.8.17|1.8.17.*
     - zlib 1.2.*
+    - blas 1.1 {{ variant }}
 
 test:
   commands:
