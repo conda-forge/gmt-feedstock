@@ -11,7 +11,7 @@ source:
   sha256: c85541d50b63a5f0809552edb488bb69995b96dd684df77d6328a9eea7ff3ab0
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win or osx]
   features:
     - blas_{{ variant }}
@@ -23,7 +23,7 @@ requirements:
     - gdal 2.1.*
     - ghostscript
     - libnetcdf 4.4.*
-    - hdf5 1.8.17|1.8.17.*
+    - hdf5 1.8.18|1.8.18.*
     - zlib 1.2.*
     - blas 1.1 {{ variant }}
     - curl
@@ -32,7 +32,7 @@ requirements:
     - gdal 2.1.*
     - ghostscript
     - libnetcdf 4.4.*
-    - hdf5 1.8.17|1.8.17.*
+    - hdf5 1.8.18|1.8.18.*
     - zlib 1.2.*
     - blas 1.1 {{ variant }}
     - curl
