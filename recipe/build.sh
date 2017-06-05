@@ -2,7 +2,7 @@
 
 # TODO: Maybe split this into another package.
 DATADIR="$PREFIX/share/coast"
-mkdir $DATADIR
+mkdir -p $DATADIR
 
 # GSHHG (coastlines, rivers, and political boundaries):
 EXT="tar.gz"
