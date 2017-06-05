@@ -11,7 +11,7 @@ source:
   sha256: c85541d50b63a5f0809552edb488bb69995b96dd684df77d6328a9eea7ff3ab0
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win or osx]
   features:
     - blas_{{ variant }}
@@ -20,7 +20,7 @@ requirements:
   build:
     - cmake
     - fftw
-    - gdal 2.1.*
+    - gdal 2.2.*
     - ghostscript
     - libnetcdf 4.4.*
     - hdf5 1.8.17|1.8.17.*
@@ -29,7 +29,7 @@ requirements:
     - curl
   run:
     - fftw
-    - gdal 2.1.*
+    - gdal 2.2.*
     - ghostscript
     - libnetcdf 4.4.*
     - hdf5 1.8.17|1.8.17.*
