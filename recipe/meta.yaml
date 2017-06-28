@@ -1,4 +1,4 @@
-{% set version = "5.4.1" %}
+{% set version = "5.4.2" %}
 {% set variant = "openblas" %}
 
 package:
@@ -8,10 +8,10 @@ package:
 source:
   fn: gmt-{{ version }}-src.tar.gz
   url: ftp://ftp.soest.hawaii.edu/gmt/gmt-{{ version }}-src.tar.gz
-  sha256: c85541d50b63a5f0809552edb488bb69995b96dd684df77d6328a9eea7ff3ab0
+  sha256: 288509d28ed062ddf8b08212f65afb3aa07762a9a84bc5da9f7132016c8dd31f
 
 build:
-  number: 1
+  number: 0
   skip: True  # [win or osx]
   features:
     - blas_{{ variant }}
@@ -27,6 +27,7 @@ requirements:
     - zlib 1.2.*
     - blas 1.1 {{ variant }}
     - curl
+    - pcre
   run:
     - fftw
     - gdal 2.2.*
@@ -36,6 +37,7 @@ requirements:
     - zlib 1.2.*
     - blas 1.1 {{ variant }}
     - curl
+    - pcre
 
 test:
   commands:
