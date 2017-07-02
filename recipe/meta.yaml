@@ -17,6 +17,7 @@ build:
 
 requirements:
   build:
+    - svn
     - cmake
     - fftw
     - gdal 2.2.*
