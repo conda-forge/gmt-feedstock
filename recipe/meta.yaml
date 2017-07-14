@@ -11,33 +11,43 @@ source:
   sha256: 288509d28ed062ddf8b08212f65afb3aa07762a9a84bc5da9f7132016c8dd31f
 
 build:
-  number: 0
-  skip: True  # [win or osx]
+  number: 2
+  skip: True  # [osx or (win and py36)]
   features:
-    - blas_{{ variant }}
+    - blas_{{ variant }}  # [not win]
+    - vc9  # [win and py27]
+    - vc10  # [win and py34]
+    - vc14  # [win and (py35 or py36)]
 
 requirements:
   build:
     - cmake
+    - python  # [win]
     - fftw
-    - gdal 2.2.*
-    - ghostscript
+    - gdal 2.1.*
+    - ghostscript  # [not win]
     - libnetcdf 4.4.*
     - hdf5 1.8.18|1.8.18.*
-    - zlib 1.2.*
-    - blas 1.1 {{ variant }}
+    - zlib 1.2.8
+    - blas 1.1 {{ variant }}  # [not win]
     - curl
     - pcre
+    - vc 9  # [win and py27]
+    - vc 10  # [win and py34]
+    - vc 14  # [win and (py35 or py36)]
   run:
     - fftw
-    - gdal 2.2.*
-    - ghostscript
+    - gdal 2.1.*
+    - ghostscript  # [not win]
     - libnetcdf 4.4.*
     - hdf5 1.8.18|1.8.18.*
     - zlib 1.2.*
-    - blas 1.1 {{ variant }}
+    - blas 1.1 {{ variant }}  # [not win]
     - curl
     - pcre
+    - vc 9  # [win and py27]
+    - vc 10  # [win and py34]
+    - vc 14  # [win and (py35 or py36)]
 
 test:
   commands:
