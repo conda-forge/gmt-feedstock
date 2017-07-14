@@ -17,7 +17,7 @@ rem curl %URL% > %DCW%.%EXT%
 rem tar xzf %DCW%.%EXT%
 rem cp %DCW%/* %DATADIR%
 
-rem copy cmake/ConfigUserTemplate.cmake cmake/ConfigUser.cmake || exit 1
+copy cmake\ConfigUserTemplate.cmake cmake\ConfigUser.cmake || exit 1
 rem echo "add_definitions(-DTEST_MODERN)" >> cmake/ConfigUser.cmake
 
 mkdir build
