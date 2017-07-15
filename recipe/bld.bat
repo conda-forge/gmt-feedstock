@@ -1,5 +1,5 @@
 :: TODO: maybe split this into another package.
-set DATADIR="%LIBRARY_PREFIX%/share/coast"
+set DATADIR="%LIBRARY_PREFIX%\share\coast"
 if not exist %DATADIR% mkdir %DATADIR%
 
 :: GSHHG (coastlines, rivers, and political boundaries):
@@ -29,7 +29,7 @@ cmake -D CMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
       -D NETCDF_ROOT=%LIBRARY_PREFIX% ^
       -D PCRE_ROOT=%LIBRARY_PREFIX% ^
       -D ZLIB_ROOT=%LIBRARY_PREFIX% ^
-      -D GMT_LIBDIR=%LIBRARY_PREFIX%/lib ^
+      -D GMT_LIBDIR=%LIBRARY_PREFIX%\lib ^
       %SRC_DIR%
 if errorlevel 1 exit 1
 
