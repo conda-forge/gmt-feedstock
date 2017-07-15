@@ -11,7 +11,7 @@ source:
   sha256: 288509d28ed062ddf8b08212f65afb3aa07762a9a84bc5da9f7132016c8dd31f
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win or osx]
   features:
     - blas_{{ variant }}
@@ -28,6 +28,7 @@ requirements:
     - blas 1.1 {{ variant }}
     - curl
     - pcre
+    - gshhg-gmt
   run:
     - fftw
     - gdal 2.2.*
@@ -38,6 +39,7 @@ requirements:
     - blas 1.1 {{ variant }}
     - curl
     - pcre
+    - gshhg-gmt
 
 test:
   commands:

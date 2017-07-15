@@ -1,16 +1,10 @@
 #!/bin/bash
 
+GSHHG_DIR="$PREFIX/share/gshhg-gmt"
+
 # TODO: Maybe split this into another package.
 DATADIR="$PREFIX/share/coast"
 mkdir -p $DATADIR
-
-# GSHHG (coastlines, rivers, and political boundaries):
-EXT="tar.gz"
-GSHHG="gshhg-gmt-2.3.6"
-URL="ftp://ftp.iag.usp.br/pub/gmt/$GSHHG.$EXT"
-curl $URL > $GSHHG.$EXT
-tar xzf $GSHHG.$EXT
-cp $GSHHG/* $DATADIR/
 
 # DCW (country polygons):
 DCW="dcw-gmt-1.1.2"
@@ -37,7 +31,7 @@ cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
       -D ZLIB_ROOT=$PREFIX \
       -D GMT_LIBDIR=$PREFIX/lib \
       -D DCW_ROOT=$DATADIR \
-      -D GSHHG_ROOT=$DATADIR \
+      -D GSHHG_ROOT=$GSHHG_DIR \
       $SRC_DIR
 
 make -j$CPU_COUNT
