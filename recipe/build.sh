@@ -19,7 +19,8 @@ curl $URL > $DCW.$EXT
 tar xzf $DCW.$EXT
 cp $DCW/* $DATADIR
 
-export LDFLAGS="$LDFLAGS -L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
+#export LDFLAGS="$LDFLAGS -L$PREFIX/lib"
+export LDFLAGS=
 
 mkdir build && cd build
 
@@ -32,21 +33,29 @@ cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
       -D GMT_LIBDIR=$PREFIX/lib \
       -D DCW_ROOT=$DATADIR \
       -D GSHHG_ROOT=$DATADIR \
-      $SRC_DIR
+      -D GMT_INSTALL_TRADITIONAL_FOLDERNAMES:BOOL=FALSE \
+      -D GMT_INSTALL_MODULE_LINKS:BOOL=FALSE \
+      ..
 
 make -j$CPU_COUNT
 make check
 make install
 
-# Diagnostics
-echo ""
-echo "DIAGNOSTICS"
-echo "############################################################"
-echo ""
+#we are fixing the paths to dynamic library files inside library and
+#binary files because something in make install is doubling up the
+#path to the library files.  Anyone who knows how to solve that
+#problem is free to contact the maintainers.
 
-ls -l $PREFIX/lib/
+if [[ "$(uname)" == "Darwin" ]];then
+    install_name_tool -id $PREFIX/lib/libgmt.5.dylib $PREFIX/lib/libgmt.5.dylib
+    install_name_tool -id $PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libpostscriptlight.5.dylib
 
-echo ""
-echo "############################################################"
-echo ""
-otool -l $PREFIX/lib/*.dylib
+    install_name_tool -change $PREFIX/$PREFIX/lib/libgmt.5.dylib $PREFIX/lib/libgmt.5.dylib $PREFIX/lib/gmt/plugins/supplements.so
+    install_name_tool -change $PREFIX/$PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/gmt/plugins/supplements.so
+
+    install_name_tool -change $PREFIX/$PREFIX/lib/libgmt.5.dylib $PREFIX/lib/libgmt.5.dylib $PREFIX/bin/gmt
+    install_name_tool -change $PREFIX/$PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/bin/gmt
+    
+    install_name_tool -change $PREFIX/$PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libgmt.5.4.2.dylib
+fi
+
