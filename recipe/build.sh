@@ -39,5 +39,14 @@ make check
 make install
 
 # Diagnostics
+echo ""
+echo "DIAGNOSTICS"
+echo "############################################################"
+echo ""
+
 ls -l $PREFIX/lib/
+
+echo ""
+echo "############################################################"
+echo ""
 otool -l $PREFIX/lib/*.dylib
