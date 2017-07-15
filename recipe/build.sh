@@ -19,13 +19,8 @@ curl $URL > $DCW.$EXT
 tar xzf $DCW.$EXT
 cp $DCW/* $DATADIR
 
-export LDFLAGS="$LDFLAGS -L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
-
-# Turn on C definition to enable the new GMT modern mode.
-# It doesn't affect current GMT behaviour but adds two new commands: begin and
-# end. Used for testing this new mode.
-cp cmake/ConfigUserTemplate.cmake cmake/ConfigUser.cmake
-echo "add_definitions(-DTEST_MODERN)" >> cmake/ConfigUser.cmake
+#export LDFLAGS="$LDFLAGS -L$PREFIX/lib"
+export LDFLAGS=
 
 mkdir build && cd build
 
@@ -38,8 +33,29 @@ cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
       -D GMT_LIBDIR=$PREFIX/lib \
       -D DCW_ROOT=$DATADIR \
       -D GSHHG_ROOT=$DATADIR \
-      $SRC_DIR
+      -D GMT_INSTALL_TRADITIONAL_FOLDERNAMES:BOOL=FALSE \
+      -D GMT_INSTALL_MODULE_LINKS:BOOL=FALSE \
+      ..
 
 make -j$CPU_COUNT
 make check
 make install
+
+#we are fixing the paths to dynamic library files inside library and
+#binary files because something in make install is doubling up the
+#path to the library files.  Anyone who knows how to solve that
+#problem is free to contact the maintainers.
+
+if [[ "$(uname)" == "Darwin" ]];then
+    install_name_tool -id $PREFIX/lib/libgmt.5.dylib $PREFIX/lib/libgmt.5.dylib
+    install_name_tool -id $PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libpostscriptlight.5.dylib
+
+    install_name_tool -change $PREFIX/$PREFIX/lib/libgmt.5.dylib $PREFIX/lib/libgmt.5.dylib $PREFIX/lib/gmt/plugins/supplements.so
+    install_name_tool -change $PREFIX/$PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/gmt/plugins/supplements.so
+
+    install_name_tool -change $PREFIX/$PREFIX/lib/libgmt.5.dylib $PREFIX/lib/libgmt.5.dylib $PREFIX/bin/gmt
+    install_name_tool -change $PREFIX/$PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/bin/gmt
+    
+    install_name_tool -change $PREFIX/$PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libgmt.5.4.2.dylib
+fi
+
