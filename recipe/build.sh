@@ -21,12 +21,6 @@ cp $DCW/* $DATADIR
 
 export LDFLAGS="$LDFLAGS -L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
 
-# Turn on C definition to enable the new GMT modern mode.
-# It doesn't affect current GMT behaviour but adds two new commands: begin and
-# end. Used for testing this new mode.
-cp cmake/ConfigUserTemplate.cmake cmake/ConfigUser.cmake
-echo "add_definitions(-DTEST_MODERN)" >> cmake/ConfigUser.cmake
-
 mkdir build && cd build
 
 cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
@@ -43,3 +37,7 @@ cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
 make -j$CPU_COUNT
 make check
 make install
+
+# Diagnostics
+ls -l $PREFIX/lib/
+otool -l $PREFIX/lib/*.dylib
