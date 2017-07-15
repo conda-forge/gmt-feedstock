@@ -1,5 +1,5 @@
 :: TODO: maybe split this into another package.
-set DATADIR="%LIBRAY_PREFIX%/share/coast"
+set DATADIR="%LIBRARY_PREFIX%/share/coast"
 if not exist %DATADIR% mkdir %DATADIR%
 
 :: GSHHG (coastlines, rivers, and political boundaries):
@@ -17,22 +17,19 @@ rem curl %URL% > %DCW%.%EXT%
 rem tar xzf %DCW%.%EXT%
 rem cp %DCW%/* %DATADIR%
 
-copy cmake\ConfigUserTemplate.cmake cmake\ConfigUser.cmake || exit 1
-rem echo "add_definitions(-DTEST_MODERN)" >> cmake/ConfigUser.cmake
-
 mkdir build
 cd build
 
 rem -D DCW_ROOT=%DATADIR% ^
 rem -D GSHHG_ROOT=%DATADIR% ^
 
-cmake -D CMAKE_INSTALL_PREFIX=%LIBRAY_PREFIX% ^
-      -D FFTW3_ROOT=%LIBRAY_PREFIX% ^
-      -D GDAL_ROOT=%LIBRAY_PREFIX% ^
-      -D NETCDF_ROOT=%LIBRAY_PREFIX% ^
-      -D PCRE_ROOT=%LIBRAY_PREFIX% ^
-      -D ZLIB_ROOT=%LIBRAY_PREFIX% ^
-      -D GMT_LIBDIR=%LIBRAY_PREFIX%/lib ^
+cmake -D CMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
+      -D FFTW3_ROOT=%LIBRARY_PREFIX% ^
+      -D GDAL_ROOT=%LIBRARY_PREFIX% ^
+      -D NETCDF_ROOT=%LIBRARY_PREFIX% ^
+      -D PCRE_ROOT=%LIBRARY_PREFIX% ^
+      -D ZLIB_ROOT=%LIBRARY_PREFIX% ^
+      -D GMT_LIBDIR=%LIBRARY_PREFIX%/lib ^
       %SRC_DIR%
 if errorlevel 1 exit 1
 
