@@ -10,8 +10,8 @@ source:
   svn_rev: 18534
 
 build:
-  number: 0
-  skip: True  # [win or osx]
+  number: 1
+  skip: True  # [win]
   features:
     - blas_{{ variant }}
 
