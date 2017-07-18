@@ -10,8 +10,9 @@ if "%VS_MAJOR%" == "9" (
 mkdir build
 cd build
 
+set GSHHG_DIR="%LIBRARY_PREFIX%\share\gshhg-gmt"
+
 rem -D DCW_ROOT=%DATADIR% ^
-rem -D GSHHG_ROOT=%DATADIR% ^
 
 cmake -G "NMake Makefiles" ^
       -D CMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
@@ -21,6 +22,7 @@ cmake -G "NMake Makefiles" ^
       -D PCRE_ROOT=%LIBRARY_PREFIX% ^
       -D ZLIB_ROOT=%LIBRARY_PREFIX% ^
       -D GMT_LIBDIR=%LIBRARY_PREFIX%\lib ^
+      -D GSHHG_ROOT=%GSHHG_DIR% ^
       %SRC_DIR%
 if errorlevel 1 exit 1
 

@@ -13,7 +13,7 @@ source:
 
 build:
   number: 2
-  skip: True  # [win and py36]
+  skip: True  # [win32 or (win and py36)]
   features:
     - blas_{{ variant }}  # [not win]
     - vc9  # [win and py27]
@@ -33,6 +33,7 @@ requirements:
     - blas 1.1 {{ variant }}  # [not win]
     - curl
     - pcre
+    - gshhg-gmt
     - vc 9  # [win and py27]
     - vc 10  # [win and py34]
     - vc 14  # [win and (py35 or py36)]
@@ -47,6 +48,7 @@ requirements:
     - blas 1.1 {{ variant }}  # [not win]
     - curl
     - pcre
+    - gshhg-gmt
     - vc 9  # [win and py27]
     - vc 10  # [win and py34]
     - vc 14  # [win and (py35 or py36)]
