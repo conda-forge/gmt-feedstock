@@ -6,9 +6,10 @@ package:
   version: {{ version }}
 
 source:
-  fn: gmt-{{ version }}-src.tar.gz
   url: ftp://ftp.soest.hawaii.edu/gmt/gmt-{{ version }}-src.tar.gz
   sha256: 288509d28ed062ddf8b08212f65afb3aa07762a9a84bc5da9f7132016c8dd31f
+  patches:
+    - no_matlab.patch
 
 build:
   number: 2
