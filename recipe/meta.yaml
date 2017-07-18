@@ -21,8 +21,8 @@ build:
 
 requirements:
   build:
-    - cmake
     - python  # [win]
+    - cmake
     - fftw
     - gdal 2.2.*
     - ghostscript  # [not win]
