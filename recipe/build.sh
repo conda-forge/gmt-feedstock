@@ -1,18 +1,8 @@
 #!/bin/bash
 
 GSHHG_DIR="$PREFIX/share/gshhg-gmt"
-DATADIR="$PREFIX/share/coast"
+DCW_DIR="$PREFIX/share/dcw-gmt"
 
-mkdir -p $DATADIR
-
-# DCW (country polygons):
-DCW="dcw-gmt-1.1.2"
-URL="ftp://ftp.soest.hawaii.edu/dcw/$DCW.tar.gz"
-curl $URL > $DCW.tar.gz
-tar xzf $DCW.tar.gz
-cp $DCW/* $DATADIR
-
-#export LDFLAGS="$LDFLAGS -L$PREFIX/lib"
 export LDFLAGS=
 
 mkdir build && cd build
@@ -24,7 +14,7 @@ cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
       -D PCRE_ROOT=$PREFIX \
       -D ZLIB_ROOT=$PREFIX \
       -D GMT_LIBDIR=$PREFIX/lib \
-      -D DCW_ROOT=$DATADIR \
+      -D DCW_ROOT=$DCW_DIR \
       -D GSHHG_ROOT=$GSHHG_DIR \
       -D GMT_INSTALL_TRADITIONAL_FOLDERNAMES:BOOL=FALSE \
       -D GMT_INSTALL_MODULE_LINKS:BOOL=FALSE \
