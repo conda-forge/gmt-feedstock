@@ -1,0 +1,56 @@
+# This file was generated automatically from conda-smithy. To update this configuration,
+# update the conda-forge.yml and/or the recipe/meta.yaml.
+
+language: generic
+
+os: osx
+osx_image: xcode6.4
+
+env:
+  global:
+    # The BINSTAR_TOKEN secure variable. This is defined canonically in conda-forge.yml.
+    - secure: "ciuYQlwMqZ9sd0kI8lEo6ehEAqcCHaFTJnNmxBojb+2caA7lGsrm2bdyls/G1B/TmwAuXsVTbGlXIE432VSz1xhuEQ/rrU2CqT3wCyP3PBc8b59UIgEWChauS4KB1EH8xdbTTCqAqGYEirmcpGgZJ00cGSy8FoZqDxd13CiRp1yAtypZkykWcrCyvSs41raSfj9hRnJg06DqA/DaadLB0kF0cwSAl8ciQGXQ+gzVLk6pn50X7BLt9Pkzg7cAA5I9TwTJskzT5d16skUJTKtC26D4wV1dyyNWxSn5H1DFSSpEV6ioAs8+K+EBdKpaomFOg2tculIRB5Bt7oJxlomTcBfqiX2rT2wOND/EQaYa6DyNA7lqVCVaH1I4m0wXwfsFi52QdVydNLDX90Ro40DOy6ggl1Db+8319aSxgxkXNRCp8XppJKsMeuHhj3SbymF0l21bD+7+Nk6UFCki00ZUNpiGFRshoDnEwPZO3eNvSRuB6Ko8cg5StPc5fpDXXMrshWfNg5qSUvjn01dk9B3dxKwD3kLIRHnYTypvH1RHj7BjuTU5cJfVuYyKudtf84wcYM/Rc7Ssy7hEp1wQ7l4LXw+4Hzhio86G5Goq6Q6fieOZ5+Zn2Vkw+6luYKcYStrRt/zrBnkqtq4dSYr4DxLMCbr5nfYXQIBz9q0bxOc3o+0="
+
+
+before_install:
+    # Fast finish the PR.
+    - |
+      (curl https://raw.githubusercontent.com/conda-forge/conda-forge-build-setup-feedstock/master/recipe/ff_ci_pr_build.py | \
+          python - -v --ci "travis" "${TRAVIS_REPO_SLUG}" "${TRAVIS_BUILD_NUMBER}" "${TRAVIS_PULL_REQUEST}") || exit 1
+
+    # Remove homebrew.
+    - |
+      echo ""
+      echo "Removing homebrew from Travis CI to avoid conflicts."
+      curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall > ~/uninstall_homebrew
+      chmod +x ~/uninstall_homebrew
+      ~/uninstall_homebrew -fq
+      rm ~/uninstall_homebrew
+
+
+install:
+    # Install Miniconda.
+    - |
+      echo ""
+      echo "Installing a fresh version of Miniconda."
+      MINICONDA_URL="https://repo.continuum.io/miniconda"
+      MINICONDA_FILE="Miniconda3-latest-MacOSX-x86_64.sh"
+      curl -L -O "${MINICONDA_URL}/${MINICONDA_FILE}"
+      bash $MINICONDA_FILE -b
+
+    # Configure conda.
+    - |
+      echo ""
+      echo "Configuring conda."
+      source /Users/travis/miniconda3/bin/activate root
+      conda config --remove channels defaults
+      conda config --add channels defaults
+      conda config --add channels conda-forge
+      conda config --set show_channel_urls true
+      conda install --yes --quiet conda-forge-build-setup
+      source run_conda_forge_build_setup
+
+script:
+  - conda build ./recipe
+
+  - upload_or_check_non_existence ./recipe conda-forge --channel=main

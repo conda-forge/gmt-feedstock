@@ -12,7 +12,7 @@ source:
 
 build:
   number: 1
-  skip: True  # [win or osx]
+  skip: True  # [win]
   features:
     - blas_{{ variant }}
 
