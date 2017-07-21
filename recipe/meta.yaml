@@ -1,4 +1,4 @@
-{% set version = "6.0.0a4" %}
+{% set version = "6.0.0a5" %}
 {% set variant = "openblas" %}
 
 package:
@@ -7,10 +7,10 @@ package:
 
 source:
   svn_url: svn://gmtserver.soest.hawaii.edu/gmt/trunk
-  svn_rev: 18534
+  svn_rev: 18619
 
 build:
-  number: 1
+  number: 0
   skip: True  # [win]
   features:
     - blas_{{ variant }}
@@ -28,6 +28,8 @@ requirements:
     - blas 1.1 {{ variant }}
     - curl
     - pcre
+    - gshhg-gmt
+    - dcw-gmt
   run:
     - fftw
     - gdal 2.2.*
@@ -38,6 +40,8 @@ requirements:
     - blas 1.1 {{ variant }}
     - curl
     - pcre
+    - gshhg-gmt
+    - dcw-gmt
 
 test:
   commands:
@@ -51,7 +55,15 @@ about:
   home: http://gmt.soest.hawaii.edu/
   license: LGPL-3.0
   license_file: LICENSE.TXT
-  summary: 'Generic Mapping Tools.'
+  summary: 'The Generic Mapping Tools.'
+  description: |
+      GMT is an open source collection of about 80 command-line tools for
+      manipulating geographic and Cartesian data sets (including filtering,
+      trend fitting, gridding, projecting, etc.) and producing PostScript
+      illustrations ranging from simple x–y plots via contour maps to
+      artificially illuminated surfaces and 3D perspective views; the GMT
+      supplements add another 40 more specialized and discipline-specific
+      tools. GMT supports over 30 map projections and transformations
 
 extra:
   recipe-maintainers:
