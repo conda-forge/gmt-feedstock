@@ -24,20 +24,16 @@ make -j$CPU_COUNT
 make check
 make install
 
-# We are fixing the paths to dynamic library files inside library and
-# binary files because something in make install is doubling up the
-# path to the library files.  Anyone who knows how to solve that
+# We are fixing the paths to dynamic library files inside library and binary
+# files because something in 'make install' is doubling up the path to the
+# library files. This only happens on OSX. Anyone who knows how to solve that
 # problem is free to contact the maintainers.
-
 if [[ "$(uname)" == "Darwin" ]];then
     install_name_tool -id $PREFIX/lib/libgmt.5.dylib $PREFIX/lib/libgmt.5.dylib
     install_name_tool -id $PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libpostscriptlight.5.dylib
-
     install_name_tool -change $PREFIX/$PREFIX/lib/libgmt.5.dylib $PREFIX/lib/libgmt.5.dylib $PREFIX/lib/gmt/plugins/supplements.so
     install_name_tool -change $PREFIX/$PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/gmt/plugins/supplements.so
-
     install_name_tool -change $PREFIX/$PREFIX/lib/libgmt.5.dylib $PREFIX/lib/libgmt.5.dylib $PREFIX/bin/gmt
     install_name_tool -change $PREFIX/$PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/bin/gmt
-
-    install_name_tool -change $PREFIX/$PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libgmt.5.4.2.dylib
+    install_name_tool -change $PREFIX/$PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libgmt.5.dylib
 fi
