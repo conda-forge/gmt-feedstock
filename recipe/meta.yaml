@@ -7,10 +7,10 @@ package:
 
 source:
   svn_url: svn://gmtserver.soest.hawaii.edu/gmt/trunk
-  svn_rev: 18637
+  svn_rev: 18648
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
   features:
     - blas_{{ variant }}
