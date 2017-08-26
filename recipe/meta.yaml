@@ -6,42 +6,54 @@ package:
   version: {{ version }}
 
 source:
-  fn: gmt-{{ version }}-src.tar.gz
   url: ftp://ftp.soest.hawaii.edu/gmt/gmt-{{ version }}-src.tar.gz
   sha256: 288509d28ed062ddf8b08212f65afb3aa07762a9a84bc5da9f7132016c8dd31f
+  patches:
+    - no_matlab.patch
 
 build:
   number: 2
-  skip: True  # [win]
+  skip: True  # [win32 or (win and py36)]
   features:
-    - blas_{{ variant }}
+    - blas_{{ variant }}  # [not win]
+    - vc9  # [win and py27]
+    - vc10  # [win and py34]
+    - vc14  # [win and (py35 or py36)]
 
 requirements:
   build:
+    - python  # [win]
     - cmake
     - fftw
     - gdal 2.2.*
-    - ghostscript
+    - ghostscript  # [not win]
     - libnetcdf 4.4.*
     - hdf5 1.8.18|1.8.18.*
-    - zlib 1.2.*
-    - blas 1.1 {{ variant }}
+    - zlib 1.2.8
+    - blas 1.1 {{ variant }}  # [not win]
     - curl
     - pcre
     - gshhg-gmt
     - dcw-gmt
+    - vc 9  # [win and py27]
+    - vc 10  # [win and py34]
+    - vc 14  # [win and (py35 or py36)]
+    - msinttypes  # [win and py<35]
   run:
     - fftw
     - gdal 2.2.*
-    - ghostscript
+    - ghostscript  # [not win]
     - libnetcdf 4.4.*
     - hdf5 1.8.18|1.8.18.*
     - zlib 1.2.*
-    - blas 1.1 {{ variant }}
+    - blas 1.1 {{ variant }}  # [not win]
     - curl
     - pcre
     - gshhg-gmt
     - dcw-gmt
+    - vc 9  # [win and py27]
+    - vc 10  # [win and py34]
+    - vc 14  # [win and (py35 or py36)]
 
 test:
   commands:
