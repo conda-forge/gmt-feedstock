@@ -7,12 +7,15 @@ export LDFLAGS=
 
 mkdir build && cd build
 
+echo $PREFIX/lib/liblapack${SHLIB_EXT}
+
 cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
       -D FFTW3_ROOT=$PREFIX \
       -D GDAL_ROOT=$PREFIX \
       -D NETCDF_ROOT=$PREFIX \
       -D PCRE_ROOT=$PREFIX \
       -D ZLIB_ROOT=$PREFIX \
+      -DLAPACK_LIBRARIES=$PREFIX/lib/liblapack${SHLIB_EXT} \
       -D GMT_LIBDIR=$PREFIX/lib \
       -D DCW_ROOT=$DCW_DIR \
       -D GSHHG_ROOT=$GSHHG_DIR \
