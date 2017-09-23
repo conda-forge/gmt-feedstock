@@ -7,8 +7,6 @@ export LDFLAGS=
 
 mkdir build && cd build
 
-echo $PREFIX/lib/liblapack${SHLIB_EXT}
-
 cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
       -D FFTW3_ROOT=$PREFIX \
       -D GDAL_ROOT=$PREFIX \
