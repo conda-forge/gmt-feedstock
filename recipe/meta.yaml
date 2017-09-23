@@ -28,7 +28,7 @@ requirements:
     - blas 1.1 {{ variant }}
     - curl
     - pcre
-    - lapack
+    - openblas 0.2.19|0.2.19.*
     - gshhg-gmt
     - dcw-gmt
   run:
@@ -41,7 +41,7 @@ requirements:
     - blas 1.1 {{ variant }}
     - curl
     - pcre
-    - lapack
+    - openblas 0.2.19|0.2.19.*
     - gshhg-gmt
     - dcw-gmt
 
