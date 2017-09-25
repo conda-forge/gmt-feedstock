@@ -11,7 +11,7 @@ source:
   sha256: 288509d28ed062ddf8b08212f65afb3aa07762a9a84bc5da9f7132016c8dd31f
 
 build:
-  number: 2
+  number: 3
   skip: True  # [win]
   features:
     - blas_{{ variant }}
@@ -28,6 +28,7 @@ requirements:
     - blas 1.1 {{ variant }}
     - curl
     - pcre
+    - openblas 0.2.19|0.2.19.*
     - gshhg-gmt
     - dcw-gmt
   run:
@@ -40,6 +41,7 @@ requirements:
     - blas 1.1 {{ variant }}
     - curl
     - pcre
+    - openblas 0.2.19|0.2.19.*
     - gshhg-gmt
     - dcw-gmt
 
