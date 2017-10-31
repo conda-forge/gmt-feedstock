@@ -1,4 +1,4 @@
-{% set version = "6.0.0a8" %}
+{% set version = "6.0.0a9" %}
 {% set variant = "openblas" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   svn_url: svn://gmtserver.soest.hawaii.edu/gmt/trunk
-  svn_rev: 18888
+  svn_rev: 19196
 
 build:
   number: 200
