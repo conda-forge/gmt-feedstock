@@ -10,7 +10,7 @@ source:
   svn_rev: 19245
 
 build:
-  number: 200
+  number: 201
   skip: True  # [win]
   features:
     - blas_{{ variant }}
@@ -20,26 +20,26 @@ requirements:
     - svn
     - cmake
     - fftw
-    - gdal 2.2.*
+    - gdal 2.1.*
     - ghostscript
     - libnetcdf 4.4.*
-    - hdf5 1.8.18|1.8.18.*
-    - zlib 1.2.*
+    - hdf5 1.10.1
+    - zlib 1.2.11
     - blas 1.1 {{ variant }}
-    - curl
+    - curl >=7.44.0,<8
     - pcre
     - openblas 0.2.19|0.2.19.*
     - gshhg-gmt
     - dcw-gmt
   run:
     - fftw
-    - gdal 2.2.*
+    - gdal 2.1.*
     - ghostscript
     - libnetcdf 4.4.*
-    - hdf5 1.8.18|1.8.18.*
-    - zlib 1.2.*
+    - hdf5 1.10.1
+    - zlib 1.2.11
     - blas 1.1 {{ variant }}
-    - curl
+    - curl >=7.44.0,<8
     - pcre
     - openblas 0.2.19|0.2.19.*
     - gshhg-gmt
@@ -50,8 +50,8 @@ test:
     - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P > test0.ps  # [not win]
     - gmt pscoast -Vd -R0/5/0/5 -JM5i -P -W0.25p > test1.ps  # [not win]
     - gmt pscoast -R-130/-70/24/52 -JB-100/35/33/45/6i -Ba -B+t"Conic Projection" -N1/thickest -N2/thinnest -A500 -Ggray -Wthinnest -P > test2.ps
-    - conda inspect linkages -p $PREFIX gmt  # [not win]
-    - conda inspect objects -p $PREFIX gmt  # [osx]
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
 
 about:
   home: http://gmt.soest.hawaii.edu/
