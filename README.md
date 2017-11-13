@@ -7,16 +7,15 @@ Package license: LGPL-3.0
 
 Feedstock license: BSD 3-Clause
 
-Summary: The Generic Mapping Tools
+Summary: The Generic Mapping Tools.
 
 GMT is an open source collection of about 80 command-line tools for
-manipulating geographic and Cartesian data sets (including filtering, trend
-fitting, gridding, projecting, etc.) and producing PostScript illustrations
-ranging from simple x–y plots via contour maps to artificially illuminated
-surfaces and 3D perspective views; the GMT supplements add another 40 more
-specialized and discipline-specific tools. GMT supports over 30 map projections
-and transformations
-
+manipulating geographic and Cartesian data sets (including filtering,
+trend fitting, gridding, projecting, etc.) and producing PostScript
+illustrations ranging from simple x–y plots via contour maps to
+artificially illuminated surfaces and 3D perspective views; the GMT
+supplements add another 40 more specialized and discipline-specific
+tools. GMT supports over 30 map projections and transformations
 
 
 Current build status
@@ -74,6 +73,7 @@ To manage the continuous integration and simplify feedstock maintenance
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
+For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
