@@ -10,7 +10,7 @@ source:
   svn_rev: 19245
 
 build:
-  number: 201
+  number: 202
   skip: True  # [win]
   features:
     - blas_{{ variant }}
@@ -28,7 +28,7 @@ requirements:
     - blas 1.1 {{ variant }}
     - curl >=7.44.0,<8
     - pcre
-    - openblas 0.2.19|0.2.19.*
+    - openblas 0.2.20|0.2.20.*
     - gshhg-gmt
     - dcw-gmt
   run:
@@ -41,7 +41,7 @@ requirements:
     - blas 1.1 {{ variant }}
     - curl >=7.44.0,<8
     - pcre
-    - openblas 0.2.19|0.2.19.*
+    - openblas 0.2.20|0.2.20.*
     - gshhg-gmt
     - dcw-gmt
 
