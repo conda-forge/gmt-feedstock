@@ -46,6 +46,12 @@ requirements:
     - dcw-gmt
 
 test:
+  requires:
+    - python=3.6
+    - pip
+    - numpy
+    - pytest
+    - pytest-mpl
   commands:
     - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P > test0.ps  # [not win]
     - gmt pscoast -Vd -R0/5/0/5 -JM5i -P -W0.25p > test1.ps  # [not win]
