@@ -17,7 +17,10 @@ build:
 
 requirements:
   build:
+    # something is broken in the latest svn package
     - svn 1.9.4
+    # we need to pin expat to get svn 1.9.4 to work
+    - expat 2.2.1
     - cmake
     - fftw
     - gdal 2.1.*
