@@ -1,4 +1,4 @@
-{% set version = "6.0.0a11" %}
+{% set version = "6.0.0a12" %}
 {% set variant = "openblas" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   svn_url: svn://gmtserver.soest.hawaii.edu/gmt/trunk
-  svn_rev: 19485
+  svn_rev: 19777
 
 build:
   number: 200
@@ -17,7 +17,10 @@ build:
 
 requirements:
   build:
-    - svn
+    # something is broken in the latest svn package
+    - svn 1.9.4
+    # we need to pin expat to get svn 1.9.4 to work
+    - expat 2.2.1
     - cmake
     - fftw
     - gdal 2.1.*
