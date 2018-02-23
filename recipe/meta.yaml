@@ -10,7 +10,7 @@ source:
   svn_rev: 19777
 
 build:
-  number: 200
+  number: 201
   skip: True  # [win]
   features:
     - blas_{{ variant }}
@@ -23,7 +23,7 @@ requirements:
     - expat 2.2.1
     - cmake
     - fftw
-    - gdal 2.1.*
+    - gdal 2.2.*
     - ghostscript
     - libnetcdf 4.4.*
     - hdf5 1.10.1
@@ -36,7 +36,7 @@ requirements:
     - dcw-gmt
   run:
     - fftw
-    - gdal 2.1.*
+    - gdal 2.2.*
     - ghostscript
     - libnetcdf 4.4.*
     - hdf5 1.10.1
