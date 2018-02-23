@@ -10,7 +10,7 @@ source:
   sha256: 85f9dad85e241bee9a3f6bc1ec98b5985ffa029b80053cbabca5e529a821be19
 
 build:
-  number: 200
+  number: 201
   skip: True  # [win]
   features:
     - blas_{{ variant }}
@@ -19,7 +19,7 @@ requirements:
   build:
     - cmake
     - fftw
-    - gdal 2.1.*
+    - gdal 2.2.*
     - ghostscript
     - libnetcdf 4.4.*
     - hdf5 1.10.1
@@ -32,7 +32,7 @@ requirements:
     - dcw-gmt
   run:
     - fftw
-    - gdal 2.1.*
+    - gdal 2.2.*
     - ghostscript
     - libnetcdf 4.4.*
     - hdf5 1.10.1
