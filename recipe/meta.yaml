@@ -10,7 +10,7 @@ source:
   sha256: 85f9dad85e241bee9a3f6bc1ec98b5985ffa029b80053cbabca5e529a821be19
 
 build:
-  number: 201
+  number: 202
   skip: True  # [win]
   features:
     - blas_{{ variant }}
@@ -21,7 +21,7 @@ requirements:
     - fftw
     - gdal 2.2.*
     - ghostscript
-    - libnetcdf 4.4.*
+    - libnetcdf 4.5.*
     - hdf5 1.10.1
     - zlib 1.2.11
     - blas 1.1 {{ variant }}
@@ -34,7 +34,7 @@ requirements:
     - fftw
     - gdal 2.2.*
     - ghostscript
-    - libnetcdf 4.4.*
+    - libnetcdf >=4.5
     - hdf5 1.10.1
     - zlib 1.2.11
     - blas 1.1 {{ variant }}
