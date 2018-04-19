@@ -10,7 +10,7 @@ source:
   svn_rev: 20009
 
 build:
-  number: 201
+  number: 202
   skip: True  # [win]
   features:
     - blas_{{ variant }}
@@ -25,7 +25,7 @@ requirements:
     - fftw
     - gdal 2.2.*
     - ghostscript
-    - libnetcdf 4.4.*
+    - libnetcdf 4.5.*
     - hdf5 1.10.1
     - zlib 1.2.11
     - blas 1.1 {{ variant }}
@@ -38,7 +38,7 @@ requirements:
     - fftw
     - gdal 2.2.*
     - ghostscript
-    - libnetcdf 4.4.*
+    - libnetcdf >=4.5
     - hdf5 1.10.1
     - zlib 1.2.11
     - blas 1.1 {{ variant }}
