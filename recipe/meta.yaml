@@ -7,7 +7,7 @@ package:
 
 source:
   svn_url: svn://gmtserver.soest.hawaii.edu/gmt/trunk
-  svn_rev: 20279
+  svn_rev: 20280
 
 build:
   number: 200
