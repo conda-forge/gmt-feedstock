@@ -21,14 +21,16 @@ tools. GMT supports over 30 map projections and transformations
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/gmt-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/gmt-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/gmt-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/gmt-feedstock)
-Windows: ![](https://cdn.rawgit.com/conda-forge/conda-smithy/90845bba35bec53edac7a16638aa4d77217a3713/conda_smithy/static/disabled.svg)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/gmt-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/gmt-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/gmt-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/gmt-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/gmt-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/gmt-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/gmt/badges/version.svg)](https://anaconda.org/conda-forge/gmt)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/gmt/badges/downloads.svg)](https://anaconda.org/conda-forge/gmt)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-gmt-green.svg)](https://anaconda.org/conda-forge/gmt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gmt.svg)](https://anaconda.org/conda-forge/gmt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gmt.svg)](https://anaconda.org/conda-forge/gmt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gmt.svg)](https://anaconda.org/conda-forge/gmt) |
 
 Installing gmt
 ==============
