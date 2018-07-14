@@ -23,10 +23,15 @@ pin_run_as_build:
     max_pin: x.x
   openblas:
     max_pin: x.x.x
+  vc:
+    max_pin: x
   zlib:
     max_pin: x.x
+vc:
+- '14'
 zip_keys:
-- - c_compiler
+- - vc
+  - c_compiler
   - cxx_compiler
 zlib:
 - '1.2'
