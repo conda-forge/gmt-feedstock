@@ -10,39 +10,53 @@ source:
   sha256: 1baf3d6b049db7cc6cbd7506524cdca45c41e3bfffb24814245fc18f5a8626c2
 
 build:
-  number: 200
+  number: 201
   skip: True  # [win]
   features:
     - blas_{{ variant }}
 
 requirements:
   build:
+    - {{ compiler('c') }}
     - cmake
     - fftw
-    - gdal 2.2.*
     - ghostscript
-    - libnetcdf 4.5.*
-    - hdf5 1.10.1
-    - zlib 1.2.11
-    - blas 1.1 {{ variant }}
-    - curl >=7.44.0,<8
-    - pcre
-    - openblas 0.2.20|0.2.20.*
     - gshhg-gmt
     - dcw-gmt
+    - blas 1.1 {{ variant }}
+    - {{ pin_compatible('openblas') }}
+    - {{ pin_compatible('gdal') }}
+    - {{ pin_compatible('libnetcdf') }}
+    - {{ pin_compatible('hdf5') }}
+    - {{ pin_compatible('zlib') }}
+    - {{ pin_compatible('curl') }}
+    - {{ pin_compatible('pcre') }}
+  host:
+    - fftw
+    - ghostscript
+    - gshhg-gmt
+    - dcw-gmt
+    - blas 1.1 {{ variant }}
+    - {{ pin_compatible('openblas') }}
+    - {{ pin_compatible('gdal') }}
+    - {{ pin_compatible('libnetcdf') }}
+    - {{ pin_compatible('hdf5') }}
+    - {{ pin_compatible('zlib') }}
+    - {{ pin_compatible('curl') }}
+    - {{ pin_compatible('pcre') }}
   run:
     - fftw
-    - gdal 2.2.*
     - ghostscript
-    - libnetcdf >=4.5
-    - hdf5 1.10.1
-    - zlib 1.2.11
-    - blas 1.1 {{ variant }}
-    - curl >=7.44.0,<8
-    - pcre
-    - openblas 0.2.20|0.2.20.*
     - gshhg-gmt
     - dcw-gmt
+    - blas 1.1 {{ variant }}
+    - {{ pin_compatible('openblas') }}
+    - {{ pin_compatible('gdal') }}
+    - {{ pin_compatible('libnetcdf') }}
+    - {{ pin_compatible('hdf5') }}
+    - {{ pin_compatible('zlib') }}
+    - {{ pin_compatible('curl') }}
+    - {{ pin_compatible('pcre') }}
 
 test:
   commands:
