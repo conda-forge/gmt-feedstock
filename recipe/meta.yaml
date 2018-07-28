@@ -8,6 +8,8 @@ package:
 source:
   url: ftp://ftp.soest.hawaii.edu/gmt/gmt-{{ version }}-src.tar.gz
   sha256: 1baf3d6b049db7cc6cbd7506524cdca45c41e3bfffb24814245fc18f5a8626c2
+  patches:
+      - cmake_policy.patch
 
 build:
   number: 201
