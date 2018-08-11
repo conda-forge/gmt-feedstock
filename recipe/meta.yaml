@@ -1,4 +1,4 @@
-{% set version = "6.0.0a16" %}
+{% set version = "6.0.0a17" %}
 {% set variant = "openblas" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   svn_url: svn://gmtserver.soest.hawaii.edu/gmt/trunk
-  svn_rev: 20280
+  svn_rev: 20490
 
 build:
   number: 200
@@ -17,44 +17,44 @@ build:
 
 requirements:
   build:
-    # something is broken in the latest svn package
-    - svn 1.9.4
-    # we need to pin expat to get svn 1.9.4 to work
-    - expat 2.2.1
+    - svn
     - cmake
+    - {{ compiler('c') }}
+  host:
     - fftw
-    - gdal 2.2.*
+    - gdal
     - ghostscript
-    - libnetcdf 4.5.*
-    - hdf5 1.10.1
-    - zlib 1.2.11
+    - libnetcdf
+    - hdf5
+    - zlib
     - blas 1.1 {{ variant }}
-    - curl >=7.44.0,<8
+    - curl
     - pcre
-    - openblas 0.2.20|0.2.20.*
+    - openblas
     - gshhg-gmt
     - dcw-gmt
   run:
     - fftw
-    - gdal 2.2.*
+    - gdal
     - ghostscript
-    - libnetcdf >=4.5
-    - hdf5 1.10.1
-    - zlib 1.2.11
+    - libnetcdf
+    - hdf5
+    - zlib
     - blas 1.1 {{ variant }}
-    - curl >=7.44.0,<8
+    - curl
     - pcre
-    - openblas 0.2.20|0.2.20.*
+    - openblas
     - gshhg-gmt
     - dcw-gmt
 
 test:
   commands:
-    - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P > test0.ps  # [not win]
-    - gmt pscoast -Vd -R0/5/0/5 -JM5i -P -W0.25p > test1.ps  # [not win]
-    - gmt pscoast -R-130/-70/24/52 -JB-100/35/33/45/6i -Ba -B+t"Conic Projection" -N1/thickest -N2/thinnest -A500 -Ggray -Wthinnest -P > test2.ps
     - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
     - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+    - gmt defaults -Vd
+    - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps  # [not win]
+    - gmt pscoast -R0/10/0/10 -JM5i -P -W0.25p -Ba -Vd > test1.ps  # [not win]
+    - gmt pscoast -R-130/-70/24/52 -JB-100/35/33/45/6i -Ba -B+t"Conic Projection" -N1/thickest -N2/thinnest -A500 -Ggray -Wthinnest -P -Vd > test2.ps
 
 about:
   home: http://gmt.soest.hawaii.edu/
