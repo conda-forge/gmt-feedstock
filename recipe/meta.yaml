@@ -10,7 +10,7 @@ source:
   sha256: 1baf3d6b049db7cc6cbd7506524cdca45c41e3bfffb24814245fc18f5a8626c2
 
 build:
-  number: 200
+  number: 201
   skip: True  # [win]
   features:
     - blas_{{ variant }}
@@ -18,39 +18,41 @@ build:
 requirements:
   build:
     - cmake
+    - {{ compiler('c') }}
+  host:
     - fftw
-    - gdal 2.2.*
+    - gdal
     - ghostscript
-    - libnetcdf 4.5.*
-    - hdf5 1.10.1
-    - zlib 1.2.11
+    - libnetcdf
+    - hdf5
+    - zlib
     - blas 1.1 {{ variant }}
-    - curl >=7.44.0,<8
+    - curl
     - pcre
-    - openblas 0.2.20|0.2.20.*
+    - openblas
     - gshhg-gmt
     - dcw-gmt
   run:
     - fftw
-    - gdal 2.2.*
+    - gdal
     - ghostscript
-    - libnetcdf >=4.5
-    - hdf5 1.10.1
-    - zlib 1.2.11
+    - libnetcdf
+    - hdf5
+    - zlib
     - blas 1.1 {{ variant }}
-    - curl >=7.44.0,<8
+    - curl
     - pcre
-    - openblas 0.2.20|0.2.20.*
+    - openblas
     - gshhg-gmt
     - dcw-gmt
 
 test:
   commands:
-    - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P > test0.ps  # [not win]
-    - gmt pscoast -Vd -R0/5/0/5 -JM5i -P -W0.25p > test1.ps  # [not win]
-    - gmt pscoast -R-130/-70/24/52 -JB-100/35/33/45/6i -Ba -B+t"Conic Projection" -N1/thickest -N2/thinnest -A500 -Ggray -Wthinnest -P > test2.ps
     - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
     - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+    - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps  # [osx]
+    - gmt pscoast -R0/5/0/5 -JM5i -P -W0.25p -Vd > test1.ps  # [osx]
+    - gmt pscoast -R-130/-70/24/52 -JB-100/35/33/45/6i -Ba -B+t"Conic Projection" -N1/thickest -N2/thinnest -A500 -Ggray -Wthinnest -P -Vd > test2.ps  # [osx]
 
 about:
   home: http://gmt.soest.hawaii.edu/
