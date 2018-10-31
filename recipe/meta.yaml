@@ -6,8 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  svn_url: https://github.com/GenericMappingTools/gmt.git
-  svn_rev: c129aed0b8aa8f46e663830c70edb1ba91d783cf
+  git_url: https://github.com/GenericMappingTools/gmt.git
+  git_rev: c129aed0b8aa8f46e663830c70edb1ba91d783cf
 
 build:
   number: 0
@@ -17,7 +17,7 @@ build:
 
 requirements:
   build:
-    - svn
+    - git
     - cmake
     - {{ compiler('c') }}
   host:
