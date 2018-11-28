@@ -11,7 +11,7 @@ docker_image:
 gdal:
 - '2.3'
 hdf5:
-- 1.10.3
+- 1.10.4
 libnetcdf:
 - '4.6'
 openblas:
@@ -21,8 +21,6 @@ pin_run_as_build:
     max_pin: x
   gdal:
     max_pin: x.x
-  hdf5:
-    max_pin: x.x.x
   libnetcdf:
     max_pin: x.x
   openblas:
