@@ -1,4 +1,4 @@
-{% set version = "6.0.0a17" %}
+{% set version = "6.0.0a18" %}
 {% set variant = "openblas" %}
 
 package:
@@ -6,18 +6,17 @@ package:
   version: {{ version }}
 
 source:
-  svn_url: svn://gmtserver.soest.hawaii.edu/gmt/trunk
-  svn_rev: 20490
+  git_url: https://github.com/GenericMappingTools/gmt.git
+  git_rev: c129aed0b8aa8f46e663830c70edb1ba91d783cf
 
 build:
-  number: 200
+  number: 0
   skip: True  # [win]
   features:
     - blas_{{ variant }}
 
 requirements:
   build:
-    - svn
     - cmake
     - {{ compiler('c') }}
   host:
