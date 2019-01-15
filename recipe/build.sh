@@ -3,6 +3,10 @@
 GSHHG_DIR="$PREFIX/share/gshhg-gmt"
 DCW_DIR="$PREFIX/share/dcw-gmt"
 
+if [[ "$c_compiler" == "gcc" ]]; then
+  export PATH="${PATH}:${BUILD_PREFIX}/${HOST}/sysroot/usr/lib"
+fi
+
 export LDFLAGS=
 
 mkdir build && cd build
