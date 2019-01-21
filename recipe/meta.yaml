@@ -1,4 +1,4 @@
-{% set version = "6.0.0a18" %}
+{% set version = "6.0.0a19" %}
 {% set variant = "openblas" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   git_url: https://github.com/GenericMappingTools/gmt.git
-  git_rev: c129aed0b8aa8f46e663830c70edb1ba91d783cf
+  git_rev: e1473af4324a4d385aa84f8c482b4ba349013107
 
 build:
   number: 0
@@ -51,8 +51,8 @@ test:
     - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
     - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
     - gmt defaults -Vd
-    - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps  # [not win]
-    - gmt pscoast -R0/10/0/10 -JM5i -P -W0.25p -Ba -Vd > test1.ps  # [not win]
+    - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps
+    - gmt pscoast -R0/10/0/10 -JM5i -P -W0.25p -Ba -Vd > test1.ps
     - gmt pscoast -R-130/-70/24/52 -JB-100/35/33/45/6i -Ba -B+t"Conic Projection" -N1/thickest -N2/thinnest -A500 -Ggray -Wthinnest -P -Vd > test2.ps
 
 about:
