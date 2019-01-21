@@ -1,5 +1,5 @@
 c_compiler:
-- toolchain_c
+- gcc
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -7,9 +7,9 @@ channel_targets:
 curl:
 - '7.59'
 docker_image:
-- condaforge/linux-anvil
+- condaforge/linux-anvil-comp7
 gdal:
-- '2.3'
+- '2.4'
 hdf5:
 - 1.10.4
 libnetcdf:
