@@ -50,9 +50,10 @@ test:
   commands:
     - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
     - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
-    - gmt defaults -Vd  # [not win]
-    - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps  # [not win]
-    - gmt pscoast -R0/5/0/5 -JM5i -P -W0.25p -Vd > test1.ps  # [not win]
+    # Tests are OSX only because of a bug in GMT 5.4.4
+    - gmt defaults -Vd  # [osx]
+    - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps  # [osx]
+    - gmt pscoast -R0/5/0/5 -JM5i -P -W0.25p -Vd > test1.ps  # [osx]
 
 about:
   home: http://gmt.soest.hawaii.edu/
