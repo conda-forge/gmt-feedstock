@@ -9,7 +9,7 @@ curl:
 docker_image:
 - condaforge/linux-anvil-comp7
 gdal:
-- '2.3'
+- '2.4'
 hdf5:
 - 1.10.4
 libnetcdf:
