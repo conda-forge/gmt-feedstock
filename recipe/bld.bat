@@ -7,7 +7,8 @@ cd build
 set GSHHG_DIR="%LIBRARY_PREFIX%\share\gshhg-gmt"
 set DCW_DIR="%LIBRARY_PREFIX%\share\dcw-gmt"
 
-cmake -G "%CMAKE_GENERATOR%" ^
+cmake -G "NMake Makefiles" ^
+      -DCMAKE_BUILD_TYPE:STRING=Release ^
       -D CMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
       -D FFTW3_ROOT=%LIBRARY_PREFIX% ^
       -D GDAL_ROOT=%LIBRARY_PREFIX% ^
@@ -19,7 +20,10 @@ cmake -G "%CMAKE_GENERATOR%" ^
       -D DCW_ROOT=%DCW_DIR% ^
       -D GSHHG_ROOT=%GSHHG_DIR% ^
       %SRC_DIR%
-if errorlevel 1 exit /b 1
+if errorlevel 1 exit 1
 
-cmake --build . --config Release --target install
-if errorlevel 1 exit /b 1
+nmake
+if errorlevel 1 exit 1
+
+nmake install
+if errorlevel 1 exit 1
