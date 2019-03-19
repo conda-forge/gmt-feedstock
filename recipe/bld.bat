@@ -1,0 +1,25 @@
+set LIBPATH=%LIBRARY_LIB%;%LIBPATH%
+set INCLUDE=%LIBRARY_INC%;%INCLUDE%
+
+mkdir build
+cd build
+
+set GSHHG_DIR="%LIBRARY_PREFIX%\share\gshhg-gmt"
+set DCW_DIR="%LIBRARY_PREFIX%\share\dcw-gmt"
+
+cmake -G "%CMAKE_GENERATOR%" ^
+      -D CMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
+      -D FFTW3_ROOT=%LIBRARY_PREFIX% ^
+      -D GDAL_ROOT=%LIBRARY_PREFIX% ^
+      -D NETCDF_ROOT=%LIBRARY_PREFIX% ^
+      -D PCRE_ROOT=%LIBRARY_PREFIX% ^
+      -D ZLIB_ROOT=%LIBRARY_PREFIX% ^
+      -D LIBCURL_ROOT=%LIBRARY_PREFIX% ^
+      -D GMT_LIBDIR=%LIBRARY_PREFIX%\lib ^
+      -D DCW_ROOT=%DCW_DIR% ^
+      -D GSHHG_ROOT=%GSHHG_DIR% ^
+      %SRC_DIR%
+if errorlevel 1 exit /b 1
+
+cmake --build . --config Release --target install
+if errorlevel 1 exit /b 1
