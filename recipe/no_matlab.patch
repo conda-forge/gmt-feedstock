@@ -1,0 +1,19 @@
+--- gmt-5.4.4.orig/cmake/dist/CMakeLists.txt	2018-01-22 18:09:28.000000000 -0600
++++ gmt-5.4.4/cmake/dist/CMakeLists.txt	2018-07-14 15:47:32.934706715 -0500
+@@ -167,16 +167,6 @@
+ 		install (PROGRAMS ${OMP_DLL_LOC} DESTINATION ${GMT_BINDIR} COMPONENT Runtime)
+ 	endif (OMP_DLL_LOC)
+ 
+-	if (WIN32 AND TRUE) 
+-		# Install the gmtmex on Windows. Need to make this work via variables in ConfigUser.cmake
+-		if (BITAGE EQUAL 64)
+-			install (PROGRAMS "C:/progs_cygw/GMTdev/gmt-mex/branches/5.4/src/gmtmex.mexw64" DESTINATION ${GMT_BINDIR} COMPONENT Runtime)
+-		else ()
+-			install (PROGRAMS "C:/progs_cygw/GMTdev/gmt-mex/branches/5.4/src/gmtmex.mexw32" DESTINATION ${GMT_BINDIR} COMPONENT Runtime)
+-		endif ()
+-		install (PROGRAMS "C:/progs_cygw/GMTdev/gmt-mex/branches/5.4/src/gmt.m" DESTINATION ${GMT_BINDIR} COMPONENT Runtime)
+-	endif (WIN32 AND TRUE)
+-
+ 	# Fix bundle:
+ 	install (CODE "
+if (CMAKE_INSTALL_PREFIX MATCHES \"_CPack_Packages\")
