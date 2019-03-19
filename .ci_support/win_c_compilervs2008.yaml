@@ -1,0 +1,29 @@
+c_compiler:
+- vs2008
+channel_sources:
+- conda-forge,defaults
+channel_targets:
+- conda-forge main
+curl:
+- '7.64'
+gdal:
+- '2.4'
+hdf5:
+- 1.10.4
+libblas:
+- 3.8 *netlib
+libcblas:
+- 3.8 *netlib
+libnetcdf:
+- 4.6.2
+pin_run_as_build:
+  curl:
+    max_pin: x
+  gdal:
+    max_pin: x.x
+  libnetcdf:
+    max_pin: x.x.x
+  zlib:
+    max_pin: x.x
+zlib:
+- '1.2'
