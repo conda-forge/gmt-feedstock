@@ -7,10 +7,12 @@ package:
 source:
   url: ftp://ftp.soest.hawaii.edu/gmt/gmt-{{ version }}-src.tar.gz
   sha256: 225629c7869e204d5f9f1a384c4ada43e243f83e1ed28bdca4f7c2896bf39ef6
+  patches:
+    - no_matlab.patch
 
 build:
-  number: 1
-  skip: True  # [win]
+  number: 2
+  skip: true  # [win and vc<14]
   features:
 
 requirements:
@@ -22,7 +24,7 @@ requirements:
     - libcblas
     - fftw
     - gdal
-    - ghostscript
+    - ghostscript  # [not win]
     - libnetcdf
     - hdf5
     - zlib
@@ -33,7 +35,7 @@ requirements:
   run:
     - fftw
     - gdal
-    - ghostscript
+    - ghostscript  # [not win]
     - libnetcdf
     - hdf5
     - zlib
@@ -46,9 +48,9 @@ test:
   commands:
     - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
     - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
-    - gmt defaults -Vd  # [osx]
-    - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps  # [osx]
-    - gmt pscoast -R0/5/0/5 -JM5i -P -W0.25p -Vd > test1.ps  # [osx]
+    - gmt defaults -Vd  # [not linux]
+    - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps  # [not linux]
+    - gmt pscoast -R0/5/0/5 -JM5i -P -W0.25p -Vd > test1.ps  # [not linux]
 
 about:
   home: http://gmt.soest.hawaii.edu/
