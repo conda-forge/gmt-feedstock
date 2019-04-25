@@ -19,6 +19,8 @@ cmake -G "NMake Makefiles" ^
       -D GMT_LIBDIR=%LIBRARY_PREFIX%\lib ^
       -D DCW_ROOT=%DCW_DIR% ^
       -D GSHHG_ROOT=%GSHHG_DIR% ^
+      -D COPY_GSHHG=TRUE ^
+      -D COPY_DCW=TRUE ^
       %SRC_DIR%
 if errorlevel 1 exit 1
 
