@@ -41,8 +41,8 @@ requirements:
     - zlib
     - curl
     - pcre
-    - gshhg-gmt
-    - dcw-gmt
+    - gshhg-gmt  # [not win]
+    - dcw-gmt  # [not win]
 
 test:
   commands:

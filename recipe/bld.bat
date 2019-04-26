@@ -9,7 +9,7 @@ set DCW_DIR="%LIBRARY_PREFIX%\share\dcw-gmt"
 
 cmake -G "NMake Makefiles" ^
       -DCMAKE_BUILD_TYPE:STRING=Release ^
-      -D CMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX%\gmt ^
+      -D CMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
       -D FFTW3_ROOT=%LIBRARY_PREFIX% ^
       -D GDAL_ROOT=%LIBRARY_PREFIX% ^
       -D NETCDF_ROOT=%LIBRARY_PREFIX% ^
@@ -21,6 +21,8 @@ cmake -G "NMake Makefiles" ^
       -D GSHHG_ROOT=%GSHHG_DIR% ^
       -D COPY_GSHHG=TRUE ^
       -D COPY_DCW=TRUE ^
+      -D GMT_INSTALL_TRADITIONAL_FOLDERNAMES:BOOL=FALSE ^
+      -D GMT_INSTALL_MODULE_LINKS:BOOL=FALSE ^
       %SRC_DIR%
 if errorlevel 1 exit 1
 
