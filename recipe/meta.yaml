@@ -48,9 +48,9 @@ test:
   commands:
     - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
     - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
-    - gmt defaults -Vd  # [not linux]
-    - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps  # [not linux]
-    - gmt pscoast -R0/5/0/5 -JM5i -P -W0.25p -Vd > test1.ps  # [not linux]
+    - gmt defaults -Vd
+    - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps
+    - gmt pscoast -Rg -JH5i -P -W0.25p -Vd > test1.ps
 
 about:
   home: http://gmt.soest.hawaii.edu/
