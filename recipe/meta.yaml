@@ -11,7 +11,7 @@ source:
     - no_matlab.patch
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win and vc<14]
   features:
 
@@ -41,8 +41,8 @@ requirements:
     - zlib
     - curl
     - pcre
-    - gshhg-gmt
-    - dcw-gmt
+    - gshhg-gmt  # [not win]
+    - dcw-gmt  # [not win]
 
 test:
   commands:

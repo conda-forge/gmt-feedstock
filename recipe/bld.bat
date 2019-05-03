@@ -21,6 +21,8 @@ cmake -G "NMake Makefiles" ^
       -D GSHHG_ROOT=%GSHHG_DIR% ^
       -D COPY_GSHHG=TRUE ^
       -D COPY_DCW=TRUE ^
+      -D GMT_INSTALL_TRADITIONAL_FOLDERNAMES:BOOL=FALSE ^
+      -D GMT_INSTALL_MODULE_LINKS:BOOL=FALSE ^
       %SRC_DIR%
 if errorlevel 1 exit 1
 
