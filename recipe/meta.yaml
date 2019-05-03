@@ -1,4 +1,4 @@
-{% set version = "6.0.0a18" %}
+{% set version = "6.0.0a19" %}
 {% set variant = "openblas" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   git_url: https://github.com/GenericMappingTools/gmt.git
-  git_rev: c129aed0b8aa8f46e663830c70edb1ba91d783cf
+  git_rev: 120917b18c9024ef95eaa501c7704820658621af
 
 build:
   number: 0
