@@ -158,4 +158,5 @@ Feedstock Maintainers
 
 * [@leouieda](https://github.com/leouieda/)
 * [@ocefpaf](https://github.com/ocefpaf/)
+* [@seisman](https://github.com/seisman/)
 
