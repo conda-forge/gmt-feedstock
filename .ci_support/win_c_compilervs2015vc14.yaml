@@ -9,7 +9,7 @@ curl:
 gdal:
 - '2.4'
 hdf5:
-- 1.10.4
+- 1.10.5
 libblas:
 - 3.8 *netlib
 libcblas:
