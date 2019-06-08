@@ -3,13 +3,13 @@ c_compiler:
 channel_sources:
 - conda-forge,defaults
 channel_targets:
-- conda-forge main
+- conda-forge dev
 curl:
 - '7.64'
 gdal:
 - '2.4'
 hdf5:
-- 1.10.4
+- 1.10.5
 libblas:
 - 3.8 *netlib
 libcblas:
