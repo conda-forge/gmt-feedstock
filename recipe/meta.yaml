@@ -9,7 +9,7 @@ source:
   git_rev: 120917b18c9024ef95eaa501c7704820658621af
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
 
 requirements:
