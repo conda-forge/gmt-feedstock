@@ -1,4 +1,4 @@
-{% set version = "6.0.0a19" %}
+{% set version = "6.0.0a20" %}
 
 package:
   name: gmt
@@ -6,7 +6,7 @@ package:
 
 source:
   git_url: https://github.com/GenericMappingTools/gmt.git
-  git_rev: 120917b18c9024ef95eaa501c7704820658621af
+  git_rev: 3a04a9d2c59e7e75e81bc63685935a508cc86be9
 
 build:
   number: 0
