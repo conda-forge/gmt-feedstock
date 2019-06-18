@@ -15,6 +15,7 @@ export CFLAGS="$CFLAGS -fPIC -I$PREFIX/include"
 mkdir build && cd build
 
 cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
+      -DCMAKE_BUILD_TYPE:STRING=Release \
       -D FFTW3_ROOT=$PREFIX \
       -D GDAL_ROOT=$PREFIX \
       -D NETCDF_ROOT=$PREFIX \

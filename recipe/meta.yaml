@@ -1,4 +1,4 @@
-{% set version = "6.0.0a19" %}
+{% set version = "6.0.0rc1" %}
 
 package:
   name: gmt
@@ -6,10 +6,10 @@ package:
 
 source:
   git_url: https://github.com/GenericMappingTools/gmt.git
-  git_rev: 120917b18c9024ef95eaa501c7704820658621af
+  git_rev: f75038ab617363e358a1555b8d54b61ff6e37660
 
 build:
-  number: 1
+  number: 0
   skip: True  # [win]
 
 requirements:
@@ -50,7 +50,7 @@ test:
     - gmt pscoast -R0/5/0/5 -JM5i -P -W0.25p -Vd > test1.ps  # [not linux]
 
 about:
-  home: http://gmt.soest.hawaii.edu/
+  home: https://www.generic-mapping-tools.org
   license: LGPL-3.0
   license_file: LICENSE.TXT
   summary: 'The Generic Mapping Tools.'
