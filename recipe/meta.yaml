@@ -5,8 +5,8 @@ package:
   version: {{ version }}
 
 source:
-  git_url: https://github.com/GenericMappingTools/gmt.git
-  git_tag: sharedirpathfix
+  url: https://github.com/GenericMappingTools/gmt/releases/download/{{ version }}/gmt-{{ version }}-src.tar.gz
+  sha256: 156c9aeaff035dc93e9e458c9e639e7f5e09505646ba70407f2210269d6d7240
 
 build:
   number: 0
@@ -48,6 +48,7 @@ test:
     - gmt defaults -Vd  # [not linux]
     - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps  # [not linux]
     - gmt pscoast -R0/5/0/5 -JM5i -P -W0.25p -Vd > test1.ps  # [not linux]
+    - gmt begin -Vd; gmt coast -R0/5/0/5 -JM5i -W0.25p -Vd; gmt end  # [not linux]
 
 about:
   home: https://www.generic-mapping-tools.org
