@@ -6,7 +6,7 @@ package:
 
 source:
   git_url: https://github.com/GenericMappingTools/gmt.git
-  git_rev: f75038ab617363e358a1555b8d54b61ff6e37660
+  git_tag: sharedirpathfix
 
 build:
   number: 0
