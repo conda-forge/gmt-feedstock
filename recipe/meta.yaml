@@ -9,7 +9,7 @@ source:
   sha256: 17276edd8fbe16f04bba72717baa5fbd9683a801c94fb69f287bcfe2d1feab84
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win and vc<14]
 
 requirements:
@@ -21,7 +21,7 @@ requirements:
     - libcblas
     - fftw
     - gdal
-    - ghostscript  # [not win]
+    - ghostscript
     - libnetcdf
     - hdf5
     - zlib
@@ -32,7 +32,7 @@ requirements:
   run:
     - fftw
     - gdal
-    - ghostscript  # [not win]
+    - ghostscript
     - libnetcdf
     - hdf5
     - zlib
@@ -48,9 +48,9 @@ test:
     - gmt defaults -Vd  # [not linux]
     - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps  # [not linux]
     - gmt pscoast -R0/5/0/5 -JM5i -P -W0.25p -Vd > test1.ps  # [not linux]
-    - gmt begin -Vd  # [osx]
-    - gmt coast -R0/5/0/5 -JM5i -W0.25p -Vd  # [osx]
-    - gmt end  # [osx]
+    - gmt begin -Vd  # [not linux]
+    - gmt coast -R0/5/0/5 -JM5i -W0.25p -Vd  # [not linux]
+    - gmt end  # [not linux]
 
 about:
   home: https://www.generic-mapping-tools.org
