@@ -19,7 +19,7 @@ requirements:
   host:
     - libblas
     - libcblas
-    - fftw  # [not win]
+    - fftw
     - gdal
     - ghostscript
     - libnetcdf
@@ -30,7 +30,7 @@ requirements:
     - gshhg-gmt
     - dcw-gmt
   run:
-    - fftw  # [not win]
+    - fftw
     - gdal
     - ghostscript
     - libnetcdf
