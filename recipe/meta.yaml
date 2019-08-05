@@ -47,9 +47,9 @@ test:
     - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
     - gmt defaults -Vd
     - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps
-    - gmt pscoast -R0/5/0/5 -JM5i -P -W0.25p -Vd > test1.ps
+    - gmt pscoast -R0/10/0/10 -JM6i -Ba -Ggray -ENG+p1p,blue -P -Vd > test1.ps
     - gmt begin -Vd
-    - gmt coast -R0/5/0/5 -JM5i -W0.25p -Vd
+    - gmt coast -R0/10/0/10 -JM6i -Ba -Ggray -ENG+p1p,blue -Vd
     - gmt end
 
 about:
