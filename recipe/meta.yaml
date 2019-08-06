@@ -9,8 +9,8 @@ source:
   sha256: c86556297f5f0b55914ddd861b2976ca80498a9afc7b3c89fdb992ac2a7efefe
 
 build:
-  number: 0
-  skip: True  # [win]
+  number: 1
+  skip: True  # [win and vc<14]
 
 requirements:
   build:
@@ -43,14 +43,12 @@ requirements:
 
 test:
   commands:
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
-    - gmt defaults -Vd  # [not linux]
-    - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps  # [not linux]
-    - gmt pscoast -R0/5/0/5 -JM5i -P -W0.25p -Vd > test1.ps  # [not linux]
-    - gmt begin -Vd  # [not linux]
-    - gmt coast -R0/5/0/5 -JM5i -W0.25p -Vd  # [not linux]
-    - gmt end  # [not linux]
+    - gmt defaults -Vd
+    - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps
+    - gmt pscoast -R0/10/0/10 -JM6i -Ba -Ggray -ENG+p1p,blue -P -Vd > test1.ps
+    - gmt begin -Vd
+    - gmt coast -R0/10/0/10 -JM6i -Ba -Ggray -ENG+p1p,blue -Vd
+    - gmt end
 
 about:
   home: https://www.generic-mapping-tools.org
