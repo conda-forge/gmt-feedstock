@@ -7,7 +7,7 @@ channel_targets:
 curl:
 - '7.64'
 gdal:
-- '2.4'
+- '3.0'
 hdf5:
 - 1.10.5
 libblas:
