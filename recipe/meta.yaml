@@ -31,8 +31,6 @@ requirements:
     - gshhg-gmt
     - dcw-gmt
   run:
-    - libblas
-    - libcblas
     - liblapack
     - fftw
     - gdal
