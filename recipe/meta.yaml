@@ -22,6 +22,7 @@ requirements:
   host:
     - libblas
     - libcblas
+    - liblapack
     - fftw
     - gdal
     - ghostscript  # [not win]
@@ -33,6 +34,9 @@ requirements:
     - gshhg-gmt
     - dcw-gmt
   run:
+    - libblas
+    - libcblas
+    - liblapack
     - fftw
     - gdal
     - ghostscript  # [not win]
