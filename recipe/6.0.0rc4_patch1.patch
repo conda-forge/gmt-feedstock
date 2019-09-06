@@ -55,3 +55,41 @@ index 1548987a0..8647e792e 100644
  						if (access (path, R_OK)) {
  							GMT_Report (API, GMT_MSG_NORMAL, "Shared Library %s cannot be found or read!\n", path);
  							GMT_Report (API, GMT_MSG_NORMAL, "Check that your GMT_CUSTOM_LIBS (in gmt.conf, perhaps) is correct\n");
+diff --git a/src/gmt_fft.c b/src/gmt_fft.c
+index ae350605d..1733854da 100644
+--- a/src/gmt_fft.c
++++ b/src/gmt_fft.c
+@@ -1689,6 +1689,7 @@ void gmt_fft_initialization (struct GMT_CTRL *GMT) {
+ 	GMT->current.setting.fftw_plan = FFTW_ESTIMATE; /* default planner flag */
+ #endif /* HAVE_FFTW3_THREADS */
+
++	GMT_Report (GMT->parent, GMT_MSG_DEBUG, "gmt_fft_initialization： start with nothing\n");
+ 	/* Start with nothing */
+ 	memset (GMT->session.fft1d, k_n_fft_algorithms, sizeof(void*));
+ 	memset (GMT->session.fft2d, k_n_fft_algorithms, sizeof(void*));
+@@ -1709,6 +1710,7 @@ void gmt_fft_initialization (struct GMT_CTRL *GMT) {
+ 	/* Brenner FFT is the legacy fallback */
+ 	GMT->session.fft1d[k_fft_brenner] = &fft_1d_brenner;
+ 	GMT->session.fft2d[k_fft_brenner] = &fft_2d_brenner;
++	GMT_Report (GMT->parent, GMT_MSG_DEBUG, "gmt_fft_initialization： end\n");
+ }
+
+ void gmt_fft_cleanup (struct GMT_CTRL *GMT) {
+diff --git a/src/gmt_init.c b/src/gmt_init.c
+index acd28a55e..285a7d515 100644
+--- a/src/gmt_init.c
++++ b/src/gmt_init.c
+@@ -15177,9 +15177,13 @@ struct GMT_CTRL *gmt_begin (struct GMTAPI_CTRL *API, const char *session, unsign
+
+ 	if (GMT->current.setting.io_gridfile_shorthand) gmtinit_setshorthand (GMT);	/* Load the short hand mechanism from gmt.io */
+
++	GMT_Report (API, GMT_MSG_DEBUG, "Enter:  gmt_fft_initialization\n");
+ 	gmt_fft_initialization (GMT);	/* Determine which FFT algos are available and set pointers */
++	GMT_Report (API, GMT_MSG_DEBUG, "Exit:  gmt_fft_initialization\n");
+
++	GMT_Report (API, GMT_MSG_DEBUG, "Enter:  gmtinit_set_today\n");
+ 	gmtinit_set_today (GMT);	/* Determine today's rata die value */
++	GMT_Report (API, GMT_MSG_DEBUG, "Exit:  gmtinit_set_today\n");
+
+ 	return (GMT);
+ }
