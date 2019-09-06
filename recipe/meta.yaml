@@ -7,6 +7,8 @@ package:
 source:
   url: https://github.com/GenericMappingTools/gmt/releases/download/{{ version }}/gmt-{{ version }}-src.tar.gz
   sha256: 79aa2f4df975e2d2ab38b6613e52da06040e741368baee8133ebb7e0e0336d09
+  patches:
+    - 6.0.0rc4-patch-1.patch
 
 build:
   number: 0
