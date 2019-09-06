@@ -1,7 +1,7 @@
 diff --git a/src/gmt_api.c b/src/gmt_api.c
-index 75a9b1090..8b3359f6a 100644
+index 75a9b1090..ae7b32394 100644
 --- a/src/gmt_api.c
 +++ b/src/gmt_api.c
 @@ -788 +788 @@ GMT_LOCAL int api_init_sharedlibs (struct GMTAPI_CTRL *API) {
 -	char text[GMT_LEN256] = {""}, plugindir[GMT_LEN256] = {""}, path[GMT_LEN256] = {""};
-+	char text[GMT_LEN256] = {""}, plugindir[PATH_MAX] = {""}, path[PATH_MAX] = {""};
++	char text[PATH_MAX] = {""}, plugindir[PATH_MAX] = {""}, path[PATH_MAX] = {""};
