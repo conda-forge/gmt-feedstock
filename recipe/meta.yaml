@@ -30,6 +30,8 @@ requirements:
     - gshhg-gmt
     - dcw-gmt
   run:
+    - libblas
+    - libcblas
     - fftw
     - gdal
     - ghostscript
