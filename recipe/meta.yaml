@@ -1,19 +1,19 @@
-{% set version = "5.4.5" %}
+{% set version = "6.0.0rc4" %}
 
 package:
   name: gmt
   version: {{ version }}
 
 source:
-  url: ftp://ftp.soest.hawaii.edu/gmt/gmt-{{ version }}-src.tar.gz
-  sha256: 225629c7869e204d5f9f1a384c4ada43e243f83e1ed28bdca4f7c2896bf39ef6
+  url: https://github.com/GenericMappingTools/gmt/releases/download/{{ version }}/gmt-{{ version }}-src.tar.gz
+  sha256: 79aa2f4df975e2d2ab38b6613e52da06040e741368baee8133ebb7e0e0336d09
   patches:
-    - no_matlab.patch
+    - 6.0.0rc4-patch-1.patch
+    - 6.0.0rc4-patch-2.patch
 
 build:
-  number: 5
-  skip: true  # [win and vc<14]
-  features:
+  number: 0
+  skip: True  # [win and vc<14]
 
 requirements:
   build:
@@ -25,7 +25,7 @@ requirements:
     - liblapack
     - fftw
     - gdal
-    - ghostscript  # [not win]
+    - ghostscript
     - libnetcdf
     - hdf5
     - zlib
@@ -39,7 +39,7 @@ requirements:
     - liblapack
     - fftw
     - gdal
-    - ghostscript  # [not win]
+    - ghostscript
     - libnetcdf
     - hdf5
     - zlib
@@ -50,14 +50,15 @@ requirements:
 
 test:
   commands:
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
-    - gmt defaults -Vd  # [not linux]
-    - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps  # [not linux]
-    - gmt pscoast -R0/5/0/5 -JM5i -P -W0.25p -Vd > test1.ps  # [not linux]
+    - gmt defaults -Vd
+    - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps
+    - gmt pscoast -R0/10/0/10 -JM6i -Ba -Ggray -ENG+p1p,blue -P -Vd > test1.ps
+    - gmt begin -Vd
+    - gmt coast -R0/10/0/10 -JM6i -Ba -Ggray -ENG+p1p,blue -Vd
+    - gmt end
 
 about:
-  home: http://gmt.soest.hawaii.edu/
+  home: https://www.generic-mapping-tools.org
   license: LGPL-3.0
   license_file: LICENSE.TXT
   summary: 'The Generic Mapping Tools.'
@@ -74,3 +75,4 @@ extra:
   recipe-maintainers:
     - ocefpaf
     - leouieda
+    - seisman
