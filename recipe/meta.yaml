@@ -10,9 +10,10 @@ source:
   patches:
     - 6.0.0rc4-patch-1.patch
     - 6.0.0rc4-patch-2.patch
+    - 6.0.0rc4-patch-3.patch
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win and vc<14]
 
 requirements:
