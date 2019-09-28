@@ -1,17 +1,6 @@
-# patch from https://github.com/GenericMappingTools/gmt/pull/1638
-
-From 73874e2b14195e409087f91d2d425122d6eee9d9 Mon Sep 17 00:00:00 2001
-From: Paul Wessel <pwessel@hawaii.edu>
-Date: Tue, 24 Sep 2019 12:46:33 -1000
-Subject: [PATCH 1/2] Dont count figure formats that are not recognized
-
-See issue #1636.  Here, a format instead of file name was set to - and it was passed to the function that determines the graphics format.  It returned -1 (not found) but it was counted as a format and hence we said ONE output format was selected (isntead of zero).  Closes #1636.
----
- src/gmt_init.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
-
 diff --git a/src/gmt_init.c b/src/gmt_init.c
 index a22c9ee01c..5827d94b21 100644
+# patch from https://github.com/GenericMappingTools/gmt/pull/1638
 --- a/src/gmt_init.c
 +++ b/src/gmt_init.c
 @@ -15578,9 +15578,10 @@ GMT_LOCAL int get_graphics_formats (struct GMT_CTRL *GMT, char *formats, char fm
@@ -28,30 +17,3 @@ index a22c9ee01c..5827d94b21 100644
  	}
  	return (n);
  }
-
-From 566a5b67952fef17c2a1b5e0a282c1ab0ef97f58 Mon Sep 17 00:00:00 2001
-From: Paul Wessel <pwessel@hawaii.edu>
-Date: Tue, 24 Sep 2019 13:12:28 -1000
-Subject: [PATCH 2/2] Update the docs
-
----
- doc/rst/source/figure.rst | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/doc/rst/source/figure.rst b/doc/rst/source/figure.rst
-index 3d65e16a9c..af55b5a1b2 100644
---- a/doc/rst/source/figure.rst
-+++ b/doc/rst/source/figure.rst
-@@ -118,6 +118,12 @@ To make two figures in one session and go back and forth between different figur
-
-     gmt end show
-
-+Technical Note
-+--------------
-+
-+If you are calling **figure** from an external environment and you do not want the plot to
-+be converted automatically when the session ends, perhaps because you wish to do this yourself,
-+you can specify the file name or figure format as - (i.e., just a hyphen).
-
- See Also
- --------
