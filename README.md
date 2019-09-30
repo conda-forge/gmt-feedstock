@@ -22,14 +22,7 @@ Current build status
 ====================
 
 
-<table><tr>
-    <td>Appveyor</td>
-    <td>
-      <a href="https://ci.appveyor.com/project/conda-forge/gmt-feedstock/branch/master">
-        <img alt="windows" src="https://img.shields.io/appveyor/ci/conda-forge/gmt-feedstock/master.svg?label=Windows">
-      </a>
-    </td>
-  </tr>
+<table>
     
   <tr>
     <td>Azure</td>
@@ -171,4 +164,5 @@ Feedstock Maintainers
 
 * [@leouieda](https://github.com/leouieda/)
 * [@ocefpaf](https://github.com/ocefpaf/)
+* [@seisman](https://github.com/seisman/)
 
