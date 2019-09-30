@@ -48,6 +48,8 @@ requirements:
     - pcre
     - gshhg-gmt  # [not win]
     - dcw-gmt  # [not win]
+    - ffmpeg
+    - graphicsmagick  # [not win]
 
 test:
   commands:
