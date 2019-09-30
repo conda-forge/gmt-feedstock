@@ -1,0 +1,19 @@
+diff --git a/src/gmt_init.c b/src/gmt_init.c
+index a22c9ee01c..5827d94b21 100644
+# patch from https://github.com/GenericMappingTools/gmt/pull/1638
+--- a/src/gmt_init.c
++++ b/src/gmt_init.c
+@@ -15578,9 +15578,10 @@ GMT_LOCAL int get_graphics_formats (struct GMT_CTRL *GMT, char *formats, char fm
+ 	unsigned int pos = 0;
+ 	char p[GMT_LEN32] = {""};
+ 	while ((gmt_strtok (formats, ",", &pos, p))) {
+-		k = gmt_get_graphics_id (GMT, p);
+-		gcode[n] = k;
+-		fmt[n++] = gmt_session_code[k];
++		if ((k = gmt_get_graphics_id (GMT, p)) != GMT_NOTSET) {	/* Valid code */
++			gcode[n] = k;
++			fmt[n++] = gmt_session_code[k];
++		}
+ 	}
+ 	return (n);
+ }
