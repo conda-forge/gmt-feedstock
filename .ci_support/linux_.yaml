@@ -10,6 +10,8 @@ curl:
 - '7.64'
 docker_image:
 - condaforge/linux-anvil-comp7
+fftw:
+- '3'
 gdal:
 - '3.0'
 hdf5:
@@ -24,6 +26,8 @@ libnetcdf:
 - 4.7.1
 pin_run_as_build:
   curl:
+    max_pin: x
+  fftw:
     max_pin: x
   gdal:
     max_pin: x.x
