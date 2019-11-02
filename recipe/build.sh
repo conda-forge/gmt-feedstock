@@ -15,18 +15,19 @@ export CFLAGS="$CFLAGS -fPIC -I$PREFIX/include"
 mkdir build && cd build
 
 cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
+      -D CMAKE_BUILD_TYPE=Release \
       -D FFTW3_ROOT=$PREFIX \
       -D GDAL_ROOT=$PREFIX \
       -D NETCDF_ROOT=$PREFIX \
       -D PCRE_ROOT=$PREFIX \
       -D ZLIB_ROOT=$PREFIX \
-      -D LIBCURL_ROOT=$PREFIX \
-      -DLAPACK_LIBRARIES=$PREFIX/lib/liblapack${SHLIB_EXT} \
+      -D CURL_ROOT=$PREFIX \
+      -D LAPACK_LIBRARIES=$PREFIX/lib/liblapack${SHLIB_EXT} \
       -D GMT_LIBDIR=$PREFIX/lib \
       -D DCW_ROOT=$DCW_DIR \
       -D GSHHG_ROOT=$GSHHG_DIR \
-      -D GMT_INSTALL_TRADITIONAL_FOLDERNAMES:BOOL=FALSE \
-      -D GMT_INSTALL_MODULE_LINKS:BOOL=FALSE \
+      -D GMT_INSTALL_TRADITIONAL_FOLDERNAMES=FALSE \
+      -D GMT_INSTALL_MODULE_LINKS=FALSE \
       ..
 
 make -j$CPU_COUNT
@@ -38,11 +39,11 @@ make install
 # library files. This only happens on OSX. Anyone who knows how to solve that
 # problem is free to contact the maintainers.
 if [[ "$(uname)" == "Darwin" ]];then
-    install_name_tool -id $PREFIX/lib/libgmt.5.dylib $PREFIX/lib/libgmt.5.dylib
-    install_name_tool -id $PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libpostscriptlight.5.dylib
-    install_name_tool -change $PREFIX/$PREFIX/lib/libgmt.5.dylib $PREFIX/lib/libgmt.5.dylib $PREFIX/lib/gmt/plugins/supplements.so
-    install_name_tool -change $PREFIX/$PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/gmt/plugins/supplements.so
-    install_name_tool -change $PREFIX/$PREFIX/lib/libgmt.5.dylib $PREFIX/lib/libgmt.5.dylib $PREFIX/bin/gmt
-    install_name_tool -change $PREFIX/$PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/bin/gmt
-    install_name_tool -change $PREFIX/$PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libpostscriptlight.5.dylib $PREFIX/lib/libgmt.5.dylib
+    install_name_tool -id $PREFIX/lib/libgmt.6.dylib $PREFIX/lib/libgmt.6.dylib
+    install_name_tool -id $PREFIX/lib/libpostscriptlight.6.dylib $PREFIX/lib/libpostscriptlight.6.dylib
+    install_name_tool -change $PREFIX/$PREFIX/lib/libgmt.6.dylib $PREFIX/lib/libgmt.6.dylib $PREFIX/lib/gmt/plugins/supplements.so
+    install_name_tool -change $PREFIX/$PREFIX/lib/libpostscriptlight.6.dylib $PREFIX/lib/libpostscriptlight.6.dylib $PREFIX/lib/gmt/plugins/supplements.so
+    install_name_tool -change $PREFIX/$PREFIX/lib/libgmt.6.dylib $PREFIX/lib/libgmt.6.dylib $PREFIX/bin/gmt
+    install_name_tool -change $PREFIX/$PREFIX/lib/libpostscriptlight.6.dylib $PREFIX/lib/libpostscriptlight.6.dylib $PREFIX/bin/gmt
+    install_name_tool -change $PREFIX/$PREFIX/lib/libpostscriptlight.6.dylib $PREFIX/lib/libpostscriptlight.6.dylib $PREFIX/lib/libgmt.6.dylib
 fi

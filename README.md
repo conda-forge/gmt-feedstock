@@ -1,7 +1,7 @@
 About gmt
 =========
 
-Home: http://gmt.soest.hawaii.edu/
+Home: https://www.generic-mapping-tools.org
 
 Package license: LGPL-3.0
 
