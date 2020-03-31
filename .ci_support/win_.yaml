@@ -19,7 +19,7 @@ libcblas:
 liblapack:
 - 3.8.0 *netlib
 libnetcdf:
-- 4.7.3
+- 4.7.4
 pin_run_as_build:
   curl:
     max_pin: x
@@ -27,16 +27,11 @@ pin_run_as_build:
     max_pin: x
   gdal:
     max_pin: x.x
-  libnetcdf:
-    max_pin: x.x.x
   vc:
     max_pin: x
   zlib:
     max_pin: x.x
 vc:
 - '14'
-zip_keys:
-- - vc
-  - c_compiler
 zlib:
 - '1.2'
