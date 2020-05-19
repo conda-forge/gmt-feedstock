@@ -9,7 +9,7 @@ source:
   sha256: 8a0f659274a2ace8c3c572c58fe533b5c31403f1631a46bec3f93dbfcbaf78e1
 
 build:
-  number: 2
+  number: 3
   skip: True  # [win and vc<14]
 
 requirements:
@@ -45,7 +45,7 @@ requirements:
     - gshhg-gmt  # [not win]
     - dcw-gmt  # [not win]
     - ffmpeg
-    - graphicsmagick  # [not win]
+    - graphicsmagick
 
 test:
   commands:
