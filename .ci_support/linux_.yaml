@@ -7,7 +7,7 @@ channel_sources:
 channel_targets:
 - conda-forge main
 curl:
-- '7.64'
+- '7'
 docker_image:
 - condaforge/linux-anvil-comp7
 fftw:
