@@ -12,7 +12,7 @@ source:
     - gmt-6.0.0-patch0.patch
 
 build:
-  number: 3
+  number: 4
   skip: True  # [win and vc<14]
 
 requirements:
