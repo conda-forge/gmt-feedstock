@@ -1,0 +1,17 @@
+diff --git src/config.h.in src/config.h.in
+index 1866b504ad..0e337a459c 100644
+--- src/config.h.in
++++ src/config.h.in
+@@ -35,7 +35,11 @@
+ 
+ /* path to executables/libs */
+ #define GMT_BINDIR_RELATIVE "@GMT_BINDIR@"
+-#define GMT_LIBDIR_RELATIVE "@GMT_LIBDIR@"
++#ifndef WIN32
++    #define GMT_LIBDIR_RELATIVE "@GMT_LIBDIR@"
++#else
++    #define GMT_LIBDIR_RELATIVE "@GMT_BINDIR@"
++#endif
+ 
+ /* path to shared files */
+ #define GMT_SHARE_DIR "@CMAKE_INSTALL_PREFIX@/@GMT_DATADIR@"

@@ -7,9 +7,12 @@ package:
 source:
   url: https://github.com/GenericMappingTools/gmt/releases/download/{{ version }}/gmt-{{ version }}-src.tar.gz
   sha256: 8a0f659274a2ace8c3c572c58fe533b5c31403f1631a46bec3f93dbfcbaf78e1
+  patches:
+    # patch for GMT 6.0.0 only. See https://github.com/GenericMappingTools/gmt/pull/3361
+    - gmt-6.0.0-patch0.patch
 
 build:
-  number: 3
+  number: 4
   skip: True  # [win and vc<14]
 
 requirements:
