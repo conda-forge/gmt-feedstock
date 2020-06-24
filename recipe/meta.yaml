@@ -10,9 +10,12 @@ source:
   patches:
     # patch for GMT 6.0.0 only. See https://github.com/GenericMappingTools/gmt/pull/3361
     - gmt-6.0.0-patch0.patch
+    # patch for GMT 6.0.0 compatibility with netCDF 4.7.4.
+    # See https://github.com/GenericMappingTools/gmt/pull/3023
+    - gmt-6.0.0-patch1.patch
 
 build:
-  number: 4
+  number: 5
   skip: True  # [win and vc<14]
 
 requirements:
