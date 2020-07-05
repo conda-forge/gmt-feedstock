@@ -1,4 +1,4 @@
-{% set version = "6.0.0" %}
+{% set version = "6.1.0" %}
 
 package:
   name: gmt
@@ -6,16 +6,10 @@ package:
 
 source:
   url: https://github.com/GenericMappingTools/gmt/releases/download/{{ version }}/gmt-{{ version }}-src.tar.gz
-  sha256: 8a0f659274a2ace8c3c572c58fe533b5c31403f1631a46bec3f93dbfcbaf78e1
-  patches:
-    # patch for GMT 6.0.0 only. See https://github.com/GenericMappingTools/gmt/pull/3361
-    - gmt-6.0.0-patch0.patch
-    # patch for GMT 6.0.0 compatibility with netCDF 4.7.4.
-    # See https://github.com/GenericMappingTools/gmt/pull/3023
-    - gmt-6.0.0-patch1.patch
+  sha256: 5cc6c38848079b9df3c94ecb53a5d2a4a685775f51e7a884aa5807b7f6fdfd6f
 
 build:
-  number: 5
+  number: 0
   skip: True  # [win and vc<14]
 
 requirements:
