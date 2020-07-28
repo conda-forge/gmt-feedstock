@@ -1,12 +1,12 @@
-{% set version = "6.0.0rc5" %}
+{% set version = "6.2.0dev" %}
 
 package:
   name: gmt
   version: {{ version }}
 
 source:
-  url: https://github.com/GenericMappingTools/gmt/releases/download/{{ version }}/gmt-{{ version }}-src.tar.gz
-  sha256: 10154b216dfc290b95700b6620ef1c89b170074c14173fd585c30f980e270f38
+  git_url: https://github.com/GenericMappingTools/gmt.git
+  git_rev: 79c89c48bde13f01b9069bfe555f57b5d962e02a
 
 build:
   number: 0
@@ -45,7 +45,7 @@ requirements:
     - gshhg-gmt  # [not win]
     - dcw-gmt  # [not win]
     - ffmpeg
-    - graphicsmagick  # [not win]
+    - graphicsmagick
 
 test:
   commands:
