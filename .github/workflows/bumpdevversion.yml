@@ -20,7 +20,7 @@ jobs:
       - name: Update github_rev
         uses: mikefarah/yq@3.3.2
         with:
-          cmd: "yq write --inplace recipe/meta.yaml 'source.github_rev' 123456789"
+          cmd: "yq write --inplace recipe/meta.yaml 'source.git_rev' 123456789"
 
       # Bump build version number
       - name: Bump build number
