@@ -1,8 +1,6 @@
-{% set version = "6.2.0dev" %}
-
 package:
   name: gmt
-  version: {{ version }}
+  version: 6.2.0dev
 
 source:
   git_url: https://github.com/GenericMappingTools/gmt.git
