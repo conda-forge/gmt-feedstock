@@ -21,8 +21,8 @@ jobs:
         uses: mikefarah/yq@3.3.2
         with:
           cmd: |
-            yq w recipe/meta.yaml source.github_rev 123456789
-            yq w recipe/meta.yaml build.number 1
+            yq write --inplace recipe/meta.yaml 'source.github_rev' 123456789
+            yq write --inplace recipe/meta.yaml 'build.number' 1
 
       # Take a look at recipe/meta.yaml contents
       - name: Check meta.yaml contents
