@@ -1,0 +1,36 @@
+on:
+  pull_request:
+    branches:
+      - devel
+  # Schedule runs on 9am every Sunday
+  schedule:
+    - cron: '0 9 * * 0'
+
+jobs:
+  bump-dev-version:
+    name: Bump GMT development version
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout current git repository
+      - name: Checkout
+        uses: actions/checkout@v2.3.1
+
+      # Change Github sha hash and bump version number
+      - name: Update github_rev and build number using yq
+        uses: mikefarah/yq@3.3.2
+        with:
+          cmd: |
+            yq w recipe/meta.yaml source.github_rev 123456789
+            yq w recipe/meta.yaml build.number 1
+
+      # Take a look at recipe/meta.yaml contents
+      - name: Check meta.yaml contents
+        run: cat recipe/meta.yaml
+
+      # TODO Commit changed recipe/meta.yaml file to Github
+      # - name: Commit changes
+      #   uses: stefanzweifel/git-auto-commit-action@v4
+      #   with:
+      #     commit_message: Bump GMT dev version
+      #     branch: devel
