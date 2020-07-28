@@ -27,12 +27,6 @@ jobs:
         with:
           cmd: "yq write --inplace recipe/meta.yaml 'source.git_rev' ${{ steps.git_rev_info.outputs.sha }}"
 
-      # Bump build version number
-      - name: Bump build number
-        uses: mikefarah/yq@3.3.2
-        with:
-          cmd: "yq write --inplace recipe/meta.yaml 'build.number' 1"
-
       # Take a look at recipe/meta.yaml contents
       - name: Check meta.yaml contents
         run: cat recipe/meta.yaml
