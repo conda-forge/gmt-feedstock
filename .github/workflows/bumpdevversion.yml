@@ -29,17 +29,23 @@ jobs:
           # Get date of latest commit
           # TODO
 
-      # Change development package version
-      - name: Update package version
-        uses: mikefarah/yq@3.3.2
-        with:
-          cmd: "yq write --inplace recipe/meta.yaml 'package.version' ${{ steps.git_rev_info.outputs.latest_tag }}_${{ steps.git_rev_info.outputs.short_sha }}_20XX.MM.DD"
+      # Install yq - A portable command-line YAML processor
+      - name: Install yq
+        run: |
+          sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/3.3.2/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
 
-      # Change development package source's git revision
-      - name: Update package source's git revision
-        uses: mikefarah/yq@3.3.2
-        with:
-          cmd: "yq write --inplace recipe/meta.yaml 'source.git_rev' ${{ steps.git_rev_info.outputs.full_sha }}"
+      # Change development package version and source git revision
+      - name: Update package version and git revision
+        run: |
+          # Add 1 to the previous dev version number (e.g. 1.2.3.dev0+abcdefg would output 1)
+          export dev_version_num=`expr 1 + $(yq read recipe/meta.yaml package.version | grep -o -P '(?<=dev).*(?=\+)')`
+          # Format new version string (e.g. 1.2.3.dev1+hijklmn)
+          export version_string=${{ steps.git_rev_info.outputs.latest_tag }}.dev$dev_version_num+${{ steps.git_rev_info.outputs.short_sha }}
+          # Bump versions in recipe/meta.yaml file
+          yq write --inplace recipe/meta.yaml package.version $version_string
+          yq write --inplace recipe/meta.yaml source.git_rev ${{ steps.git_rev_info.outputs.full_sha }}
+          # yq write --inplace recipe/meta.yaml requirements.build[1] "{{ compiler('c') }}"
 
       # Take a look at recipe/meta.yaml contents
       - name: Check meta.yaml contents
