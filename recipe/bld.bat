@@ -16,7 +16,7 @@ cmake -G "NMake Makefiles" ^
       -D PCRE_ROOT=%LIBRARY_PREFIX% ^
       -D ZLIB_ROOT=%LIBRARY_PREFIX% ^
       -D CURL_ROOT=%LIBRARY_PREFIX% ^
-      -D GMT_LIBDIR=%LIBRARY_PREFIX%\lib ^
+      -D GMT_LIBDIR=lib ^
       -D DCW_ROOT=%DCW_DIR% ^
       -D GSHHG_ROOT=%GSHHG_DIR% ^
       -D COPY_GSHHG=TRUE ^
