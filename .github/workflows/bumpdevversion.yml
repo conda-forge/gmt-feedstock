@@ -52,7 +52,9 @@ jobs:
         run: cat recipe/meta.yaml
 
       # TODO Commit changed recipe/meta.yaml file to Github
-      # - name: Commit changes
+      - name: Commit changes (echo only)
+        if: github.repository != 'conda-forge/gmt-feedstock'
+        run: echo "Bump GMT dev version to 6.2.0.devX+something"
       #   uses: stefanzweifel/git-auto-commit-action@v4
       #   with:
       #     commit_message: Bump GMT dev version
