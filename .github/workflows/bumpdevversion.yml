@@ -51,7 +51,9 @@ jobs:
         run: |
           yq write --inplace recipe/meta.yaml package.version ${{ steps.version_info.outputs.VERSION_STRING }}
           yq write --inplace recipe/meta.yaml source.git_rev ${{ steps.version_info.outputs.SHA_HASH }}
-          # yq write --inplace recipe/meta.yaml requirements.build[1] "{{ compiler('c') }}"
+          # Fix incorrectly formatted {{ compiler('c') }}
+          yq write --inplace recipe/meta.yaml requirements.build[1] "{{ compiler('c') }}"
+          sed --in-place "s/'{{ compiler(''c'') }}'/{{ compiler('c') }}/g" recipe/meta.yaml
 
       # Take a look at recipe/meta.yaml contents
       - name: Check meta.yaml contents
