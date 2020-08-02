@@ -16,35 +16,41 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.1
 
-      # Get latest GMT sha hash from Github
-      - name: Get latest git revision number, tag version and commit date
-        id: git_rev_info
-        run: |
-          # Get full SHA value (e.g. abcdefghijklmnopqrstuvwxyz12345678901234)
-          echo ::set-output name=full_sha::$(git ls-remote https://github.com/GenericMappingTools/gmt HEAD | cut -f 1)
-          # Get shortened SHA value (e.g abcdefg)
-          echo ::set-output name=short_sha::$(git ls-remote https://github.com/GenericMappingTools/gmt HEAD | cut -c 1-7)
-          # Get tag with highest version number (e.g. 1.2.3)
-          echo ::set-output name=latest_tag::$(git ls-remote -q --sort="-version:refname" --tags --refs https://github.com/GenericMappingTools/gmt | head -n 1 | cut -d / -f 3)
-          # Get date of latest commit
-          # TODO
-
       # Install yq - A portable command-line YAML processor
       - name: Install yq
         run: |
           sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/3.3.2/yq_linux_amd64
           sudo chmod +x /usr/local/bin/yq
 
+      # Get the GMT package's latest hash from Github
+      # and build the desired conda version string. For example:
+      # SHA_HASH=abcdefghijklmnopqrstuvwxyz12345678901234, VERSION_STRING=1.2.3.dev1+hijklmn
+      - name: Get package's latest git revision and build version string
+        id: version_info
+        run: |
+          ## Get the sha hash value (e.g. abcdefghijklmnopqrstuvwxyz12345678901234) from Github
+          export SHA_HASH=$(git ls-remote https://github.com/GenericMappingTools/gmt HEAD | cut -f 1)
+          echo ::set-output name=SHA_HASH::$SHA_HASH
+
+          ## Build new version string (e.g. 1.2.3.dev1+hijklmn)
+
+          # Get tag with highest version number (e.g. 1.2.3)
+          export TAG=$(git ls-remote -q --sort="-version:refname" --tags --refs https://github.com/GenericMappingTools/gmt | head -n 1 | cut -d / -f 3)
+
+          # Add 1 to the previous dev version number (e.g. 1.2.3.dev0+abcdefg would output 1)
+          export DEV_VERSION_NUM=`expr 1 + $(yq read recipe/meta.yaml package.version | grep -o -P '(?<=dev).*(?=\+)')`
+
+          # Get short sha hash value (e.g. hijklmn)
+          export SHORT_HASH=$(echo $SHA_HASH | cut -c 1-7)
+
+          # Finally build the new version string (e.g. 1.2.3.dev1+hijklmn)
+          echo ::set-output name=VERSION_STRING::$TAG.dev$DEV_VERSION_NUM+$SHORT_HASH
+
       # Change development package version and source git revision
       - name: Update package version and git revision
         run: |
-          # Add 1 to the previous dev version number (e.g. 1.2.3.dev0+abcdefg would output 1)
-          export dev_version_num=`expr 1 + $(yq read recipe/meta.yaml package.version | grep -o -P '(?<=dev).*(?=\+)')`
-          # Format new version string (e.g. 1.2.3.dev1+hijklmn)
-          export version_string=${{ steps.git_rev_info.outputs.latest_tag }}.dev$dev_version_num+${{ steps.git_rev_info.outputs.short_sha }}
-          # Bump versions in recipe/meta.yaml file
-          yq write --inplace recipe/meta.yaml package.version $version_string
-          yq write --inplace recipe/meta.yaml source.git_rev ${{ steps.git_rev_info.outputs.full_sha }}
+          yq write --inplace recipe/meta.yaml package.version ${{ steps.version_info.outputs.VERSION_STRING }}
+          yq write --inplace recipe/meta.yaml source.git_rev ${{ steps.version_info.outputs.SHA_HASH }}
           # yq write --inplace recipe/meta.yaml requirements.build[1] "{{ compiler('c') }}"
 
       # Take a look at recipe/meta.yaml contents
