@@ -15,6 +15,8 @@ jobs:
       # Checkout current git repository
       - name: Checkout
         uses: actions/checkout@v2.3.1
+        with:
+          ref: ${{ github.head_ref }}
 
       # Install yq - A portable command-line YAML processor
       - name: Install yq
@@ -61,11 +63,11 @@ jobs:
       - name: Check meta.yaml contents
         run: cat recipe/meta.yaml
 
-      # TODO Commit changed recipe/meta.yaml file to Github
-      - name: Commit changes (echo only)
+      # Commit changed recipe/meta.yaml file to Github
+      - name: Commit meta.yaml changes to a branch
+        uses: stefanzweifel/git-auto-commit-action@v4
         if: github.repository != 'conda-forge/gmt-feedstock'
-        run: echo "Bump GMT dev version to 6.2.0.devX+something"
-      #   uses: stefanzweifel/git-auto-commit-action@v4
-      #   with:
-      #     commit_message: Bump GMT dev version
-      #     branch: devel
+        with:
+          commit_message: '[ci skip] [skip ci] [cf admin skip] ***NO_CI*** Bump GMT dev version to ${{ steps.version_info.outputs.VERSION_STRING }}'
+          branch: ${{ github.head_ref }} # /${{ steps.version_info.outputs.VERSION_STRING }}
+          file_pattern: recipe/meta.yaml
