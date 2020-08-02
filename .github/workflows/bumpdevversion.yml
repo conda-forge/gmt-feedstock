@@ -54,6 +54,8 @@ jobs:
           # Fix incorrectly formatted {{ compiler('c') }}
           yq write --inplace recipe/meta.yaml requirements.build[1] "{{ compiler('c') }}"
           sed --in-place "s/'{{ compiler(''c'') }}'/{{ compiler('c') }}/g" recipe/meta.yaml
+          # Ensure <two spaces>#<one space>[<expression>] form
+          sed --in-place "s/\ \#\ \[/  # [/g" recipe/meta.yaml
 
       # Take a look at recipe/meta.yaml contents
       - name: Check meta.yaml contents
