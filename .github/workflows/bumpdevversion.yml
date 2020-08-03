@@ -71,3 +71,10 @@ jobs:
           commit_message: '[ci skip] [skip ci] [cf admin skip] ***NO_CI*** Bump GMT dev version to ${{ steps.version_info.outputs.VERSION_STRING }}'
           branch: ${{ github.head_ref }} # /${{ steps.version_info.outputs.VERSION_STRING }}
           file_pattern: recipe/meta.yaml
+
+      # Open a Pull Request from the branch to the main repo
+      - name: Open Pull Request to bump version (testing only)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create --title "Bump GMT dev version to ${{ steps.version_info.outputs.VERSION_STRING }}" --body "Test auto bump version" --repo seisman/gmt-feedstock --base devel --draft
