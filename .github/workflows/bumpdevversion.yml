@@ -69,15 +69,15 @@ jobs:
         if: github.repository != 'conda-forge/gmt-feedstock'
         with:
           commit_message: '[ci skip] [skip ci] [cf admin skip] ***NO_CI*** Bump GMT dev version to ${{ steps.version_info.outputs.VERSION_STRING }}'
-          branch: ${{ github.head_ref }} # /${{ steps.version_info.outputs.VERSION_STRING }}
+          branch: update/${{ steps.version_info.outputs.VERSION_STRING }}
           file_pattern: recipe/meta.yaml
 
       # Open a Pull Request from the branch to the main repo
       # The GMT_FEEDSTOCK_TOKEN personal access token secret should have
       # a scope of "repo: public_repo" for access to public repositories
-      - name: Open Pull Request to bump version (testing only)
-        if: github.repository != 'conda-forge/gmt-feedstock'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GMT_FEEDSTOCK_TOKEN }}
-        run: |
-          gh pr create --title "Bump GMT dev version to ${{ steps.version_info.outputs.VERSION_STRING }}" --body "Test auto bump version" --repo GenericMappingTools/gmt-feedstock --base devel --draft
+      # - name: Open Pull Request to bump version (testing only)
+      #   if: github.repository != 'conda-forge/gmt-feedstock'
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GMT_FEEDSTOCK_TOKEN }}
+      #   run: |
+      #     gh pr create --title "Bump GMT dev version to ${{ steps.version_info.outputs.VERSION_STRING }}" --body "Test auto bump version" --repo GenericMappingTools/gmt-feedstock --base devel --draft
