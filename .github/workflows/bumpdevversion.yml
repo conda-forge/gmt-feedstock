@@ -51,11 +51,17 @@ jobs:
       # Change development package version and source git revision
       - name: Update package version and git revision
         run: |
+          # Create and checkout a new git branch for the update
+          git checkout -b update/${{ steps.version_info.outputs.VERSION_STRING }}
+
+          # Update the recipe/meta.yaml file with new version info
           yq write --inplace recipe/meta.yaml package.version ${{ steps.version_info.outputs.VERSION_STRING }}
           yq write --inplace recipe/meta.yaml source.git_rev ${{ steps.version_info.outputs.SHA_HASH }}
+
           # Fix incorrectly formatted {{ compiler('c') }}
           yq write --inplace recipe/meta.yaml requirements.build[1] "{{ compiler('c') }}"
           sed --in-place "s/'{{ compiler(''c'') }}'/{{ compiler('c') }}/g" recipe/meta.yaml
+
           # Ensure <two spaces>#<one space>[<expression>] form
           sed --in-place "s/\ \#\ \[/  # [/g" recipe/meta.yaml
 
