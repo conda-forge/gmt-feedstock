@@ -1,15 +1,15 @@
-MACOSX_DEPLOYMENT_TARGET:
-- '10.9'
 c_compiler:
-- clang
+- gcc
 c_compiler_version:
-- '9'
+- '7'
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
 curl:
 - '7'
+docker_image:
+- condaforge/linux-anvil-comp7
 fftw:
 - '3'
 gdal:
@@ -24,10 +24,6 @@ liblapack:
 - 3.8.0 *netlib
 libnetcdf:
 - 4.7.4
-macos_machine:
-- x86_64-apple-darwin13.4.0
-macos_min_version:
-- '10.9'
 pin_run_as_build:
   curl:
     max_pin: x
@@ -37,5 +33,7 @@ pin_run_as_build:
     max_pin: x.x
   zlib:
     max_pin: x.x
+target_platform:
+- linux-64
 zlib:
 - '1.2'
