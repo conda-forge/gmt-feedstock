@@ -88,7 +88,7 @@ jobs:
         with:
           title: "Bump GMT from ${{ steps.version_info.outputs.OLD_VERSION_STRING }} to ${{ steps.version_info.outputs.NEW_VERSION_STRING }}"
           commit-message: "Bumps GMT dev version from ${{ steps.version_info.outputs.OLD_VERSION_STRING }} to ${{ steps.version_info.outputs.NEW_VERSION_STRING }}"
-          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           # reviewers: "weiji14"  # TODO change to maintainer on conda-forge/gmt-feedstock
           base: devel
           branch: update/${{ steps.version_info.outputs.NEW_VERSION_STRING }}
@@ -101,7 +101,7 @@ jobs:
 
             This PR will update the following package:
 
-            - [gmt][1] from `[${{ steps.version_info.outputs.OLD_VERSION_STRING }}][2]` to `[${{ steps.version_info.outputs.NEW_VERSION_STRING }}][3]`
+            - [gmt][1] from [`${{ steps.version_info.outputs.OLD_VERSION_STRING }}`][2] to [`${{ steps.version_info.outputs.NEW_VERSION_STRING }}`][3]
               - [Commits](https://github.com/GenericMappingTools/gmt/compare/${{ steps.version_info.outputs.OLD_VERSION_STRING }}...${{ steps.version_info.outputs.NEW_VERSION_STRING }})
 
             Notes for merging this PR:
@@ -110,6 +110,6 @@ jobs:
               - [ ] Dependencies have been updated if changed
               - [ ] Tests have passed
 
-            [1] : https://github.com/GenericMappingTools/gmt
-            [2] : https://github.com/GenericMappingTools/gmt/commit/${{ steps.version_info.outputs.OLD_SHA_HASH }}
-            [3] : https://github.com/GenericMappingTools/gmt/commit/${{ steps.version_info.outputs.NEW_SHA_HASH }}
+            [1]: https://github.com/GenericMappingTools/gmt
+            [2]: https://github.com/GenericMappingTools/gmt/commit/${{ steps.version_info.outputs.OLD_SHA_HASH }}
+            [3]: https://github.com/GenericMappingTools/gmt/commit/${{ steps.version_info.outputs.NEW_SHA_HASH }}
