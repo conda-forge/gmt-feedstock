@@ -100,16 +100,16 @@ jobs:
             It is very likely that the current package version for this feedstock is out of date.
 
             This PR will update the following package:
-
-            - [gmt][1] from [`${{ steps.version_info.outputs.OLD_VERSION_STRING }}`][2] to [`${{ steps.version_info.outputs.NEW_VERSION_STRING }}`][3]
-              - [Commits](https://github.com/GenericMappingTools/gmt/compare/${{ steps.version_info.outputs.OLD_VERSION_STRING }}...${{ steps.version_info.outputs.NEW_VERSION_STRING }})
+            - [`gmt`][1] from [`${{ steps.version_info.outputs.OLD_VERSION_STRING }}`][2] to [`${{ steps.version_info.outputs.NEW_VERSION_STRING }}`][3]
+              - Full list of commits made since last release viewable at [compare view][4]
 
             Notes for merging this PR:
-              1. Feel free to push to the bot's branch to update this PR if needed.
-              2. Checklist before merging this PR:
+            1. Feel free to push to the bot's branch to update this PR if needed.
+            2. Checklist before merging this PR:
               - [ ] Dependencies have been updated if changed
               - [ ] Tests have passed
 
             [1]: https://github.com/GenericMappingTools/gmt
             [2]: https://github.com/GenericMappingTools/gmt/commit/${{ steps.version_info.outputs.OLD_SHA_HASH }}
             [3]: https://github.com/GenericMappingTools/gmt/commit/${{ steps.version_info.outputs.NEW_SHA_HASH }}
+            [4]: https://github.com/GenericMappingTools/gmt/compare/${{ steps.version_info.outputs.OLD_VERSION_STRING }}...${{ steps.version_info.outputs.NEW_VERSION_STRING }}
