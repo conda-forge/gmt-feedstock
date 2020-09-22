@@ -13,7 +13,7 @@ curl:
 fftw:
 - '3'
 gdal:
-- '3.0'
+- '3.1'
 hdf5:
 - 1.10.5
 libblas:
@@ -26,8 +26,6 @@ libnetcdf:
 - 4.7.4
 macos_machine:
 - x86_64-apple-darwin13.4.0
-macos_min_version:
-- '10.9'
 pin_run_as_build:
   curl:
     max_pin: x
