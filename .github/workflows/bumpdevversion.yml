@@ -15,7 +15,7 @@ jobs:
     steps:
       # Checkout current git repository
       - name: Checkout
-        uses: actions/checkout@v2.3.2
+        uses: actions/checkout@v2.3.3
         with:
           repository: conda-forge/gmt-feedstock
           ref: devel
@@ -23,7 +23,7 @@ jobs:
       # Install yq - A portable command-line YAML processor
       - name: Install yq
         run: |
-          sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/3.3.4/yq_linux_amd64
+          sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/3.4.0/yq_linux_amd64
           sudo chmod +x /usr/local/bin/yq
 
       # Get the GMT package's current (old) and latest (new) hash
@@ -97,7 +97,7 @@ jobs:
           draft: true
           push-to-fork: GenericMappingTools/gmt-feedstock
           body: |
-            It is very likely that the current package version for this feedstock is out of date.
+            **This is an automated pull request!**
 
             This PR will update the following package:
             - [`gmt`][1] from [`${{ steps.version_info.outputs.OLD_VERSION_STRING }}`][2] to [`${{ steps.version_info.outputs.NEW_VERSION_STRING }}`][3]
