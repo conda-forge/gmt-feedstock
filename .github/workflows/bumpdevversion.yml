@@ -10,7 +10,7 @@ jobs:
   bump-dev-version:
     name: Bump GMT development version
     runs-on: ubuntu-latest
-    if: github.repository != 'conda-forge/gmt-feedstock'
+    if: github.repository == 'GenericMappingTools/gmt-feedstock'
 
     steps:
       # Checkout current git repository
@@ -80,22 +80,20 @@ jobs:
       - name: Check meta.yaml contents
         run: cat recipe/meta.yaml
 
-      # Open a Pull Request from personal fork to the upstream repo
-      # The GMT_FEEDSTOCK_TOKEN personal access token secret should have
-      # a scope of "repo: public_repo" for access to public repositories
+      # Open a Pull Request from organization (GenericMappingTools) fork to the upstream (conda-forge) repo
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.4.0
         with:
           title: "Bump GMT from ${{ steps.version_info.outputs.OLD_VERSION_STRING }} to ${{ steps.version_info.outputs.NEW_VERSION_STRING }}"
           commit-message: "Bumps GMT dev version from ${{ steps.version_info.outputs.OLD_VERSION_STRING }} to ${{ steps.version_info.outputs.NEW_VERSION_STRING }}"
           author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-          # reviewers: "weiji14"  # TODO change to maintainer on conda-forge/gmt-feedstock
+          # reviewers: ""  # TODO change to maintainer on conda-forge/gmt-feedstock
           base: devel
           branch: update/${{ steps.version_info.outputs.NEW_VERSION_STRING }}
           delete-branch: true
-          token: ${{ secrets.GMT_FEEDSTOCK_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
-          push-to-fork: GenericMappingTools/gmt-feedstock
+          # push-to-fork: GenericMappingTools/gmt-feedstock
           body: |
             **This is an automated pull request!**
 
