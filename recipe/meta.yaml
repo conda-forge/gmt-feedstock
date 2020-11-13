@@ -28,8 +28,8 @@ requirements:
     - zlib
     - curl
     - pcre
-    - gshhg-gmt
-    - dcw-gmt
+    - gshhg-gmt  # [not win]
+    - dcw-gmt  # [not win]
   run:
     - libblas
     - libcblas
@@ -45,7 +45,7 @@ requirements:
     - gshhg-gmt  # [not win]
     - dcw-gmt  # [not win]
     - ffmpeg
-    - graphicsmagick
+    # - graphicsmagick
 
 test:
   commands:
