@@ -9,7 +9,7 @@ source:
   sha256: 9706ffa858a98bb1b97162e3887aa03c6c746017a274951e94a6341a59efad12
 
 build:
-  number: 1
+  number: 2
   skip: True  # [win and vc<14]
 
 requirements:
@@ -28,8 +28,8 @@ requirements:
     - zlib
     - curl
     - pcre
-    - gshhg-gmt  # [not win]
-    - dcw-gmt  # [not win]
+    - gshhg-gmt
+    - dcw-gmt
   run:
     - libblas
     - libcblas
