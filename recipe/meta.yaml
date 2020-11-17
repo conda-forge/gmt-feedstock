@@ -5,7 +5,7 @@ source:
   git_url: https://github.com/GenericMappingTools/gmt.git
   git_rev: 92c567688fc5fa71a935ef1e654b0ee99c41f93a
 build:
-  number: 1
+  number: 2
   skip: True  # [win and vc<14]
 requirements:
   build:
@@ -40,7 +40,8 @@ requirements:
     - gshhg-gmt  # [not win]
     - dcw-gmt  # [not win]
     - ffmpeg
-    - graphicsmagick
+    # re-add when https://github.com/conda-forge/graphicsmagick-feedstock/pull/11 is merged
+    # - graphicsmagick
 test:
   commands:
     - gmt defaults -Vd
