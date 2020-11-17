@@ -40,7 +40,8 @@ requirements:
     - gshhg-gmt  # [not win]
     - dcw-gmt  # [not win]
     - ffmpeg
-    - graphicsmagick
+    # re-add when https://github.com/conda-forge/graphicsmagick-feedstock/pull/11 is merged
+    # - graphicsmagick
 test:
   commands:
     - gmt defaults -Vd
