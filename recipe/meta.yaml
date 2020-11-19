@@ -9,7 +9,7 @@ source:
   sha256: 9706ffa858a98bb1b97162e3887aa03c6c746017a274951e94a6341a59efad12
 
 build:
-  number: 2
+  number: 3
   skip: True  # [win and vc<14]
 
 requirements:
@@ -45,8 +45,7 @@ requirements:
     - gshhg-gmt  # [not win]
     - dcw-gmt  # [not win]
     - ffmpeg
-    # re-add when https://github.com/conda-forge/graphicsmagick-feedstock/pull/11 is merged
-    # - graphicsmagick
+    - graphicsmagick
 
 test:
   commands:
