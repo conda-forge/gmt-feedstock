@@ -1,15 +1,13 @@
 c_compiler:
-- gcc
-c_compiler_version:
-- '7'
+- vs2017
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
 curl:
-- '7.64'
-docker_image:
-- condaforge/linux-anvil-comp7
+- '7'
+fftw:
+- '3'
 gdal:
 - '3.0'
 hdf5:
@@ -19,17 +17,21 @@ libblas:
 libcblas:
 - 3.8 *netlib
 liblapack:
-- 3.8.0 *netlib
+- 3.8 *netlib
 libnetcdf:
-- 4.6.2
+- 4.7.4
 pin_run_as_build:
   curl:
     max_pin: x
+  fftw:
+    max_pin: x
   gdal:
     max_pin: x.x
-  libnetcdf:
-    max_pin: x.x.x
   zlib:
     max_pin: x.x
+target_platform:
+- win-64
+vc:
+- '14'
 zlib:
 - '1.2'

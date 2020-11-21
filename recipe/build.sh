@@ -10,7 +10,7 @@ if [[ "$c_compiler" == "gcc" ]]; then
 fi
 
 export LDFLAGS="$LDFLAGS -L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
-export CFLAGS="$CFLAGS -fPIC -I$PREFIX/include"
+export CFLAGS="$CFLAGS -fPIC -I$PREFIX/include -fcommon"
 
 mkdir build && cd build
 
