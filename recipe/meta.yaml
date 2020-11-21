@@ -55,7 +55,7 @@ test:
 
 about:
   home: https://www.generic-mapping-tools.org
-  license: LGPL-3.0
+  license: LGPL-3.0-or-later
   license_file: LICENSE.TXT
   summary: 'The Generic Mapping Tools.'
   description: |
