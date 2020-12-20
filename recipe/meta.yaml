@@ -42,8 +42,8 @@ requirements:
     - zlib
     - curl
     - pcre
-    - gshhg-gmt  # [not win]
-    - dcw-gmt  # [not win]
+    - gshhg-gmt
+    - dcw-gmt
     - ffmpeg
     - graphicsmagick
 

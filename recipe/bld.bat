@@ -19,8 +19,8 @@ cmake -G "NMake Makefiles" ^
       -D GMT_LIBDIR=lib ^
       -D DCW_ROOT=%DCW_DIR% ^
       -D GSHHG_ROOT=%GSHHG_DIR% ^
-      -D COPY_GSHHG=TRUE ^
-      -D COPY_DCW=TRUE ^
+      -D COPY_GSHHG=FALSE ^
+      -D COPY_DCW=FALSE ^
       -D GMT_INSTALL_TRADITIONAL_FOLDERNAMES=FALSE ^
       -D GMT_INSTALL_MODULE_LINKS=FALSE ^
       %SRC_DIR%
