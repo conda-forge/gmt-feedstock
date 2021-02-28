@@ -14,7 +14,7 @@ jobs:
 
     steps:
       # Generate token from GenericMappingTools bot
-      - uses: tibdex/github-app-token@v1.1.1
+      - uses: tibdex/github-app-token@v1.3.0
         id: generate-token
         with:
           app_id: ${{ secrets.APP_ID }}
@@ -67,7 +67,7 @@ jobs:
           # Step 2b iii. Get shortened new sha hash value (e.g. hijklmn)
           export SHORT_HASH=$(echo $NEW_SHA_HASH | cut -c 1-7)
 
-          # Step 3d. Finally build the new version string (e.g. 6.2.0.dev1+hijklmn)
+          # Step 2b iv. Finally build the new version string (e.g. 6.2.0.dev1+hijklmn)
           echo ::set-output name=NEW_VERSION_STRING::$TAG.dev$DEV_VERSION_NUM+$SHORT_HASH
 
       # Change development package version and source git revision
@@ -76,6 +76,9 @@ jobs:
           # Update the recipe/meta.yaml file with new version info
           yq write --inplace recipe/meta.yaml package.version ${{ steps.version_info.outputs.NEW_VERSION_STRING }}
           yq write --inplace recipe/meta.yaml source.git_rev ${{ steps.version_info.outputs.NEW_SHA_HASH }}
+
+          # Reset build number to 0
+          yq write --inplace recipe/meta.yaml build.number 0
 
           # Fix incorrectly formatted {{ compiler('c') }}
           yq write --inplace recipe/meta.yaml requirements.build[1] "{{ compiler('c') }}"
@@ -90,7 +93,7 @@ jobs:
 
       # Open a Pull Request from organization (GenericMappingTools) fork to the upstream (conda-forge) repo
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3.4.1
+        uses: peter-evans/create-pull-request@v3.8.2
         with:
           title: "Bump GMT from ${{ steps.version_info.outputs.OLD_VERSION_STRING }} to ${{ steps.version_info.outputs.NEW_VERSION_STRING }}"
           commit-message: "Bump GMT dev version from ${{ steps.version_info.outputs.OLD_VERSION_STRING }} to ${{ steps.version_info.outputs.NEW_VERSION_STRING }}"
