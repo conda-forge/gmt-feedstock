@@ -26,6 +26,8 @@ libnetcdf:
 - 4.7.4
 macos_machine:
 - x86_64-apple-darwin13.4.0
+pcre:
+- '8'
 pin_run_as_build:
   curl:
     max_pin: x
