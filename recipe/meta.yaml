@@ -1,11 +1,11 @@
 package:
   name: gmt
-  version: 6.2.0rc1
+  version: 6.2.0rc2
 source:
   git_url: https://github.com/GenericMappingTools/gmt.git
-  git_rev: 8f882363001447ed73107adbe4326cec02455844
+  git_rev: d133c0673c051dc13d5c839659273174d063f6ad
 build:
-  number: 2
+  number: 0
   skip: True  # [win and vc<14]
 requirements:
   build:
