@@ -13,7 +13,7 @@ curl:
 fftw:
 - '3'
 gdal:
-- '3.2'
+- '3.3'
 hdf5:
 - 1.10.6
 libblas:
@@ -23,7 +23,7 @@ libcblas:
 liblapack:
 - 3.8 *netlib
 libnetcdf:
-- 4.7.4
+- 4.8.0
 macos_machine:
 - x86_64-apple-darwin13.4.0
 pcre:
