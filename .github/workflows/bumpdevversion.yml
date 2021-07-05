@@ -31,7 +31,7 @@ jobs:
       # Install yq - A portable command-line YAML processor
       - name: Install yq
         run: |
-          sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64
+          sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.9.6/yq_linux_amd64
           sudo chmod +x /usr/local/bin/yq
 
       # Get the GMT package's current (old) and latest (new) hash
@@ -44,7 +44,7 @@ jobs:
         id: version_info
         run: |
           ## Step 1a: Get current (old) sha hash from recipe/meta.yaml file (e.g. abcdefghijklmnopqrstuvwxyz12345678901234)
-          export OLD_SHA_HASH=$(yq read recipe/meta.yaml source.git_rev)
+          export OLD_SHA_HASH=$(yq eval '.source.git_rev' recipe/meta.yaml)
           echo ::set-output name=OLD_SHA_HASH::$OLD_SHA_HASH
 
           ## Step 1b: Get latest (new) sha hash value from Github (e.g. hijklmnopqrstuvwxyz12345678901234abcdefg)
@@ -53,7 +53,7 @@ jobs:
 
 
           ## Step 2a. Get current (old) sha hash and version string from recipe/meta.yaml file (e.g. 6.3.0.dev0+abcdefg)
-          export OLD_VERSION_STRING=$(yq read recipe/meta.yaml package.version)
+          export OLD_VERSION_STRING=$(yq eval '.package.version' recipe/meta.yaml)
           echo ::set-output name=OLD_VERSION_STRING::$OLD_VERSION_STRING
 
           ## Step 2b. Build new version string (e.g. 6.3.0.dev1+hijklmn)
@@ -62,7 +62,7 @@ jobs:
           export TAG=$(echo $OLD_VERSION_STRING | grep -o -P '.*(?=.dev)')
 
           # Step 2b ii. Add 1 to the previous dev version number (e.g. 6.3.0.dev0+abcdefg would output 1, i.e. for dev1)
-          export DEV_VERSION_NUM=`expr 1 + $(yq read recipe/meta.yaml package.version | grep -o -P '(?<=dev).*(?=\+)')`
+          export DEV_VERSION_NUM=`expr 1 + $(yq eval '.package.version' recipe/meta.yaml | grep -o -P '(?<=dev).*(?=\+)')`
 
           # Step 2b iii. Get shortened new sha hash value (e.g. hijklmn)
           export SHORT_HASH=$(echo $NEW_SHA_HASH | cut -c 1-7)
@@ -74,15 +74,15 @@ jobs:
       - name: Update package version and git revision
         run: |
           # Update the recipe/meta.yaml file with new version info
-          yq write --inplace recipe/meta.yaml package.version ${{ steps.version_info.outputs.NEW_VERSION_STRING }}
-          yq write --inplace recipe/meta.yaml source.git_rev ${{ steps.version_info.outputs.NEW_SHA_HASH }}
+          yq eval --inplace '.package.version = "${{ steps.version_info.outputs.NEW_VERSION_STRING }}"' recipe/meta.yaml
+          yq eval --inplace '.source.git_rev = "${{ steps.version_info.outputs.NEW_SHA_HASH }}"' recipe/meta.yaml
 
           # Reset build number to 0
-          yq write --inplace recipe/meta.yaml build.number 0
+          yq eval --inplace '.build.number = 0' recipe/meta.yaml
 
           # Fix incorrectly formatted {{ compiler('c') }}
-          yq write --inplace recipe/meta.yaml requirements.build[1] "{{ compiler('c') }}"
-          sed --in-place "s/'{{ compiler(''c'') }}'/{{ compiler('c') }}/g" recipe/meta.yaml
+          yq eval --inplace '.requirements.build[1] = "{{ compiler('c') }}"' recipe/meta.yaml
+          sed --in-place "s/'{{ compiler(c) }}'/{{ compiler('c') }}/g" recipe/meta.yaml
 
           # Ensure <two spaces>#<one space>[<expression>] form
           sed --in-place "s/\ \#\ \[/  # [/g" recipe/meta.yaml
