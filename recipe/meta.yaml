@@ -1,16 +1,16 @@
 package:
   name: gmt
-  version: 6.3.0.dev0+13dde94
+  version: 6.3.0.dev1+70463e0
 source:
   git_url: https://github.com/GenericMappingTools/gmt.git
-  git_rev: 13dde94b9b8620f81efedf846ec47989b3ad01e0
+  git_rev: 70463e07f33a5802e5c863f23ea433b43ba05114
 build:
   number: 0
   skip: True  # [win and vc<14]
 requirements:
   build:
     - cmake
-    - {{ compiler('c') }}
+    - '{{ compiler(c) }}'
   host:
     - libblas
     - libcblas
