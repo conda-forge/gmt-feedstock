@@ -11,7 +11,7 @@ source:
     - no_matlab.patch
 
 build:
-  number: 12
+  number: 13
   skip: true  # [win and vc<14]
 
 requirements:
