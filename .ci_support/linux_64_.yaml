@@ -5,7 +5,7 @@ c_compiler_version:
 cdt_name:
 - cos6
 channel_sources:
-- conda-forge,defaults
+- conda-forge
 channel_targets:
 - conda-forge dev
 curl:
@@ -17,7 +17,7 @@ fftw:
 gdal:
 - '3.3'
 hdf5:
-- 1.10.6
+- 1.12.1
 libblas:
 - 3.8 *netlib
 libcblas:
