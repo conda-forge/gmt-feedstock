@@ -9,7 +9,7 @@ source:
   sha256: ab7062912aeead1021770fad4756e0a99860fde8ea9b428fb00c22fa15a3bbfc
 
 build:
-  number: 2
+  number: 3
   skip: True  # [win and vc<14]
 
 requirements:
@@ -46,6 +46,7 @@ requirements:
     - dcw-gmt  # [not win]
     - ffmpeg
     - graphicsmagick
+    - geos
 
 test:
   commands:
