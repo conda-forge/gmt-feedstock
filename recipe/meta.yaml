@@ -17,6 +17,7 @@ requirements:
     - liblapack
     - fftw
     - gdal
+    - geos
     - ghostscript
     - libnetcdf
     - hdf5
@@ -31,6 +32,7 @@ requirements:
     - liblapack
     - fftw
     - gdal
+    - geos
     - ghostscript
     - libnetcdf
     - hdf5
