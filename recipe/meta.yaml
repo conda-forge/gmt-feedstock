@@ -1,11 +1,11 @@
 package:
   name: gmt
-  version: 6.3.0.dev4+2f64c67
+  version: 6.3.0.dev5+52c6629
 source:
   git_url: https://github.com/GenericMappingTools/gmt.git
-  git_rev: 2f64c67f3d3963d329fc3a6ed0954e8ef3797928
+  git_rev: 52c6629ebdd8533309abd6f34bcb545d60f84153
 build:
-  number: 1
+  number: 0
   skip: True  # [win and vc<14]
 requirements:
   build:
@@ -17,6 +17,7 @@ requirements:
     - liblapack
     - fftw
     - gdal
+    - geos
     - ghostscript
     - libnetcdf
     - hdf5
@@ -31,6 +32,7 @@ requirements:
     - liblapack
     - fftw
     - gdal
+    - geos
     - ghostscript
     - libnetcdf
     - hdf5
