@@ -15,7 +15,9 @@ docker_image:
 fftw:
 - '3'
 gdal:
-- '3.3'
+- '3.4'
+geos:
+- 3.10.0
 hdf5:
 - 1.12.1
 libblas:
