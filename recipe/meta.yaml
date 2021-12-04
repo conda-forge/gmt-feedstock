@@ -9,7 +9,7 @@ source:
   sha256: 2cd073d8b1f11b87a59b38aa7aaf8e39c7940d2b55a46a3267e23802ec8a08d1
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win and vc<14]
 
 requirements:
@@ -47,8 +47,6 @@ requirements:
     - pcre
     - gshhg-gmt  # [not win]
     - dcw-gmt  # [not win]
-    - ffmpeg
-    - graphicsmagick
 
 test:
   commands:
