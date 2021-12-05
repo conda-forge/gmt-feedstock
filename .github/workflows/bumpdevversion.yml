@@ -38,8 +38,8 @@ jobs:
       # and build the desired conda version string. For example:
       # Step 1a. OLD_SHA_HASH=abcdefghijklmnopqrstuvwxyz12345678901234,
       # Step 1b. NEW_SHA_HASH=hijklmnopqrstuvwxyz12345678901234abcdefg,
-      # Step 2a: OLD_VERSION_STRING=6.3.0.dev0+abcdefg,
-      # Step 2b. NEW_VERSION_STRING=6.3.0.dev1+hijklmn
+      # Step 2a: OLD_VERSION_STRING=6.4.0.dev0+abcdefg,
+      # Step 2b. NEW_VERSION_STRING=6.4.0.dev1+hijklmn
       - name: Get package's latest git revision and build version string
         id: version_info
         run: |
@@ -52,22 +52,22 @@ jobs:
           echo ::set-output name=NEW_SHA_HASH::$NEW_SHA_HASH
 
 
-          ## Step 2a. Get current (old) sha hash and version string from recipe/meta.yaml file (e.g. 6.3.0.dev0+abcdefg)
+          ## Step 2a. Get current (old) sha hash and version string from recipe/meta.yaml file (e.g. 6.4.0.dev0+abcdefg)
           export OLD_VERSION_STRING=$(yq eval '.package.version' recipe/meta.yaml)
           echo ::set-output name=OLD_VERSION_STRING::$OLD_VERSION_STRING
 
-          ## Step 2b. Build new version string (e.g. 6.3.0.dev1+hijklmn)
+          ## Step 2b. Build new version string (e.g. 6.4.0.dev1+hijklmn)
 
-          # Step 2b i. Get current tag of latest dev build (e.g. 6.3.0)
+          # Step 2b i. Get current tag of latest dev build (e.g. 6.4.0)
           export TAG=$(echo $OLD_VERSION_STRING | grep -o -P '.*(?=.dev)')
 
-          # Step 2b ii. Add 1 to the previous dev version number (e.g. 6.3.0.dev0+abcdefg would output 1, i.e. for dev1)
+          # Step 2b ii. Add 1 to the previous dev version number (e.g. 6.4.0.dev0+abcdefg would output 1, i.e. for dev1)
           export DEV_VERSION_NUM=`expr 1 + $(yq eval '.package.version' recipe/meta.yaml | grep -o -P '(?<=dev).*(?=\+)')`
 
           # Step 2b iii. Get shortened new sha hash value (e.g. hijklmn)
           export SHORT_HASH=$(echo $NEW_SHA_HASH | cut -c 1-7)
 
-          # Step 2b iv. Finally build the new version string (e.g. 6.3.0.dev1+hijklmn)
+          # Step 2b iv. Finally build the new version string (e.g. 6.4.0.dev1+hijklmn)
           echo ::set-output name=NEW_VERSION_STRING::$TAG.dev$DEV_VERSION_NUM+$SHORT_HASH
 
       # Change development package version and source git revision
@@ -93,7 +93,7 @@ jobs:
 
       # Open a Pull Request from organization (GenericMappingTools) fork to the upstream (conda-forge) repo
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3.10.0
+        uses: peter-evans/create-pull-request@v3.11.0
         with:
           title: "Bump GMT from ${{ steps.version_info.outputs.OLD_VERSION_STRING }} to ${{ steps.version_info.outputs.NEW_VERSION_STRING }}"
           commit-message: "Bump GMT dev version from ${{ steps.version_info.outputs.OLD_VERSION_STRING }} to ${{ steps.version_info.outputs.NEW_VERSION_STRING }}"
