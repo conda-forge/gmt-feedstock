@@ -11,11 +11,13 @@ channel_targets:
 curl:
 - '7'
 docker_image:
-- quay.io/condaforge/linux-anvil-comp7
+- quay.io/condaforge/linux-anvil-cos7-x86_64
 fftw:
 - '3'
 gdal:
-- '3.3'
+- '3.4'
+geos:
+- 3.10.1
 hdf5:
 - 1.12.1
 libblas:
@@ -39,8 +41,5 @@ pin_run_as_build:
     max_pin: x.x
 target_platform:
 - linux-64
-zip_keys:
-- - cdt_name
-  - docker_image
 zlib:
 - '1.2'
