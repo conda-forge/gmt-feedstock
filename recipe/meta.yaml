@@ -5,7 +5,7 @@ source:
   git_url: https://github.com/GenericMappingTools/gmt.git
   git_rev: 52c6629ebdd8533309abd6f34bcb545d60f84153
 build:
-  number: 0
+  number: 1
   skip: True  # [win and vc<14]
 requirements:
   build:
@@ -41,8 +41,6 @@ requirements:
     - pcre
     - gshhg-gmt  # [not win]
     - dcw-gmt  # [not win]
-    - ffmpeg
-    - graphicsmagick
 test:
   commands:
     - gmt defaults -Vd
