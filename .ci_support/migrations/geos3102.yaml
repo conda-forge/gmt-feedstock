@@ -3,5 +3,5 @@ __migrator:
   kind: version
   migration_number: 1
 geos:
-- 3.10.1
-migrator_ts: 1635949255.9540627
+- 3.10.2
+migrator_ts: 1642323209.466367
