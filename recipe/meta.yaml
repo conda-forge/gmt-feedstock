@@ -18,6 +18,7 @@ requirements:
   build:
     - cmake
     - {{ compiler('c') }}
+    - make  # [not win]
   host:
     - libblas
     - libcblas
