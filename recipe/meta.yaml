@@ -11,13 +11,14 @@ source:
     - no_matlab.patch
 
 build:
-  number: 16
+  number: 17
   skip: true  # [win and vc<14]
 
 requirements:
   build:
     - cmake
     - {{ compiler('c') }}
+    - make  # [not win]
   host:
     - libblas
     - libcblas
