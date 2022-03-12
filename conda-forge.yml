@@ -3,5 +3,8 @@ provider:
 conda_forge_output_validation: true
 bot:
   abi_migration_branches:
-   - devel
-   - v5.x
+  - devel
+  - v5.x
+github:
+  branch_name: main
+  tooling_branch_name: main
