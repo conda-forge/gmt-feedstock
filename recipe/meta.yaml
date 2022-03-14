@@ -7,9 +7,11 @@ package:
 source:
   url: https://github.com/GenericMappingTools/gmt/releases/download/{{ version }}/gmt-{{ version }}-src.tar.gz
   sha256: 2cd073d8b1f11b87a59b38aa7aaf8e39c7940d2b55a46a3267e23802ec8a08d1
+  patches:
+    - crosscompiling.patch
 
 build:
-  number: 3
+  number: 4
   skip: true  # [win and vc<14]
 
 requirements:
