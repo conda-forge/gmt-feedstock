@@ -1,7 +1,11 @@
-compiler_stack: comp7
-max_py_ver: '37'
-max_r_ver: '35'
+build_platform:
+  osx_arm64: osx_64
 channels:
   targets:
-  - [conda-forge, dev]
+  - - conda-forge
+    - dev
+compiler_stack: comp7
 conda_forge_output_validation: true
+max_py_ver: '37'
+max_r_ver: '35'
+test_on_native_only: true

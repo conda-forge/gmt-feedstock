@@ -1,0 +1,45 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '11.0'
+c_compiler:
+- clang
+c_compiler_version:
+- '12'
+channel_sources:
+- conda-forge
+channel_targets:
+- conda-forge dev
+curl:
+- '7'
+fftw:
+- '3'
+gdal:
+- '3.4'
+geos:
+- 3.10.2
+hdf5:
+- 1.12.1
+libblas:
+- 3.9 *netlib
+libcblas:
+- 3.9 *netlib
+liblapack:
+- 3.9 *netlib
+libnetcdf:
+- 4.8.1
+macos_machine:
+- arm64-apple-darwin20.0.0
+pcre:
+- '8'
+pin_run_as_build:
+  curl:
+    max_pin: x
+  fftw:
+    max_pin: x
+  gdal:
+    max_pin: x.x
+  zlib:
+    max_pin: x.x
+target_platform:
+- osx-arm64
+zlib:
+- '1.2'
