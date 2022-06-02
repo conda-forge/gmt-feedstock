@@ -9,17 +9,17 @@ curl:
 fftw:
 - '3'
 gdal:
-- '3.4'
+- '3.5'
 geos:
 - 3.10.2
 hdf5:
 - 1.12.1
 libblas:
-- 3.8 *netlib
+- 3.9 *netlib
 libcblas:
-- 3.8 *netlib
+- 3.9 *netlib
 liblapack:
-- 3.8 *netlib
+- 3.9 *netlib
 libnetcdf:
 - 4.8.1
 pcre:
