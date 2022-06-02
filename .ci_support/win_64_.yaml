@@ -9,7 +9,7 @@ curl:
 fftw:
 - '3'
 gdal:
-- '3.4'
+- '3.5'
 geos:
 - 3.10.2
 hdf5:
