@@ -3,7 +3,7 @@ MACOSX_DEPLOYMENT_TARGET:
 c_compiler:
 - clang
 c_compiler_version:
-- '13'
+- '14'
 channel_sources:
 - conda-forge
 channel_targets:
@@ -15,7 +15,7 @@ fftw:
 gdal:
 - '3.5'
 geos:
-- 3.11.0
+- 3.11.1
 hdf5:
 - 1.12.2
 libblas:
@@ -30,15 +30,6 @@ macos_machine:
 - arm64-apple-darwin20.0.0
 pcre:
 - '8'
-pin_run_as_build:
-  curl:
-    max_pin: x
-  fftw:
-    max_pin: x
-  gdal:
-    max_pin: x.x
-  zlib:
-    max_pin: x.x
 target_platform:
 - osx-arm64
 zlib:
