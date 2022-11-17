@@ -11,3 +11,5 @@ github:
 provider:
   win: azure
 test_on_native_only: true
+conda_build:
+  pkg_format: '2'
