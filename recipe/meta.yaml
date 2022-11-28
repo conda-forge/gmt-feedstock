@@ -9,8 +9,13 @@ source:
   sha256: d267c0c7d6fb30c9ea7e029ef27dadb26ffd7b92cb4b4703f9a3ba0e8f393a1b
 
 build:
-  number: 4
+  number: 5
   skip: true  # [win and vc<14]
+  run_exports:
+    - {{ pin_subpackage('curl', max_pin='x') }}
+    - {{ pin_subpackage('fftw', max_pin='x') }}
+    - {{ pin_subpackage('gdal', max_pin='x.x') }}
+    - {{ pin_subpackage('zlib', max_pin='x.x') }}
 
 requirements:
   build:
