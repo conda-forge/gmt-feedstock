@@ -12,10 +12,10 @@ build:
   number: 5
   skip: true  # [win and vc<14]
   run_exports:
-    - {{ pin_subpackage('curl', max_pin='x') }}
-    - {{ pin_subpackage('fftw', max_pin='x') }}
-    - {{ pin_subpackage('gdal', max_pin='x.x') }}
-    - {{ pin_subpackage('zlib', max_pin='x.x') }}
+    - {{ pin_compatible('curl', max_pin='x') }}
+    - {{ pin_compatible('fftw', max_pin='x') }}
+    - {{ pin_compatible('gdal', max_pin='x.x') }}
+    - {{ pin_compatible('zlib', max_pin='x.x') }}
 
 requirements:
   build:
