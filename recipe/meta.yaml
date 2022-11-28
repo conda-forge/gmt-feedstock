@@ -11,11 +11,6 @@ source:
 build:
   number: 5
   skip: true  # [win and vc<14]
-  run_exports:
-    - {{ pin_compatible('curl', max_pin='x') }}
-    - {{ pin_compatible('fftw', max_pin='x') }}
-    - {{ pin_compatible('gdal', max_pin='x.x') }}
-    - {{ pin_compatible('zlib', max_pin='x.x') }}
 
 requirements:
   build:
@@ -41,14 +36,14 @@ requirements:
     - libblas
     - libcblas
     - liblapack
-    - fftw
-    - gdal
+    - {{ pin_compatible('fftw', max_pin='x') }}
+    - {{ pin_compatible('gdal', max_pin='x.x') }}
     - geos
     - ghostscript
     - libnetcdf
     - hdf5
-    - zlib
-    - curl
+    - {{ pin_compatible('zlib', max_pin='x.x') }}
+    - {{ pin_compatible('curl', max_pin='x') }}
     - pcre
     - gshhg-gmt  # [not win]
     - dcw-gmt  # [not win]
