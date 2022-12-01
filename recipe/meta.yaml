@@ -11,7 +11,7 @@ source:
     - no_matlab.patch
 
 build:
-  number: 22
+  number: 23
   skip: true  # [win and vc<14]
 
 requirements:
@@ -37,13 +37,13 @@ requirements:
     - libblas
     - libcblas
     - liblapack
-    - fftw
-    - gdal
+    - {{ pin_compatible('fftw', max_pin='x') }}
+    - {{ pin_compatible('gdal', max_pin='x.x') }}
     - ghostscript
     - libnetcdf
     - hdf5
-    - zlib
-    - curl
+    - {{ pin_compatible('zlib', max_pin='x.x') }}
+    - {{ pin_compatible('curl', max_pin='x') }}
     - pcre
     - gshhg-gmt  # [not win]
     - dcw-gmt  # [not win]
