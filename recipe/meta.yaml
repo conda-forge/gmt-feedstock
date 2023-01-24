@@ -1,13 +1,12 @@
 package:
   name: gmt
-  version: 6.5.0.dev2+b0c2f6d
+  version: 6.5.0.dev3+609ccc1
 source:
   git_url: https://github.com/GenericMappingTools/gmt.git
-  git_rev: b0c2f6d21da983b6c674e95facca729f69979961
+  git_rev: 609ccc1e5c084ff3b762c510f2d41e9d45b19462
 build:
-  number: 3
+  number: 0
   skip: true  # [win and vc<14]
-
 requirements:
   build:
     - cmake
@@ -32,14 +31,14 @@ requirements:
     - libblas
     - libcblas
     - liblapack
-    - {{ pin_compatible('fftw', max_pin='x') }}
-    - {{ pin_compatible('gdal', max_pin='x.x') }}
+    - {? {pin_compatible('fftw': '', max_pin='x'): ''} : ''}
+    - {? {pin_compatible('gdal': '', max_pin='x.x'): ''} : ''}
     - geos
     - ghostscript
     - libnetcdf
     - hdf5
-    - {{ pin_compatible('zlib', max_pin='x.x') }}
-    - {{ pin_compatible('curl', max_pin='x') }}
+    - {? {pin_compatible('zlib': '', max_pin='x.x'): ''} : ''}
+    - {? {pin_compatible('curl': '', max_pin='x'): ''} : ''}
     - pcre
     - gshhg-gmt  # [not win]
     - dcw-gmt  # [not win]
