@@ -31,14 +31,14 @@ requirements:
     - libblas
     - libcblas
     - liblapack
-    - {? {pin_compatible('fftw': '', max_pin='x'): ''} : ''}
-    - {? {pin_compatible('gdal': '', max_pin='x.x'): ''} : ''}
+    - {{ pin_compatible('fftw', max_pin='x') }}
+    - {{ pin_compatible('gdal', max_pin='x.x') }}
     - geos
     - ghostscript
     - libnetcdf
     - hdf5
-    - {? {pin_compatible('zlib': '', max_pin='x.x'): ''} : ''}
-    - {? {pin_compatible('curl': '', max_pin='x'): ''} : ''}
+    - {{ pin_compatible('zlib', max_pin='x.x') }}
+    - {{ pin_compatible('curl', max_pin='x') }}
     - pcre
     - gshhg-gmt  # [not win]
     - dcw-gmt  # [not win]
