@@ -5,6 +5,8 @@ channels:
   - - conda-forge
     - dev
 compiler_stack: comp7
+conda_build:
+  pkg_format: '2'
 conda_forge_output_validation: true
 max_py_ver: '37'
 max_r_ver: '35'
