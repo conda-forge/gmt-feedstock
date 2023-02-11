@@ -21,7 +21,7 @@ libcblas:
 liblapack:
 - 3.9 *netlib
 libnetcdf:
-- 4.8.1
+- 4.9.1
 pcre:
 - '8'
 target_platform:
