@@ -11,7 +11,7 @@ fftw:
 gdal:
 - '3.6'
 geos:
-- 3.11.1
+- 3.11.2
 hdf5:
 - 1.12.2
 libblas:
