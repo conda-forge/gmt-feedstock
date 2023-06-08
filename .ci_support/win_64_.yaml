@@ -5,11 +5,11 @@ channel_sources:
 channel_targets:
 - conda-forge main
 curl:
-- '7'
+- '8'
 fftw:
 - '3'
 gdal:
-- '3.6'
+- '3.7'
 hdf5:
 - 1.14.0
 libblas:
