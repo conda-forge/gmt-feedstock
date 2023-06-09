@@ -45,16 +45,16 @@ jobs:
         run: |
           ## Step 1a: Get current (old) sha hash from recipe/meta.yaml file (e.g. abcdefghijklmnopqrstuvwxyz12345678901234)
           export OLD_SHA_HASH=$(yq eval '.source.git_rev' recipe/meta.yaml)
-          echo ::set-output name=OLD_SHA_HASH::$OLD_SHA_HASH
+          echo "OLD_SHA_HASH=$OLD_SHA_HASH" >> $GITHUB_OUTPUT
 
           ## Step 1b: Get latest (new) sha hash value from Github (e.g. hijklmnopqrstuvwxyz12345678901234abcdefg)
           export NEW_SHA_HASH=$(git ls-remote https://github.com/GenericMappingTools/gmt HEAD | cut -f 1)
-          echo ::set-output name=NEW_SHA_HASH::$NEW_SHA_HASH
+          echo "NEW_SHA_HASH=$NEW_SHA_HASH" >> $GITHUB_OUTPUT
 
 
           ## Step 2a. Get current (old) sha hash and version string from recipe/meta.yaml file (e.g. 6.5.0.dev0+abcdefg)
           export OLD_VERSION_STRING=$(yq eval '.package.version' recipe/meta.yaml)
-          echo ::set-output name=OLD_VERSION_STRING::$OLD_VERSION_STRING
+          echo "OLD_VERSION_STRING=$OLD_VERSION_STRING" >> $GITHUB_OUTPUT
 
           ## Step 2b. Build new version string (e.g. 6.5.0.dev1+hijklmn)
 
@@ -68,7 +68,8 @@ jobs:
           export SHORT_HASH=$(echo $NEW_SHA_HASH | cut -c 1-7)
 
           # Step 2b iv. Finally build the new version string (e.g. 6.5.0.dev1+hijklmn)
-          echo ::set-output name=NEW_VERSION_STRING::$TAG.dev$DEV_VERSION_NUM+$SHORT_HASH
+          export NEW_VERSION_STRING=$TAG.dev$DEV_VERSION_NUM+$SHORT_HASH
+          echo "NEW_VERSION_STRING=$NEW_VERSION_STRING" >> $GITHUB_OUTPUT
 
       # Change development package version and source git revision
       - name: Update package version and git revision
