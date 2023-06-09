@@ -31,7 +31,7 @@ jobs:
       # Install yq - A portable command-line YAML processor
       - name: Install yq
         run: |
-          sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.9.6/yq_linux_amd64
+          sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.34.1/yq_linux_amd64
           sudo chmod +x /usr/local/bin/yq
 
       # Get the GMT package's current (old) and latest (new) hash
@@ -84,6 +84,12 @@ jobs:
           # Fix incorrectly formatted {{ compiler('c') }}
           yq eval --inplace '.requirements.build[1] = "{{ compiler('c') }}"' recipe/meta.yaml
           sed --in-place "s/'{{ compiler(c) }}'/{{ compiler('c') }}/g" recipe/meta.yaml
+
+          # Fix incorrectly formatted {{ pin_compatible('...') }}
+          sed --in-place "s/{? {pin_compatible('fftw': '', max_pin='x'): ''} : ''}/{{ pin_compatible('fftw', max_pin='x') }}/g" recipe/meta.yaml
+          sed --in-place "s/{? {pin_compatible('gdal': '', max_pin='x.x'): ''} : ''}/{{ pin_compatible('gdal', max_pin='x.x') }}/g" recipe/meta.yaml
+          sed --in-place "s/{? {pin_compatible('zlib': '', max_pin='x.x'): ''} : ''}/{{ pin_compatible('zlib', max_pin='x.x') }}/g" recipe/meta.yaml
+          sed --in-place "s/{? {pin_compatible('curl': '', max_pin='x'): ''} : ''}/{{ pin_compatible('curl', max_pin='x') }}/g" recipe/meta.yaml
 
           # Ensure <two spaces>#<one space>[<expression>] form
           sed --in-place "s/\ \#\ \[/  # [/g" recipe/meta.yaml
