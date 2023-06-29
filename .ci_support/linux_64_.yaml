@@ -17,7 +17,7 @@ fftw:
 gdal:
 - '3.7'
 hdf5:
-- 1.14.0
+- 1.12.2
 libblas:
 - 3.9 *netlib
 libcblas:
