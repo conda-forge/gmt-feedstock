@@ -59,7 +59,8 @@ test:
     - gmt coast -R0/10/0/10 -JM6i -Ba -Ggray -ENG+p1p,blue -Vd
     - gmt end
     # Test OpenMP multi-core with -x2
-    - gmt-config --all
+    - gmt-config --all  # [not win]
+    - gmt  # [win]
     - gmt grdmath -Rg -I1 0 90 SDIST = dist_to_NP.nc -x2
 
 about:
