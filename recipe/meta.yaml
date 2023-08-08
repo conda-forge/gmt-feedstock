@@ -20,7 +20,6 @@ requirements:
   host:
     - libblas
     - libcblas
-    - libglib
     - liblapack
     - fftw
     - gdal
@@ -36,6 +35,7 @@ requirements:
   run:
     - libblas
     - libcblas
+    - libglib
     - liblapack
     - {{ pin_compatible('fftw', max_pin='x') }}
     - {{ pin_compatible('gdal', max_pin='x.x') }}
