@@ -9,7 +9,7 @@ source:
   sha256: d267c0c7d6fb30c9ea7e029ef27dadb26ffd7b92cb4b4703f9a3ba0e8f393a1b
 
 build:
-  number: 13
+  number: 14
   skip: true  # [win and vc<14]
 
 requirements:
@@ -24,6 +24,7 @@ requirements:
     - fftw
     - gdal
     - geos
+    - glib
     - ghostscript
     - libnetcdf
     - hdf5
@@ -50,12 +51,17 @@ requirements:
 
 test:
   commands:
+    # Test plotting basemap with coastlines
     - gmt defaults -Vd
     - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps
     - gmt pscoast -R0/10/0/10 -JM6i -Ba -Ggray -ENG+p1p,blue -P -Vd > test1.ps
     - gmt begin -Vd
     - gmt coast -R0/10/0/10 -JM6i -Ba -Ggray -ENG+p1p,blue -Vd
     - gmt end
+    # Test OpenMP multi-core with -x2
+    - gmt-config --all  # [not win]
+    - gmt  # [win]
+    - gmt grdmath -Rg -I1 0 90 SDIST = dist_to_NP.nc -x2
 
 about:
   home: https://www.generic-mapping-tools.org
