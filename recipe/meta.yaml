@@ -5,7 +5,7 @@ source:
   git_url: https://github.com/GenericMappingTools/gmt.git
   git_rev: 95c3431b1915e18ec7430a20cecb03e885637193
 build:
-  number: 2
+  number: 3
   skip: true  # [win and vc<14]
 requirements:
   build:
@@ -19,6 +19,7 @@ requirements:
     - fftw
     - gdal
     - geos
+    - glib
     - ghostscript
     - libnetcdf
     - hdf5
@@ -44,12 +45,18 @@ requirements:
     - dcw-gmt  # [not win]
 test:
   commands:
+    # Test plotting basemap with coastlines
     - gmt defaults -Vd
     - gmt psbasemap -R10/70/-3/8 -JX4i/3i -Ba -B+glightred+t"TEST" -P -Vd > test0.ps
     - gmt pscoast -R0/10/0/10 -JM6i -Ba -Ggray -ENG+p1p,blue -P -Vd > test1.ps
     - gmt begin -Vd
     - gmt coast -R0/10/0/10 -JM6i -Ba -Ggray -ENG+p1p,blue -Vd
     - gmt end
+    # Test OpenMP multi-core with -x2
+    - gmt-config --all  # [not win]
+    - gmt  # [win]
+    - gmt grdmath -Rg -I1 0 90 SDIST = dist_to_NP.nc -x2
+
 about:
   home: https://www.generic-mapping-tools.org
   license: LGPL-3.0-or-later
