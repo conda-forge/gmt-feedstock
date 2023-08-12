@@ -65,6 +65,8 @@ test:
 
 about:
   home: https://www.generic-mapping-tools.org
+  doc_url: https://docs.generic-mapping-tools.org
+  dev_url: https://github.com/GenericMappingTools/gmt
   license: LGPL-3.0-or-later
   license_file: LICENSE.TXT
   summary: The Generic Mapping Tools.

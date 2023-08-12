@@ -9,6 +9,10 @@ Package license: LGPL-3.0-or-later
 
 Summary: The Generic Mapping Tools.
 
+Development: https://github.com/GenericMappingTools/gmt
+
+Documentation: https://docs.generic-mapping-tools.org
+
 GMT is an open source collection of about 80 command-line tools for
 manipulating geographic and Cartesian data sets (including filtering,
 trend fitting, gridding, projecting, etc.) and producing PostScript
