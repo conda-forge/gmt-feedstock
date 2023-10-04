@@ -1,11 +1,11 @@
 package:
   name: gmt
-  version: 6.5.0.dev6+95c3431
+  version: 6.5.0.dev7+fb11dd1
 source:
   git_url: https://github.com/GenericMappingTools/gmt.git
-  git_rev: 95c3431b1915e18ec7430a20cecb03e885637193
+  git_rev: fb11dd19e73cec23ed37654f65f5a370159ed988
 build:
-  number: 4
+  number: 0
   skip: true  # [win and vc<14]
 requirements:
   build:
@@ -56,7 +56,6 @@ test:
     - gmt-config --all  # [not win]
     - gmt  # [win]
     - gmt grdmath -Rg -I1 0 90 SDIST = dist_to_NP.nc -x2
-
 about:
   home: https://www.generic-mapping-tools.org
   license: LGPL-3.0-or-later
