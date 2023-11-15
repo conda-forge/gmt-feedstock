@@ -9,7 +9,7 @@ curl:
 fftw:
 - '3'
 gdal:
-- '3.7'
+- '3.8'
 hdf5:
 - 1.14.2
 libblas:
