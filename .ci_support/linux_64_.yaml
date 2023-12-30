@@ -15,7 +15,7 @@ docker_image:
 fftw:
 - '3'
 gdal:
-- '3.7'
+- '3.8'
 geos:
 - 3.12.1
 glib:
