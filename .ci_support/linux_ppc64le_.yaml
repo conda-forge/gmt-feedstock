@@ -1,15 +1,17 @@
-MACOSX_DEPLOYMENT_TARGET:
-- '10.9'
 c_compiler:
-- clang
+- gcc
 c_compiler_version:
-- '16'
+- '12'
+cdt_name:
+- cos7
 channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge dev
 curl:
 - '8'
+docker_image:
+- quay.io/condaforge/linux-anvil-ppc64le
 fftw:
 - '3'
 gdal:
@@ -28,11 +30,9 @@ liblapack:
 - 3.9 *netlib
 libnetcdf:
 - 4.9.2
-macos_machine:
-- x86_64-apple-darwin13.4.0
 pcre:
 - '8'
 target_platform:
-- osx-64
+- linux-ppc64le
 zlib:
 - '1.2'
