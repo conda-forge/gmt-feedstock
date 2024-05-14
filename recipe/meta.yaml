@@ -5,12 +5,13 @@ source:
   git_url: https://github.com/GenericMappingTools/gmt.git
   git_rev: 07769944b445953a7a203f20657285d5a18c5e56
 build:
-  number: 1
+  number: 2
   skip: true  # [win and vc<14]
 requirements:
   build:
     - cmake
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - make  # [not win]
   host:
     - libblas
