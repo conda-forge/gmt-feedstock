@@ -22,7 +22,7 @@ jobs:
 
       # Checkout current git repository
       - name: Checkout
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@v4.1.6
         with:
           token: ${{ steps.generate-token.outputs.token }}
           repository: conda-forge/gmt-feedstock
@@ -100,7 +100,7 @@ jobs:
 
       # Open a Pull Request from organization (GenericMappingTools) fork to the upstream (conda-forge) repo
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5.0.1
+        uses: peter-evans/create-pull-request@v6.0.5
         with:
           title: "Bump GMT from ${{ steps.version_info.outputs.OLD_VERSION_STRING }} to ${{ steps.version_info.outputs.NEW_VERSION_STRING }}"
           commit-message: "Bump GMT dev version from ${{ steps.version_info.outputs.OLD_VERSION_STRING }} to ${{ steps.version_info.outputs.NEW_VERSION_STRING }}"
