@@ -1,6 +1,6 @@
 package:
   name: gmt
-  version: 6.5.0.dev10+eec0fc5
+  version: 6.6.0.dev0+eec0fc5
 source:
   git_url: https://github.com/GenericMappingTools/gmt.git
   git_rev: eec0fc5b982ac9d721c2b99a7a15bc390da4379e
