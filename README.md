@@ -22,7 +22,14 @@ Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>Travis</td>
+    <td>
+      <a href="https://app.travis-ci.com/conda-forge/gmt-feedstock">
+        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/gmt-feedstock/main.svg?label=Linux">
+      </a>
+    </td>
+  </tr>
     
   <tr>
     <td>Azure</td>
@@ -40,6 +47,20 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4544&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gmt-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4544&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gmt-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4544&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gmt-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -81,14 +102,14 @@ Current release info
 Installing gmt
 ==============
 
-Installing `gmt` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `gmt` from the `conda-forge/label/dev` channel can be achieved by adding `conda-forge/label/dev` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/dev
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `gmt` can be installed with `conda`:
+Once the `conda-forge/label/dev` channel has been enabled, `gmt` can be installed with `conda`:
 
 ```
 conda install gmt
@@ -103,26 +124,26 @@ mamba install gmt
 It is possible to list all of the versions of `gmt` available on your platform with `conda`:
 
 ```
-conda search gmt --channel conda-forge
+conda search gmt --channel conda-forge/label/dev
 ```
 
 or with `mamba`:
 
 ```
-mamba search gmt --channel conda-forge
+mamba search gmt --channel conda-forge/label/dev
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search gmt --channel conda-forge
+mamba repoquery search gmt --channel conda-forge/label/dev
 
 # List packages depending on `gmt`:
-mamba repoquery whoneeds gmt --channel conda-forge
+mamba repoquery whoneeds gmt --channel conda-forge/label/dev
 
 # List dependencies of `gmt`:
-mamba repoquery depends gmt --channel conda-forge
+mamba repoquery depends gmt --channel conda-forge/label/dev
 ```
 
 
@@ -144,7 +165,7 @@ available continuous integration services. Thanks to the awesome service provide
 [CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/),
 [Drone](https://cloud.drone.io/welcome), and [TravisCI](https://travis-ci.com/)
 it is possible to build and upload installable packages to the
-[conda-forge](https://anaconda.org/conda-forge) [Anaconda-Cloud](https://anaconda.org/)
+[conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
 To manage the continuous integration and simplify feedstock maintenance

@@ -1,13 +1,12 @@
 build_platform:
   osx_arm64: osx_64
-channels:
-  targets:
-  - - conda-forge
-    - dev
 compiler_stack: comp7
 conda_build:
   pkg_format: '2'
 conda_forge_output_validation: true
 max_py_ver: '37'
 max_r_ver: '35'
-test_on_native_only: true
+provider:
+  linux_aarch64: default
+  linux_ppc64le: default
+test: native_and_emulated
