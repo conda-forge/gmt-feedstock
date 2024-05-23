@@ -6,7 +6,7 @@ source:
   git_rev: eec0fc5b982ac9d721c2b99a7a15bc390da4379e
 build:
   number: 0
-  skip: true  # [win and vc<14]
+  skip: true  # [ppc64le]
 requirements:
   build:
     - cmake
