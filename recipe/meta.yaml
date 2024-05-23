@@ -12,7 +12,7 @@ source:
 
 build:
   number: 33
-  skip: true  # [win and vc<14]
+  skip: true  # [ppc64le]
 
 requirements:
   build:
