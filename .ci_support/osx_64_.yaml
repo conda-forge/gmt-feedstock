@@ -19,7 +19,7 @@ curl:
 fftw:
 - '3'
 gdal:
-- '3.8'
+- '3.9'
 geos:
 - 3.12.1
 glib:
