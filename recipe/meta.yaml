@@ -9,7 +9,7 @@ source:
   sha256: b17e165fd6c85aeb0a281700bd89522af8c2676a2d7bdb51a6b242fa9f1779c9
 
 build:
-  number: 3
+  number: 4
   skip: true  # [ppc64le]
 
 requirements:
@@ -42,6 +42,7 @@ requirements:
     - {{ pin_compatible('gdal', max_pin='x.x') }}
     - geos
     - ghostscript
+    - libgdal-jp2openjpeg
     - libnetcdf
     - hdf5
     - {{ pin_compatible('zlib', max_pin='x.x') }}
