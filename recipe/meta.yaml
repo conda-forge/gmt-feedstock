@@ -22,6 +22,7 @@ requirements:
     - geos
     - glib
     - ghostscript
+    - libgdal-jp2openjpeg
     - libnetcdf
     - hdf5
     - zlib
@@ -57,6 +58,9 @@ test:
     - gmt-config --all  # [not win]
     - gmt  # [win]
     - gmt grdmath -Rg -I1 0 90 SDIST = dist_to_NP.nc -x2
+    # Test reading/writing a JP2 file (S90E000.earth_relief_05m_p.jp2)
+    - gmt grdcut @earth_relief_05m -R-10/-9/3/5 -Greliefcut.jp2=gd:JP2OpenJPEG
+    - "[ -e 'reliefcut.jp2' ] && exit 0 || exit 1"
 about:
   home: https://www.generic-mapping-tools.org
   license: LGPL-3.0-or-later
