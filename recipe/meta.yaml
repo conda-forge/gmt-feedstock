@@ -1,17 +1,17 @@
 package:
   name: gmt
-  version: 6.6.0.dev0+eec0fc5
+  version: 6.6.0.dev1+708d76b
 source:
   git_url: https://github.com/GenericMappingTools/gmt.git
-  git_rev: eec0fc5b982ac9d721c2b99a7a15bc390da4379e
+  git_rev: 708d76b92bf152564cfc98c11b5547aef13ab169
 build:
-  number: 1
+  number: 0
   skip: true  # [ppc64le]
 requirements:
   build:
     - cmake
     - {{ compiler('c') }}
-    - {{ stdlib("c") }}
+    - {{ stdlib('c') }}
     - make  # [not win]
   host:
     - libblas
@@ -37,6 +37,7 @@ requirements:
     - {{ pin_compatible('gdal', max_pin='x.x') }}
     - geos
     - ghostscript
+    - libgdal-jp2openjpeg
     - libnetcdf
     - hdf5
     - {{ pin_compatible('zlib', max_pin='x.x') }}
@@ -57,6 +58,9 @@ test:
     - gmt-config --all  # [not win]
     - gmt  # [win]
     - gmt grdmath -Rg -I1 0 90 SDIST = dist_to_NP.nc -x2
+    # Test reading/writing a JP2 file (S90E000.earth_relief_05m_p.jp2)
+    - gmt grdcut @earth_relief_05m -R-10/-9/3/5 -Greliefcut.jp2=gd:JP2OpenJPEG
+    - "[ -e 'reliefcut.jp2' ] && exit 0 || exit 1"
 about:
   home: https://www.generic-mapping-tools.org
   license: LGPL-3.0-or-later
