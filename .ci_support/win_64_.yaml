@@ -1,5 +1,7 @@
 c_compiler:
 - vs2019
+c_stdlib:
+- vs
 channel_sources:
 - conda-forge
 channel_targets:
@@ -9,9 +11,9 @@ curl:
 fftw:
 - '3'
 gdal:
-- '3.8'
+- '3.9'
 geos:
-- 3.12.1
+- 3.12.2
 glib:
 - '2'
 hdf5:
@@ -28,7 +30,5 @@ pcre:
 - '8'
 target_platform:
 - win-64
-vc:
-- '14'
 zlib:
-- '1.2'
+- '1'

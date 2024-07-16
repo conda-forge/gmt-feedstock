@@ -4,6 +4,10 @@ c_compiler:
 - gcc
 c_compiler_version:
 - '12'
+c_stdlib:
+- sysroot
+c_stdlib_version:
+- '2.17'
 cdt_arch:
 - aarch64
 cdt_name:
@@ -15,13 +19,13 @@ channel_targets:
 curl:
 - '8'
 docker_image:
-- quay.io/condaforge/linux-anvil-aarch64
+- quay.io/condaforge/linux-anvil-cos7-x86_64
 fftw:
 - '3'
 gdal:
-- '3.8'
+- '3.9'
 geos:
-- 3.12.1
+- 3.12.2
 glib:
 - '2'
 hdf5:
@@ -38,5 +42,8 @@ pcre:
 - '8'
 target_platform:
 - linux-aarch64
+zip_keys:
+- - c_stdlib_version
+  - cdt_name
 zlib:
-- '1.2'
+- '1'
