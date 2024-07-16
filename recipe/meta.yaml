@@ -22,7 +22,6 @@ requirements:
     - geos
     - glib
     - ghostscript
-    - libgdal-jp2openjpeg
     - libnetcdf
     - hdf5
     - zlib
@@ -38,6 +37,7 @@ requirements:
     - {{ pin_compatible('gdal', max_pin='x.x') }}
     - geos
     - ghostscript
+    - libgdal-jp2openjpeg
     - libnetcdf
     - hdf5
     - {{ pin_compatible('zlib', max_pin='x.x') }}
