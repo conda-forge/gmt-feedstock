@@ -65,7 +65,7 @@ test:
     - gmt  # [win]
     - gmt grdmath -Rg -I1 0 90 SDIST = dist_to_NP.nc -x2
     # Test reading/writing a netCDF/HDF5 file
-    - gmt grdcut @earth_relief_01d -R-10/-9/3/5 -Greliefcut.nc
+    - gmt grdcut @earth_relief_01d -R-10/-9/3/5 -Greliefcut.nc=gd
     - "[ -e 'reliefcut.nc' ] && exit 0 || exit 1"
     # Test reading/writing a JP2 file (S90E000.earth_relief_05m_p.jp2)
     - gmt grdcut @earth_relief_05m -R-10/-9/3/5 -Greliefcut.jp2=gd:JP2OpenJPEG
