@@ -11,7 +11,7 @@ requirements:
   build:
     - cmake
     - {{ compiler('c') }}
-    - {{ stdlib("c") }}
+    - {{ stdlib('c') }}
     - make  # [not win]
   host:
     - libblas

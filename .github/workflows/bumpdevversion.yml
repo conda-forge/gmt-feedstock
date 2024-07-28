@@ -81,9 +81,11 @@ jobs:
           # Reset build number to 0
           yq eval --inplace '.build.number = 0' recipe/meta.yaml
 
-          # Fix incorrectly formatted {{ compiler('c') }}
+          # Fix incorrectly formatted {{ compiler('c') }} and {{ stdlib('c') }}
           yq eval --inplace '.requirements.build[1] = "{{ compiler('c') }}"' recipe/meta.yaml
+          yq eval --inplace '.requirements.build[2] = "{{ stdlib('c') }}"' recipe/meta.yaml
           sed --in-place "s/'{{ compiler(c) }}'/{{ compiler('c') }}/g" recipe/meta.yaml
+          sed --in-place "s/'{{ stdlib(c) }}'/{{ stdlib('c') }}/g" recipe/meta.yaml
 
           # Fix incorrectly formatted {{ pin_compatible('...') }}
           sed --in-place "s/{? {pin_compatible('fftw': '', max_pin='x'): ''} : ''}/{{ pin_compatible('fftw', max_pin='x') }}/g" recipe/meta.yaml
