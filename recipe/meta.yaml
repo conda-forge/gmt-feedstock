@@ -1,16 +1,16 @@
 package:
   name: gmt
-  version: 6.6.0.dev1+708d76b
+  version: 6.6.0.dev2+7f257dc
 source:
   git_url: https://github.com/GenericMappingTools/gmt.git
-  git_rev: 708d76b92bf152564cfc98c11b5547aef13ab169
+  git_rev: 7f257dc504e455e1a6a6d65e5146cf335ba80b38
 build:
   number: 0
   skip: true  # [ppc64le]
 requirements:
   build:
     - cmake
-    - {{ compiler('c') }}
+    - {? {compiler('c'): ''} : ''}
     - {{ stdlib('c') }}
     - make  # [not win]
   host:
