@@ -23,6 +23,59 @@ Current build status
 
 
 <table>
+    
+  <tr>
+    <td>Azure</td>
+    <td>
+      <details>
+        <summary>
+          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4544&branchName=main">
+            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gmt-feedstock?branchName=main">
+          </a>
+        </summary>
+        <table>
+          <thead><tr><th>Variant</th><th>Status</th></tr></thead>
+          <tbody><tr>
+              <td>linux_64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4544&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gmt-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4544&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gmt-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4544&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gmt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4544&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gmt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4544&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gmt-feedstock?branchName=main&jobName=win&configuration=win%20win_64_" alt="variant">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
+    </td>
+  </tr>
 </table>
 
 Current release info
@@ -35,14 +88,14 @@ Current release info
 Installing gmt
 ==============
 
-Installing `gmt` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `gmt` from the `conda-forge/label/dev` channel can be achieved by adding `conda-forge/label/dev` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/dev
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `gmt` can be installed with `conda`:
+Once the `conda-forge/label/dev` channel has been enabled, `gmt` can be installed with `conda`:
 
 ```
 conda install gmt
@@ -57,26 +110,26 @@ mamba install gmt
 It is possible to list all of the versions of `gmt` available on your platform with `conda`:
 
 ```
-conda search gmt --channel conda-forge
+conda search gmt --channel conda-forge/label/dev
 ```
 
 or with `mamba`:
 
 ```
-mamba search gmt --channel conda-forge
+mamba search gmt --channel conda-forge/label/dev
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search gmt --channel conda-forge
+mamba repoquery search gmt --channel conda-forge/label/dev
 
 # List packages depending on `gmt`:
-mamba repoquery whoneeds gmt --channel conda-forge
+mamba repoquery whoneeds gmt --channel conda-forge/label/dev
 
 # List dependencies of `gmt`:
-mamba repoquery depends gmt --channel conda-forge
+mamba repoquery depends gmt --channel conda-forge/label/dev
 ```
 
 

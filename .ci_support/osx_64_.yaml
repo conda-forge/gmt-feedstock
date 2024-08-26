@@ -1,0 +1,44 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '10.13'
+MACOSX_SDK_VERSION:
+- '10.13'
+c_compiler:
+- clang
+c_compiler_version:
+- '16'
+c_stdlib:
+- macosx_deployment_target
+c_stdlib_version:
+- '10.13'
+channel_sources:
+- conda-forge
+channel_targets:
+- conda-forge dev
+curl:
+- '8'
+fftw:
+- '3'
+gdal:
+- '3.9'
+geos:
+- 3.12.2
+glib:
+- '2'
+hdf5:
+- 1.14.3
+libblas:
+- 3.9 *netlib
+libcblas:
+- 3.9 *netlib
+liblapack:
+- 3.9 *netlib
+libnetcdf:
+- 4.9.2
+macos_machine:
+- x86_64-apple-darwin13.4.0
+pcre:
+- '8'
+target_platform:
+- osx-64
+zlib:
+- '1'
