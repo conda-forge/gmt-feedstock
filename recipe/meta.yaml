@@ -6,7 +6,6 @@ source:
   git_rev: 7f257dc504e455e1a6a6d65e5146cf335ba80b38
 build:
   number: 1
-  skip: true
 requirements:
   build:
     - cmake
