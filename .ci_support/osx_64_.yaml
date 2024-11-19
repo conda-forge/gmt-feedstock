@@ -5,7 +5,7 @@ MACOSX_SDK_VERSION:
 c_compiler:
 - clang
 c_compiler_version:
-- '17'
+- '18'
 c_stdlib:
 - macosx_deployment_target
 c_stdlib_version:
@@ -19,7 +19,7 @@ curl:
 fftw:
 - '3'
 gdal:
-- '3.9'
+- '3.10'
 geos:
 - 3.13.0
 glib:

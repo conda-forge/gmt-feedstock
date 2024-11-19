@@ -7,7 +7,7 @@ c_stdlib:
 c_stdlib_version:
 - '2.17'
 cdt_name:
-- cos7
+- conda
 channel_sources:
 - conda-forge
 channel_targets:
@@ -19,7 +19,7 @@ docker_image:
 fftw:
 - '3'
 gdal:
-- '3.9'
+- '3.10'
 geos:
 - 3.13.0
 glib:
@@ -38,8 +38,5 @@ pcre:
 - '8'
 target_platform:
 - linux-64
-zip_keys:
-- - c_stdlib_version
-  - cdt_name
 zlib:
 - '1'
