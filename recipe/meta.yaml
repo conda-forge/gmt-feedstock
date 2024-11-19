@@ -11,7 +11,7 @@ source:
     - no_matlab.patch
 
 build:
-  number: 35
+  number: 36
   skip: true  # [ppc64le]
 
 requirements:
