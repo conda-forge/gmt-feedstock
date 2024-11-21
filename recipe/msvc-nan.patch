@@ -1,36 +1,18 @@
-From bfdd58d55e7c22ded26d39438dd807ffe1afc923 Mon Sep 17 00:00:00 2001
-From: Joaquim <jmfluis@gmail.com>
-Date: Wed, 20 Nov 2024 14:02:53 +0000
-Subject: [PATCH] Apprently new VS headers (or other Win .h) drop "#define
- NAN". (#8627)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-* Apprently new VS headers (or other Win .h) drop "#define NAN".
-
-This PR defines it when it«s not found (Windows only)
-
-* Since NAN is handled in gmt_notposix.h, move the new definition to that file.
----
- src/gmt_notposix.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
 diff --git a/src/gmt_notposix.h b/src/gmt_notposix.h
-index 586c88d136..570bdb9f61 100644
+index 586c88d136..bdc9a006fc 100644
 --- a/src/gmt_notposix.h
 +++ b/src/gmt_notposix.h
-@@ -331,8 +331,8 @@
+@@ -331,11 +331,9 @@
  
  #ifndef NAN
  #	ifdef _MSC_VER
 -#		include <ymath.h>
 -#		define NAN _Nan._Double
-+		static const double _NAN = (-(float)(((float)(1e+300 * 1e+300)) * 0.0F));
-+#		define NAN _NAN
++#		define NAN (-(float)(((float)(1e+300 * 1e+300)) * 0.0F));
  #	else /* _MSC_VER */
- 		static const double _NAN = (HUGE_VAL-HUGE_VAL);
- #		define NAN _NAN
--- 
-2.47.0
-
+-		static const double _NAN = (HUGE_VAL-HUGE_VAL);
+-#		define NAN _NAN
++#		define NAN (HUGE_VAL-HUGE_VAL);
+ #	endif /* _MSC_VER */
+ #endif /* !NAN */
+ 
