@@ -9,6 +9,7 @@ source:
   sha256: b17e165fd6c85aeb0a281700bd89522af8c2676a2d7bdb51a6b242fa9f1779c9
   patches:
     - lapack.patch  # Patch for GMT 6.5.0
+    - msvc-nan.patch # Patch for GMT 6.5.0
 
 build:
   number: 7
