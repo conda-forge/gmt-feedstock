@@ -7,9 +7,13 @@ package:
 source:
   url: https://github.com/GenericMappingTools/gmt/releases/download/{{ version }}/gmt-{{ version }}-src.tar.gz
   sha256: b17e165fd6c85aeb0a281700bd89522af8c2676a2d7bdb51a6b242fa9f1779c9
+  patches:
+    # Patches for GMT 6.5.0
+    - lapack.patch
+    - gmtlogo.patch
 
 build:
-  number: 6
+  number: 7
 
 requirements:
   build:
