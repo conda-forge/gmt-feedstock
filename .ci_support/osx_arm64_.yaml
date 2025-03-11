@@ -21,17 +21,17 @@ fftw:
 gdal:
 - '3.10'
 geos:
-- 3.13.0
+- 3.13.1
 glib:
 - '2'
 hdf5:
 - 1.14.3
 libblas:
-- 3.9 *netlib
+- 3.9.* *netlib
 libcblas:
-- 3.9 *netlib
+- 3.9.* *netlib
 liblapack:
-- 3.9 *netlib
+- 3.9.* *netlib
 libnetcdf:
 - 4.9.2
 macos_machine:
