@@ -29,9 +29,6 @@ requirements:
     - gshhg-gmt
     - dcw-gmt
   run:
-    - libblas
-    - libcblas
-    - liblapack
     - {{ pin_compatible('fftw', max_pin='x') }}
     - {{ pin_compatible('libgdal-core', max_pin='x.x') }}
     - geos
