@@ -10,8 +10,6 @@ curl:
 - '8'
 fftw:
 - '3'
-gdal:
-- '3.10'
 geos:
 - 3.13.0
 glib:
@@ -19,11 +17,13 @@ glib:
 hdf5:
 - 1.14.3
 libblas:
-- 3.9 *netlib
+- 3.9.* *netlib
 libcblas:
-- 3.9 *netlib
+- 3.9.* *netlib
+libgdal_core:
+- '3.10'
 liblapack:
-- 3.9 *netlib
+- 3.9.* *netlib
 libnetcdf:
 - 4.9.2
 pcre:
