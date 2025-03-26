@@ -16,8 +16,8 @@ requirements:
     - libblas
     - libcblas
     - liblapack
+    - libgdal-core
     - fftw
-    - gdal
     - geos
     - glib
     - ghostscript
