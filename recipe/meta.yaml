@@ -33,7 +33,7 @@ requirements:
     - libcblas
     - liblapack
     - {{ pin_compatible('fftw', max_pin='x') }}
-    - {{ pin_compatible('gdal', max_pin='x.x') }}
+    - {{ pin_compatible('libgdal-core', max_pin='x.x') }}
     - geos
     - ghostscript
     - libgdal-jp2openjpeg
