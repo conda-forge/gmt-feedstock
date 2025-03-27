@@ -15,23 +15,25 @@ channel_targets:
 curl:
 - '8'
 docker_image:
-- quay.io/condaforge/linux-anvil-cos7-x86_64
+- quay.io/condaforge/linux-anvil-x86_64:alma9
 fftw:
 - '3'
-gdal:
-- '3.10'
 geos:
-- 3.13.0
+- 3.13.1
 glib:
 - '2'
 hdf5:
 - 1.14.3
 libblas:
-- 3.9 *netlib
+- 3.9.* *netlib
 libcblas:
-- 3.9 *netlib
+- 3.9.* *netlib
+libgdal:
+- '3.10'
+libgdal_core:
+- '3.10'
 liblapack:
-- 3.9 *netlib
+- 3.9.* *netlib
 libnetcdf:
 - 4.9.2
 pcre:
