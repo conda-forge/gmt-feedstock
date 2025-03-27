@@ -26,10 +26,10 @@ requirements:
     - libcblas
     - liblapack
     - fftw
-    - gdal
     - geos
     - glib
     - ghostscript
+    - libgdal-core
     - libnetcdf
     - hdf5
     - zlib
@@ -42,9 +42,9 @@ requirements:
     - libcblas
     - liblapack
     - {{ pin_compatible('fftw', max_pin='x') }}
-    - {{ pin_compatible('gdal', max_pin='x.x') }}
     - geos
     - ghostscript
+    - {{ pin_compatible('libgdal-core', max_pin='x.x') }}
     - libgdal-jp2openjpeg
     - libnetcdf
     - hdf5
