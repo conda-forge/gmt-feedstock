@@ -16,11 +16,11 @@ requirements:
     - libblas
     - libcblas
     - liblapack
-    - libgdal-core
     - fftw
     - geos
     - glib
     - ghostscript
+    - libgdal-core
     - libnetcdf
     - hdf5
     - zlib
@@ -30,9 +30,9 @@ requirements:
     - dcw-gmt
   run:
     - {{ pin_compatible('fftw', max_pin='x') }}
-    - {{ pin_compatible('libgdal-core', max_pin='x.x') }}
     - geos
     - ghostscript
+    - {{ pin_compatible('libgdal-core', max_pin='x.x') }}
     - libgdal-jp2openjpeg
     - libnetcdf
     - hdf5
