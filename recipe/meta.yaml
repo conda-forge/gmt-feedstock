@@ -38,9 +38,6 @@ requirements:
     - gshhg-gmt
     - dcw-gmt
   run:
-    - libblas
-    - libcblas
-    - liblapack
     - {{ pin_compatible('fftw', max_pin='x') }}
     - geos
     - ghostscript
