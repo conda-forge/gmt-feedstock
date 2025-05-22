@@ -11,6 +11,7 @@ source:
     # Patches for GMT 6.5.0
     - lapack.patch
     - gmtlogo.patch
+    - cmake.patch
 
 build:
   number: 9
