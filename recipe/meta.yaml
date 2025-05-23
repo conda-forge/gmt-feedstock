@@ -10,7 +10,6 @@ source:
   patches:
     - no_matlab.patch
     - gmtlogo.patch
-    - cmake.patch
 
 build:
   number: 38
