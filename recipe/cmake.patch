@@ -7,7 +7,7 @@ index 7d0eb9b336..5d5fbed798 100644
  
  # Define minimum CMake version required
 -cmake_minimum_required (VERSION 2.8.5)
-+cmake_minimum_required (VERSION 2.8.5...3.31)
++cmake_minimum_required (VERSION 2.8.5...3.0)
  
  # Use NEW behavior with newer CMake releases
  foreach(p
