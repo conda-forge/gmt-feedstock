@@ -1,11 +1,11 @@
 package:
   name: gmt
-  version: 6.6.0.dev5+b3580a7
+  version: 6.6.0.dev6+0bd8acb
 source:
   git_url: https://github.com/GenericMappingTools/gmt.git
-  git_rev: b3580a7a7a575c9bacd4cdfb54214886ca157038
+  git_rev: 0bd8acbf8dacfad56cb7ab2fb101c72c464f96e6
 build:
-  number: 2
+  number: 0
 requirements:
   build:
     - cmake
@@ -32,7 +32,7 @@ requirements:
     - {{ pin_compatible('fftw', max_pin='x') }}
     - geos
     - ghostscript
-    - {{ pin_compatible('libgdal-core', max_pin='x.x') }}
+    - {? {pin_compatible('libgdal-core': '', max_pin='x.x'): ''} : ''}
     - libgdal-jp2openjpeg
     - libnetcdf
     - hdf5
