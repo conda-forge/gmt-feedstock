@@ -89,7 +89,7 @@ jobs:
 
           # Fix incorrectly formatted {{ pin_compatible('...') }}
           sed --in-place "s/{? {pin_compatible('fftw': '', max_pin='x'): ''} : ''}/{{ pin_compatible('fftw', max_pin='x') }}/g" recipe/meta.yaml
-          sed --in-place "s/{? {pin_compatible('gdal': '', max_pin='x.x'): ''} : ''}/{{ pin_compatible('gdal', max_pin='x.x') }}/g" recipe/meta.yaml
+          sed --in-place "s/{? {pin_compatible('libgdal-core': '', max_pin='x.x'): ''} : ''}/{{ pin_compatible('libgdal-core', max_pin='x.x') }}/g" recipe/meta.yaml
           sed --in-place "s/{? {pin_compatible('zlib': '', max_pin='x.x'): ''} : ''}/{{ pin_compatible('zlib', max_pin='x.x') }}/g" recipe/meta.yaml
           sed --in-place "s/{? {pin_compatible('curl': '', max_pin='x'): ''} : ''}/{{ pin_compatible('curl', max_pin='x') }}/g" recipe/meta.yaml
 
