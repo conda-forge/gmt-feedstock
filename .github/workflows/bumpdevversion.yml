@@ -10,21 +10,21 @@ jobs:
   bump-dev-version:
     name: Bump GMT development version
     runs-on: ubuntu-latest
-    if: github.repository == 'GenericMappingTools/gmt-feedstock'
+    if: github.repository == 'weiji14/gmt-feedstock'
 
     steps:
       # Generate token from GenericMappingTools bot
-      - uses: actions/create-github-app-token@v2.0.6
-        id: generate-token
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+      # - uses: actions/create-github-app-token@v2.0.6
+      #   id: generate-token
+      #   with:
+      #     app-id: ${{ secrets.APP_ID }}
+      #     private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
       # Checkout current git repository
       - name: Checkout
         uses: actions/checkout@v4.2.2
         with:
-          token: ${{ steps.generate-token.outputs.token }}
+          # token: ${{ steps.generate-token.outputs.token }}
           repository: conda-forge/gmt-feedstock
           ref: devel
 
@@ -113,7 +113,7 @@ jobs:
           delete-branch: true
           draft: true
           push-to-fork: GenericMappingTools/gmt-feedstock
-          token: ${{ steps.generate-token.outputs.token }}
+          token: ${{ secrets.GMT_FEEDSTOCK_TOKEN }}
           body: |
             **This is an automated pull request!**
 
