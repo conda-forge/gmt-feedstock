@@ -5,7 +5,7 @@ source:
   git_url: https://github.com/GenericMappingTools/gmt.git
   git_rev: 7026382558e11f89e2238bb345e1d0af325c12aa
 build:
-  number: 1
+  number: 2
 requirements:
   build:
     - cmake
