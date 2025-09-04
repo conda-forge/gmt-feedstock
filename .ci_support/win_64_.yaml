@@ -27,7 +27,7 @@ libgdal_core:
 liblapack:
 - 3.9.* *netlib
 libnetcdf:
-- 4.9.2
+- 4.9.3
 pcre:
 - '8'
 target_platform:
