@@ -5,7 +5,7 @@ MACOSX_SDK_VERSION:
 c_compiler:
 - clang
 c_compiler_version:
-- '18'
+- '19'
 c_stdlib:
 - macosx_deployment_target
 c_stdlib_version:
@@ -19,7 +19,7 @@ curl:
 fftw:
 - '3'
 gdal:
-- '3.10'
+- '3.11'
 hdf5:
 - 1.14.3
 libblas:
@@ -29,7 +29,7 @@ libcblas:
 liblapack:
 - 3.9.* *netlib
 libnetcdf:
-- 4.9.2
+- 4.9.3
 macos_machine:
 - x86_64-apple-darwin13.4.0
 pcre:
