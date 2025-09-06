@@ -23,6 +23,7 @@ cmake -G "NMake Makefiles" ^
       -D COPY_DCW=TRUE ^
       -D GMT_INSTALL_TRADITIONAL_FOLDERNAMES=FALSE ^
       -D GMT_INSTALL_MODULE_LINKS=FALSE ^
+      -D CMAKE_POLICY_VERSION_MINIMUM=3.5 ^
       %SRC_DIR%
 if errorlevel 1 exit 1
 
