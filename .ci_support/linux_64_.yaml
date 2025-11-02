@@ -6,8 +6,6 @@ c_stdlib:
 - sysroot
 c_stdlib_version:
 - '2.17'
-cdt_name:
-- conda
 channel_sources:
 - conda-forge
 channel_targets:
@@ -19,7 +17,7 @@ docker_image:
 fftw:
 - '3'
 geos:
-- 3.14.0
+- 3.14.1
 glib:
 - '2'
 hdf5:
