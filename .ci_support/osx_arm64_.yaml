@@ -29,9 +29,9 @@ libblas:
 libcblas:
 - 3.9.* *netlib
 libgdal:
-- '3.11'
+- '3.12'
 libgdal_core:
-- '3.11'
+- '3.12'
 liblapack:
 - 3.9.* *netlib
 libnetcdf:
