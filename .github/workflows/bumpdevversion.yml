@@ -1,0 +1,133 @@
+on:
+  push:
+    # branches:
+    #   - devel
+  # Schedule runs on 9am every Tuesday
+  schedule:
+    - cron: "0 9 * * 2"
+
+jobs:
+  bump-dev-version:
+    name: Bump GMT development version
+    runs-on: ubuntu-latest
+    if: github.repository == 'weiji14/gmt-feedstock'
+
+    steps:
+      # Generate token from GenericMappingTools bot
+      # - uses: actions/create-github-app-token@v2.0.6
+      #   id: generate-token
+      #   with:
+      #     app-id: ${{ secrets.APP_ID }}
+      #     private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      # Checkout current git repository
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+        with:
+          # token: ${{ steps.generate-token.outputs.token }}
+          repository: conda-forge/gmt-feedstock
+          ref: devel
+
+      # Install yq - A portable command-line YAML processor
+      - name: Install yq
+        run: |
+          sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.34.1/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+
+      # Get the GMT package's current (old) and latest (new) hash
+      # and build the desired conda version string. For example:
+      # Step 1a. OLD_SHA_HASH=abcdefghijklmnopqrstuvwxyz12345678901234,
+      # Step 1b. NEW_SHA_HASH=hijklmnopqrstuvwxyz12345678901234abcdefg,
+      # Step 2a: OLD_VERSION_STRING=6.6.0.dev0+abcdefg,
+      # Step 2b. NEW_VERSION_STRING=6.6.0.dev1+hijklmn
+      - name: Get package's latest git revision and build version string
+        id: version_info
+        run: |
+          ## Step 1a: Get current (old) sha hash from recipe/meta.yaml file (e.g. abcdefghijklmnopqrstuvwxyz12345678901234)
+          export OLD_SHA_HASH=$(yq eval '.source.git_rev' recipe/meta.yaml)
+          echo "OLD_SHA_HASH=$OLD_SHA_HASH" >> $GITHUB_OUTPUT
+
+          ## Step 1b: Get latest (new) sha hash value from Github (e.g. hijklmnopqrstuvwxyz12345678901234abcdefg)
+          export NEW_SHA_HASH=$(git ls-remote https://github.com/GenericMappingTools/gmt HEAD | cut -f 1)
+          echo "NEW_SHA_HASH=$NEW_SHA_HASH" >> $GITHUB_OUTPUT
+
+
+          ## Step 2a. Get current (old) sha hash and version string from recipe/meta.yaml file (e.g. 6.6.0.dev0+abcdefg)
+          export OLD_VERSION_STRING=$(yq eval '.package.version' recipe/meta.yaml)
+          echo "OLD_VERSION_STRING=$OLD_VERSION_STRING" >> $GITHUB_OUTPUT
+
+          ## Step 2b. Build new version string (e.g. 6.6.0.dev1+hijklmn)
+
+          # Step 2b i. Get current tag of latest dev build (e.g. 6.6.0)
+          export TAG=$(echo $OLD_VERSION_STRING | grep -o -P '.*(?=.dev)')
+
+          # Step 2b ii. Add 1 to the previous dev version number (e.g. 6.6.0.dev0+abcdefg would output 1, i.e. for dev1)
+          export DEV_VERSION_NUM=`expr 1 + $(yq eval '.package.version' recipe/meta.yaml | grep -o -P '(?<=dev).*(?=\+)')`
+
+          # Step 2b iii. Get shortened new sha hash value (e.g. hijklmn)
+          export SHORT_HASH=$(echo $NEW_SHA_HASH | cut -c 1-7)
+
+          # Step 2b iv. Finally build the new version string (e.g. 6.6.0.dev1+hijklmn)
+          export NEW_VERSION_STRING=$TAG.dev$DEV_VERSION_NUM+$SHORT_HASH
+          echo "NEW_VERSION_STRING=$NEW_VERSION_STRING" >> $GITHUB_OUTPUT
+
+      # Change development package version and source git revision
+      - name: Update package version and git revision
+        run: |
+          # Update the recipe/meta.yaml file with new version info
+          yq eval --inplace '.package.version = "${{ steps.version_info.outputs.NEW_VERSION_STRING }}"' recipe/meta.yaml
+          yq eval --inplace '.source.git_rev = "${{ steps.version_info.outputs.NEW_SHA_HASH }}"' recipe/meta.yaml
+
+          # Reset build number to 0
+          yq eval --inplace '.build.number = 0' recipe/meta.yaml
+
+          # Fix incorrectly formatted {{ compiler('c') }} and {{ stdlib('c') }}
+          yq eval --inplace '.requirements.build[1] = "{{ compiler('c') }}"' recipe/meta.yaml
+          yq eval --inplace '.requirements.build[2] = "{{ stdlib('c') }}"' recipe/meta.yaml
+          sed --in-place "s/'{{ compiler(c) }}'/{{ compiler('c') }}/g" recipe/meta.yaml
+          sed --in-place "s/'{{ stdlib(c) }}'/{{ stdlib('c') }}/g" recipe/meta.yaml
+
+          # Fix incorrectly formatted {{ pin_compatible('...') }}
+          sed --in-place "s/{? {pin_compatible('fftw': '', max_pin='x'): ''} : ''}/{{ pin_compatible('fftw', max_pin='x') }}/g" recipe/meta.yaml
+          sed --in-place "s/{? {pin_compatible('libgdal-core': '', max_pin='x.x'): ''} : ''}/{{ pin_compatible('libgdal-core', max_pin='x.x') }}/g" recipe/meta.yaml
+          sed --in-place "s/{? {pin_compatible('zlib': '', max_pin='x.x'): ''} : ''}/{{ pin_compatible('zlib', max_pin='x.x') }}/g" recipe/meta.yaml
+          sed --in-place "s/{? {pin_compatible('curl': '', max_pin='x'): ''} : ''}/{{ pin_compatible('curl', max_pin='x') }}/g" recipe/meta.yaml
+
+          # Ensure <two spaces>#<one space>[<expression>] form
+          sed --in-place "s/\ \#\ \[/  # [/g" recipe/meta.yaml
+
+      # Take a look at recipe/meta.yaml contents
+      - name: Check meta.yaml contents
+        run: cat recipe/meta.yaml
+
+      # Open a Pull Request from organization (GenericMappingTools) fork to the upstream (conda-forge) repo
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7.0.8
+        with:
+          title: "Bump GMT from ${{ steps.version_info.outputs.OLD_VERSION_STRING }} to ${{ steps.version_info.outputs.NEW_VERSION_STRING }}"
+          commit-message: "Bump GMT dev version from ${{ steps.version_info.outputs.OLD_VERSION_STRING }} to ${{ steps.version_info.outputs.NEW_VERSION_STRING }}"
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          # reviewers: ""  # TODO change to maintainer on conda-forge/gmt-feedstock
+          base: devel
+          branch: update/${{ steps.version_info.outputs.NEW_VERSION_STRING }}
+          delete-branch: true
+          draft: true
+          push-to-fork: GenericMappingTools/gmt-feedstock
+          token: ${{ secrets.GMT_FEEDSTOCK_TOKEN }}
+          body: |
+            **This is an automated pull request!**
+
+            This PR will update the following package:
+            - [`gmt`][1] from [`${{ steps.version_info.outputs.OLD_VERSION_STRING }}`][2] to [`${{ steps.version_info.outputs.NEW_VERSION_STRING }}`][3]
+              - Full list of commits made since last release viewable at [compare view][4]
+
+            Notes for merging this PR:
+            1. Feel free to push to the bot's branch to update this PR if needed.
+            2. Checklist before merging this PR:
+              - [ ] Dependencies have been updated if changed
+              - [ ] Tests have passed
+
+            [1]: https://github.com/GenericMappingTools/gmt
+            [2]: https://github.com/GenericMappingTools/gmt/commit/${{ steps.version_info.outputs.OLD_SHA_HASH }}
+            [3]: https://github.com/GenericMappingTools/gmt/commit/${{ steps.version_info.outputs.NEW_SHA_HASH }}
+            [4]: https://github.com/GenericMappingTools/gmt/compare/${{ steps.version_info.outputs.OLD_SHA_HASH }}...${{ steps.version_info.outputs.NEW_SHA_HASH }}
