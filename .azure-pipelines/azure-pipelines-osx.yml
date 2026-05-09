@@ -12,18 +12,22 @@ jobs:
         CONFIG: osx_64_hdf51.14.6
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
+        store_build_artifacts: false
       osx_64_hdf52:
         CONFIG: osx_64_hdf52
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
+        store_build_artifacts: false
       osx_arm64_hdf51.14.6:
         CONFIG: osx_arm64_hdf51.14.6
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
+        store_build_artifacts: false
       osx_arm64_hdf52:
         CONFIG: osx_arm64_hdf52
         UPLOAD_PACKAGES: 'True'
         VMIMAGE: macOS-15
+        store_build_artifacts: false
   timeoutInMinutes: 360
   variables: {}
 
