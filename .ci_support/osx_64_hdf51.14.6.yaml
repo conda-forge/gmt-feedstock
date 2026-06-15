@@ -1,7 +1,15 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '11.0'
+MACOSX_SDK_VERSION:
+- '11.0'
 c_compiler:
-- vs2022
+- clang
+c_compiler_version:
+- '19'
 c_stdlib:
-- vs
+- macosx_deployment_target
+c_stdlib_version:
+- '11.0'
 channel_sources:
 - conda-forge
 channel_targets:
@@ -21,16 +29,18 @@ libblas:
 libcblas:
 - 3.9.* *netlib
 libgdal:
-- '3.12'
+- '3.13'
 libgdal_core:
-- '3.12'
+- '3.13'
 liblapack:
 - 3.9.* *netlib
 libnetcdf:
-- 4.9.3
+- 4.10.0
+macos_machine:
+- x86_64-apple-darwin13.4.0
 pcre:
 - '8'
 target_platform:
-- win-64
+- osx-64
 zlib:
 - '1'
