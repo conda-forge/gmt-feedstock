@@ -55,7 +55,7 @@ test:
     - gmt  # [win]
     - gmt grdmath -Rg -I1 0 90 SDIST = dist_to_NP.nc -x2
     # Test reading/writing a JP2 file (S90E000.earth_relief_05m_p.jp2)
-    - gmt set GMT_DATA_SERVER http://singapore.generic-mapping-tools.org/
+    - gmt set GMT_DATA_SERVER http://portugal.generic-mapping-tools.org
     - gmt grdcut @earth_relief_05m -R-10/-9/3/5 -Greliefcut.jp2=gd:JP2OpenJPEG
     - "[ -e 'reliefcut.jp2' ] && exit 0 || exit 1"
 about:
