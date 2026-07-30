@@ -1,4 +1,4 @@
-{% set version = "6.6.0" %}
+{% set version = "6.7.0" %}
 
 package:
   name: gmt
@@ -6,10 +6,10 @@ package:
 
 source:
   url: https://github.com/GenericMappingTools/gmt/releases/download/{{ version }}/gmt-{{ version }}-src.tar.gz
-  sha256: 28c0e56a31d8f3606da18a8e7473eb40647b031df21c69a3e42255953c95bfe4
+  sha256: 408da664322b9328f36ef5eb73861e1e945e4ef52e9f2ff0a89eefff1abe9fe4
 
 build:
-  number: 9
+  number: 0
 
 requirements:
   build:
