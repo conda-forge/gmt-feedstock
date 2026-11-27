@@ -19,7 +19,7 @@ docker_image:
 fftw:
 - '3'
 geos:
-- 3.15.0
+- 3.15.1
 glib:
 - '2'
 hdf5:
